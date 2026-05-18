@@ -1,0 +1,388 @@
+/* ============================================================
+   ANIMATIONS.CSS — Efectos visuales, keyframes, reveal on scroll
+   ============================================================ */
+
+/* ============================================================
+   KEYFRAMES GLOBALES
+   ============================================================ */
+
+/* Entrada suave desde abajo */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Entrada desde la izquierda */
+@keyframes fade-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Entrada desde la derecha */
+@keyframes fade-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Escalar desde 0 */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Parpadeo de cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Pulso suave (glow pulsante) */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.4),
+                0 0 24px rgba(139, 92, 246, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(139, 92, 246, 0.7),
+                0 0 48px rgba(139, 92, 246, 0.35),
+                0 0 80px rgba(139, 92, 246, 0.15);
+  }
+}
+
+/* Pulso de texto neón */
+@keyframes text-glow-pulse {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(167,139,250,0.5),
+                 0 0 20px rgba(139,92,246,0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(167,139,250,0.8),
+                 0 0 40px rgba(139,92,246,0.5),
+                 0 0 60px rgba(139,92,246,0.2);
+  }
+}
+
+/* Flotación suave */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+/* Flotación con rotación leve */
+@keyframes float-rotate {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-8px) rotate(1deg); }
+  66%       { transform: translateY(-4px) rotate(-1deg); }
+}
+
+/* Escaneo tipo holograma (línea que baja) */
+@keyframes scan-line {
+  0%   { top: -2px; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Aparición de partículas */
+@keyframes particle-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120px) scale(1.5);
+  }
+}
+
+/* Brillo que cruza (shimmer) */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Rotación continua */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Onda de audio */
+@keyframes wave {
+  0%, 100% { transform: scaleY(0.5); }
+  50%       { transform: scaleY(1.5); }
+}
+
+/* Typing cursor */
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+/* Entrada del hero title */
+@keyframes hero-reveal {
+  0%   { opacity: 0; transform: translateY(40px) skewY(2deg); }
+  100% { opacity: 1; transform: translateY(0) skewY(0deg); }
+}
+
+/* Borde que da vuelta (border animation) */
+@keyframes border-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   CLASES DE ANIMACIÓN DIRECTA
+   ============================================================ */
+
+.animate-fade-up   { animation: fade-up 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
+.animate-fade-left { animation: fade-left 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
+.animate-fade-right{ animation: fade-right 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
+.animate-scale-in  { animation: scale-in 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+.animate-float     { animation: float 4s ease-in-out infinite; }
+.animate-float-alt { animation: float 4s ease-in-out infinite 2s; }
+.animate-glow-pulse{ animation: glow-pulse 2.5s ease-in-out infinite; }
+.animate-text-glow { animation: text-glow-pulse 3s ease-in-out infinite; }
+.animate-spin-slow { animation: spin 10s linear infinite; }
+.animate-shimmer   {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(167,139,250,0.15) 30%,
+    rgba(167,139,250,0.3) 50%,
+    rgba(167,139,250,0.15) 70%,
+    transparent 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* Delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+
+/* Inicial: oculto hasta que JS lo revela */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1),
+              transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal--left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal--left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal--right {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal--right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============================================================
+   EFECTO HOLOGRAMA — efecto de escaneo
+   ============================================================ */
+.hologram {
+  position: relative;
+  overflow: hidden;
+}
+
+.hologram::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--neon-primary),
+    var(--neon-cyan),
+    var(--neon-primary),
+    transparent
+  );
+  animation: scan-line 4s linear infinite;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* ============================================================
+   EFECTO GLITCH — para texto especial
+   ============================================================ */
+@keyframes glitch-1 {
+  0%, 95%, 100% { clip-path: none; transform: none; }
+  96% { clip-path: polygon(0 20%, 100% 20%, 100% 30%, 0 30%); transform: translateX(-4px); }
+  97% { clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); transform: translateX(4px); }
+  98% { clip-path: polygon(0 40%, 100% 40%, 100% 50%, 0 50%); transform: translateX(-2px); }
+}
+
+@keyframes glitch-2 {
+  0%, 96%, 100% { clip-path: none; transform: none; opacity: 0; }
+  97% {
+    clip-path: polygon(0 20%, 100% 20%, 100% 35%, 0 35%);
+    transform: translateX(4px);
+    opacity: 0.7;
+  }
+  98% {
+    clip-path: polygon(0 65%, 100% 65%, 100% 80%, 0 80%);
+    transform: translateX(-4px);
+    opacity: 0.7;
+  }
+  99% { opacity: 0; }
+}
+
+.glitch {
+  position: relative;
+  animation: glitch-1 6s infinite;
+}
+
+.glitch::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--neon-cyan);
+  animation: glitch-2 6s infinite 0.1s;
+}
+
+/* ============================================================
+   EFECTO TYPING — cursor parpadeante
+   ============================================================ */
+.typing-cursor::after {
+  content: '|';
+  color: var(--neon-primary);
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+/* ============================================================
+   CANVAS DE PARTÍCULAS (fondo animado)
+   ============================================================ */
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ============================================================
+   MICRO-INTERACCIONES
+   ============================================================ */
+
+/* Botón que pulsa al hacer hover */
+.pulse-hover:hover {
+  animation: glow-pulse 1s ease-in-out infinite;
+}
+
+/* Card que "respira" */
+.breathe {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Ícono que gira al hover */
+.icon-spin:hover {
+  animation: spin 0.5s ease-in-out;
+}
+
+/* ============================================================
+   BARRA DE PROGRESO ANIMADA
+   ============================================================ */
+.progress-fill {
+  width: 0%;
+}
+
+.progress-fill.animate {
+  animation: progress-grow 1.4s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+
+@keyframes progress-grow {
+  from { width: 0%; }
+  to   { width: var(--target-width, 100%); }
+}
+
+/* ============================================================
+   GRID DE PARTÍCULAS ESTÁTICAS (fondo decorativo)
+   ============================================================ */
+.dots-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(139,92,246,0.15) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+/* ============================================================
+   RESPETO POR PREFERENCIAS DE MOVIMIENTO REDUCIDO
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal,
+  .reveal--left,
+  .reveal--right {
+    opacity: 1;
+    transform: none;
+  }
+}
