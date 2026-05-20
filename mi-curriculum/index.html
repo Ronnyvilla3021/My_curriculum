@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio & CV — [TU NOMBRE] | Full Stack Developer" />
+  <meta name="description" content="Portfolio & CV — Ronny Antonio Villa Villa | Full Stack Developer" />
   <meta name="theme-color" content="#050b14" />
 
   <!-- Open Graph (para redes sociales) -->
-  <meta property="og:title"       content="[TU NOMBRE] — Portfolio" />
+  <meta property="og:title"       content="Ronny Antonio Villa Villa — Portfolio" />
   <meta property="og:description" content="Full Stack Developer · Mi vida convertida en software" />
   <meta property="og:image"       content="assets/img/profile/og-image.jpg" />
   <meta property="og:type"        content="website" />
 
-  <title>[TU NOMBRE] — Portfolio</title>
+  <title>Ronny Antonio Villa Villa — Portfolio</title>
 
   <!-- CSS -->
   <link rel="stylesheet" href="assets/css/theme.css" />
@@ -20,27 +20,19 @@
   <link rel="stylesheet" href="assets/css/components.css" />
   <link rel="stylesheet" href="assets/css/animations.css" />
 
-  <!-- Favicon (reemplaza con el tuyo) -->
+  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
 </head>
 
 <body>
 
-<!-- ═══════════════════════════════════════════════
-     CANVAS DE PARTÍCULAS (fondo)
-══════════════════════════════════════════════════ -->
+<!-- CANVAS DE PARTÍCULAS (fondo) -->
 <canvas id="particles-canvas" aria-hidden="true"></canvas>
 
-<!-- ═══════════════════════════════════════════════
-     NAVBAR
-══════════════════════════════════════════════════ -->
+<!-- NAVBAR -->
 <nav class="navbar" role="navigation" aria-label="Navegación principal">
   <div class="navbar__inner">
-
-    <!-- Logo / Nombre -->
-    <a href="#inicio" class="navbar__logo">[TU_NOMBRE].dev</a>
-
-    <!-- Links desktop -->
+    <a href="#inicio" class="navbar__logo">RonnyVilla.dev</a>
     <ul class="navbar__links" role="list">
       <li><a href="#inicio"       class="navbar__link active">~/inicio</a></li>
       <li><a href="#sobre-mi"     class="navbar__link">~/sobre-mí</a></li>
@@ -50,29 +42,18 @@
       <li><a href="#documentos"   class="navbar__link">~/documentos</a></li>
       <li><a href="#contacto"     class="navbar__link">~/contacto</a></li>
     </ul>
-
-    <!-- Acciones -->
     <div class="navbar__actions">
-      <a href="assets/docs/cv-[tu-nombre].pdf"
-         download
-         class="btn btn--outline btn--sm">
-        ↓ Descargar CV
-      </a>
+      <a href="Doc/documentos_generales/C.V.R.pdf" download class="btn btn--outline btn--sm">↓ Descargar CV</a>
     </div>
-
-    <!-- Hamburger mobile -->
     <button class="navbar__hamburger" aria-label="Abrir menú" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
     </button>
-
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════════════════
-     SIDEBAR MOBILE
-══════════════════════════════════════════════════ -->
+<!-- SIDEBAR MOBILE -->
 <div class="sidebar__overlay" aria-hidden="true"></div>
 <aside class="sidebar" aria-label="Menú lateral">
   <nav>
@@ -88,16 +69,11 @@
   </nav>
 </aside>
 
-<!-- ═══════════════════════════════════════════════
-     CONTENIDO PRINCIPAL
-══════════════════════════════════════════════════ -->
+<!-- CONTENIDO PRINCIPAL -->
 <main class="main-content">
 
-  <!-- ─────────────────────────────
-       SECCIÓN: HERO / INICIO
-  ───────────────────────────────── -->
+  <!-- SECCIÓN: HERO / INICIO -->
   <section id="inicio" class="hero">
-    <!-- Orbs decorativos -->
     <div class="hero__bg" aria-hidden="true">
       <div class="hero__orb hero__orb--1"></div>
       <div class="hero__orb hero__orb--2"></div>
@@ -107,56 +83,28 @@
 
     <div class="container hero__content">
       <div class="bento-grid">
-
-        <!-- Columna principal: presentación -->
         <div class="bento-col-8 reveal">
-
-          <!-- Eyebrow -->
           <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-5);">
             <span class="badge badge--status badge--green">Disponible para trabajar</span>
             <span class="badge badge--purple font-code">v4.0.0 — release actual</span>
           </div>
-
-          <!-- Nombre -->
-          <h1 class="font-display text-gradient-hero"
-              style="font-size:clamp(2.5rem, 6vw, 4.5rem);
-                     font-weight:900;
-                     line-height:1.1;
-                     letter-spacing:0.04em;
-                     margin-bottom:var(--space-4);">
-            [TU NOMBRE]<br>
-            <span class="font-display"
-                  style="font-size:clamp(1.2rem, 3vw, 2rem);
-                         color:var(--text-secondary);
-                         font-weight:500;
-                         letter-spacing:0.08em;">
-              <span class="typing-cursor"
-                    data-typing='["Full Stack Developer","Software Engineer","Problem Solver","Tu próxima apuesta"]'>
+          <h1 class="font-display text-gradient-hero" style="font-size:clamp(2.5rem, 6vw, 4.5rem); font-weight:900; line-height:1.1; letter-spacing:0.04em; margin-bottom:var(--space-4);">
+            Ronny Antonio Villa Villa<br>
+            <span class="font-display" style="font-size:clamp(1.2rem, 3vw, 2rem); color:var(--text-secondary); font-weight:500; letter-spacing:0.08em;">
+              <span class="typing-cursor" data-typing='["Full Stack Developer","Software Engineer","Problem Solver","Tu próxima apuesta"]'>
                 Full Stack Developer
               </span>
             </span>
           </h1>
-
-          <!-- Descripción corta -->
-          <p style="font-size:var(--text-lg);
-                    color:var(--text-secondary);
-                    max-width:580px;
-                    line-height:var(--leading-loose);
-                    margin-bottom:var(--space-8);">
-            Convertí cada trabajo, cada error y cada logro en código.
-            Este no es un CV — es el <span style="color:var(--neon-vivid)">changelog</span> de mi vida.
+          <p style="font-size:var(--text-lg); color:var(--text-secondary); max-width:580px; line-height:var(--leading-loose); margin-bottom:var(--space-8);">
+            Convertí cada trabajo, cada error y cada logro en código. Este no es un CV — es el <span style="color:var(--neon-vivid)">changelog</span> de mi vida.
           </p>
-
-          <!-- CTAs -->
           <div style="display:flex; gap:var(--space-4); flex-wrap:wrap; margin-bottom:var(--space-8);">
             <a href="#experiencia" class="btn btn--primary btn--lg">Ver mi historia →</a>
             <a href="#contacto"    class="btn btn--outline btn--lg">Contactar</a>
           </div>
-
-          <!-- Social links -->
           <div class="social-links">
-            <!-- Reemplaza # con tus URLs reales -->
-            <a href="#" class="social-link" target="_blank" rel="noopener">
+            <a href="https://github.com/Ronnyvilla3021" class="social-link" target="_blank" rel="noopener">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
               </svg>
@@ -168,53 +116,24 @@
               </svg>
               LinkedIn
             </a>
-            <a href="mailto:tu@email.com" class="social-link">
-              ✉ tu@email.com
-            </a>
+            <a href="mailto:ronnievillavilla@gmail.com" class="social-link">✉ ronnievillavilla@gmail.com</a>
           </div>
         </div>
-
-        <!-- Columna lateral: foto + stats -->
-        <div class="bento-col-4 reveal delay-200"
-             style="display:flex; flex-direction:column; align-items:center; gap:var(--space-6);">
-
-          <!-- Avatar -->
+        <div class="bento-col-4 reveal delay-200" style="display:flex; flex-direction:column; align-items:center; gap:var(--space-6);">
           <div class="avatar avatar--lg animate-float" style="margin-top:var(--space-4);">
-            <!-- Reemplaza con tu foto -->
-            <img src="assets/img/profile/foto.jpg"
-                 alt="[Tu nombre]"
-                 class="avatar__img"
-                 width="140" height="140"
-                 onerror="this.style.background='var(--bg-elevated)';this.style.display='block';" />
+            <img src="assets/img/profile/foto.jpg" alt="Ronny Antonio Villa Villa" class="avatar__img" width="140" height="140" onerror="this.style.background='var(--bg-elevated)';this.style.display='block';" />
             <div class="avatar__ring" aria-hidden="true"></div>
           </div>
-
-          <!-- Mini stats -->
           <div style="width:100%; display:flex; flex-direction:column; gap:var(--space-3);">
-            <div class="stat-card">
-              <div class="stat-card__value"
-                   data-count="[AÑOS]"
-                   data-suffix="+"
-                   data-decimals="0">0+</div>
-              <div class="stat-card__label">años de experiencia</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-card__value"
-                   data-count="[PROYECTOS]"
-                   data-suffix="+"
-                   data-decimals="0">0+</div>
-              <div class="stat-card__label">proyectos completados</div>
-            </div>
+            <div class="stat-card"><div class="stat-card__value" data-count="3" data-suffix="+" data-decimals="0">0+</div><div class="stat-card__label">años de experiencia</div></div>
+            <div class="stat-card"><div class="stat-card__value" data-count="15" data-suffix="+" data-decimals="0">0+</div><div class="stat-card__label">proyectos completados</div></div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-      </div><!-- /bento-grid -->
-    </div><!-- /container -->
-  </section><!-- /hero -->
-
-  <!-- ─────────────────────────────
-       SECCIÓN: SOBRE MÍ
-  ───────────────────────────────── -->
+  <!-- SECCIÓN: SOBRE MÍ -->
   <section id="sobre-mi" class="section">
     <div class="container">
       <div class="section__header">
@@ -222,52 +141,32 @@
         <h2 class="section__title text-gradient">Sobre mí</h2>
         <p class="section__subtitle">Quién soy, de dónde vengo y a dónde voy</p>
       </div>
-
       <div class="bento-grid">
-
-        <!-- Bio -->
         <div class="bento-col-8 card card--glow reveal">
           <p class="font-code" style="color:var(--neon-primary); font-size:var(--text-sm); margin-bottom:var(--space-4);">// bio.txt</p>
           <p style="color:var(--text-secondary); line-height:var(--leading-loose); margin-bottom:var(--space-4);">
-            [ESCRIBE AQUÍ UNA DESCRIPCIÓN PERSONAL: quién eres, tu historia, tu pasión por la tecnología, qué te motiva. Sé auténtico — este es el espacio donde los reclutadores conocen al humano detrás del código.]
+            Tecnólogo en Desarrollo de Software Full Stack con experiencia en desarrollo web y móvil, bases de datos relacionales y metodologías ágiles. Certificado como Scrum Foundation Professional, con dominio de JavaScript, Node.js, React, Vue, Angular, Flutter, SQL y PHP. Experiencia liderando equipos de hasta 12 personas como Scrum Master y desarrollando aplicaciones reales en entornos de producción. Orientado a resultados, con alta capacidad de adaptación y aprendizaje continuo.
           </p>
           <p style="color:var(--text-secondary); line-height:var(--leading-loose);">
-            [Segunda parte de tu bio: qué tipo de proyectos te apasionan, en qué tipo de empresa quieres trabajar, tus objetivos.]
+            Me apasiona crear soluciones tecnológicas que impacten positivamente en las personas, especialmente en el ámbito de accesibilidad. Disfruto trabajar en equipo, aprender nuevas tecnologías y enfrentar desafíos complejos. Busco formar parte de una empresa donde pueda seguir creciendo profesionalmente mientras aporto todo mi conocimiento y entusiasmo.
           </p>
         </div>
-
-        <!-- Info rápida -->
         <div class="bento-col-4 reveal delay-200" style="display:flex; flex-direction:column; gap:var(--space-4);">
           <div class="card card--glass">
             <p class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-3);">// info.json</p>
             <div style="display:flex; flex-direction:column; gap:var(--space-3);">
-              <div>
-                <span class="badge badge--muted">📍 Ubicación</span>
-                <p style="color:var(--text-secondary); font-size:var(--text-sm); margin-top:var(--space-1);">[Tu ciudad, País]</p>
-              </div>
-              <div>
-                <span class="badge badge--muted">🗣 Idiomas</span>
-                <p style="color:var(--text-secondary); font-size:var(--text-sm); margin-top:var(--space-1);">[Español, Inglés, etc.]</p>
-              </div>
-              <div>
-                <span class="badge badge--muted">🎓 Educación</span>
-                <p style="color:var(--text-secondary); font-size:var(--text-sm); margin-top:var(--space-1);">[Tu nivel educativo]</p>
-              </div>
-              <div>
-                <span class="badge badge--status badge--green">Estado</span>
-                <p style="color:var(--neon-green); font-size:var(--text-sm); margin-top:var(--space-1);">Disponible · Open to work</p>
-              </div>
+              <div><span class="badge badge--muted">📍 Ubicación</span><p style="color:var(--text-secondary); font-size:var(--text-sm); margin-top:var(--space-1);">Quito, Ecuador</p></div>
+              <div><span class="badge badge--muted">🗣 Idiomas</span><p style="color:var(--text-secondary); font-size:var(--text-sm); margin-top:var(--space-1);">Español (Nativo), Inglés (Básico)</p></div>
+              <div><span class="badge badge--muted">🎓 Educación</span><p style="color:var(--text-secondary); font-size:var(--text-sm); margin-top:var(--space-1);">Tecnología Superior en Desarrollo de Software (Egresado)</p></div>
+              <div><span class="badge badge--status badge--green">Estado</span><p style="color:var(--neon-green); font-size:var(--text-sm); margin-top:var(--space-1);">Disponible · Open to work</p></div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ─────────────────────────────
-       SECCIÓN: EXPERIENCIA (VERSIONES)
-  ───────────────────────────────── -->
+  <!-- SECCIÓN: EXPERIENCIA (VERSIONES) -->
   <section id="experiencia" class="section">
     <div class="container">
       <div class="section__header">
@@ -275,82 +174,47 @@
         <h2 class="section__title text-gradient">Historial de versiones</h2>
         <p class="section__subtitle">Mi vida narrada como releases de software</p>
       </div>
-
       <div class="timeline reveal">
-
-        <!-- VERSIÓN ACTUAL (la más reciente arriba) -->
         <div class="timeline__item active">
           <div class="version-card card--glow">
-            <div class="version-card__tag">v4.0.0 — ACTUAL · [AÑO]-presente</div>
-            <div class="version-card__title">[TU PUESTO/ROL ACTUAL]</div>
-            <div class="version-card__period">📍 [Empresa o "Freelance"] · [Ciudad]</div>
-            <p class="version-card__desc">
-              [Describe lo que haces actualmente: responsabilidades, tecnologías, logros principales.
-              Ejemplo: "Desarrollo y mantenimiento de aplicaciones web escalables usando React y Node.js.
-              Reduje el tiempo de carga en 40% mediante optimización de queries y caching estratégico."]
-            </p>
-            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);">
-              <span class="skill-tag">React</span>
-              <span class="skill-tag">Node.js</span>
-              <span class="skill-tag">[Tecnología]</span>
-            </div>
+            <div class="version-card__tag">v4.0.0 — ACTUAL · 2025-presente</div>
+            <div class="version-card__title">Desarrollador Web</div>
+            <div class="version-card__period">📍 Qo-Fin · Quito, Ecuador</div>
+            <p class="version-card__desc">Desarrollo de aplicación móvil con Flutter y Android Studio, integrando páginas web embebidas dentro de la app. Implementación de módulo frontend completo incluyendo sección de contactos y navegación de la interfaz.</p>
+            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);"><span class="skill-tag">Flutter</span><span class="skill-tag">Android Studio</span><span class="skill-tag">Frontend</span></div>
           </div>
         </div>
-
-        <!-- VERSIÓN 3 -->
         <div class="timeline__item reveal">
           <div class="version-card">
-            <div class="version-card__tag">v3.0.0 — [AÑO INICIO]-[AÑO FIN]</div>
-            <div class="version-card__title">[TRABAJO ANTERIOR]</div>
-            <div class="version-card__period">📍 [Empresa] · [Ciudad]</div>
-            <p class="version-card__desc">
-              [Descripción del trabajo: qué hacías, qué aprendiste, qué lograste.
-              Incluye números concretos si puedes: "Gestioné un equipo de X personas",
-              "Aumenté las ventas en X%", "Reduje errores en producción en X%".]
-            </p>
-            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);">
-              <span class="skill-tag">[Habilidad]</span>
-              <span class="skill-tag">[Herramienta]</span>
-            </div>
+            <div class="version-card__tag">v3.0.0 — 2024-2025</div>
+            <div class="version-card__title">Desarrollador Full Stack</div>
+            <div class="version-card__period">📍 LINKEARNET S.A. · Quito, Ecuador</div>
+            <p class="version-card__desc">Desarrollo de aplicación tipo Spotify con Vue/React, Node.js y PostgreSQL. Desarrollo de app de accesibilidad visual web y móvil con React y Node.js. Rol de Scrum Master liderando equipos de hasta 12 personas en proyectos de impacto real.</p>
+            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);"><span class="skill-tag">Vue</span><span class="skill-tag">React</span><span class="skill-tag">Node.js</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">Scrum Master</span></div>
           </div>
         </div>
-
-        <!-- VERSIÓN 2 -->
         <div class="timeline__item reveal">
           <div class="version-card">
-            <div class="version-card__tag">v2.0.0 — [AÑO INICIO]-[AÑO FIN]</div>
-            <div class="version-card__title">[TRABAJO ANTERIOR]</div>
-            <div class="version-card__period">📍 [Empresa] · [Ciudad]</div>
-            <p class="version-card__desc">
-              [Descripción. Agrega más ítems según tu experiencia real. 
-              Copia y pega este bloque cuantas veces necesites.]
-            </p>
-            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);">
-              <span class="skill-tag">[Habilidad]</span>
-            </div>
+            <div class="version-card__tag">v2.0.0 — 2023-2024</div>
+            <div class="version-card__title">Desarrollador Full Stack + Ayudante de Camión</div>
+            <div class="version-card__period">📍 LINKEARNET S.A. / Dibeal · Quito, Ecuador</div>
+            <p class="version-card__desc">En LINKEARNET: Desarrollo de aplicación de calendario con Node.js, SQL y Angular. Inicio de sistema de facturación con Node.js, React y SQL. Trabajo en equipo bajo metodología Scrum aplicando buenas prácticas de desarrollo full stack. En Dibeal: Verificación, empaque y carga de productos en bodega central. Gestión de hoja de ruta y entrega con facturas. Cobro en punto de entrega y atención al cliente.</p>
+            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);"><span class="skill-tag">Angular</span><span class="skill-tag">Node.js</span><span class="skill-tag">SQL</span><span class="skill-tag">React</span></div>
           </div>
         </div>
-
-        <!-- VERSIÓN 1.0 — el origen -->
         <div class="timeline__item reveal">
           <div class="version-card">
-            <div class="version-card__tag">v1.0.0 — El origen · [AÑO]</div>
-            <div class="version-card__title">[PRIMER TRABAJO / PUNTO DE PARTIDA]</div>
-            <div class="version-card__period">📍 [Lugar]</div>
-            <p class="version-card__desc">
-              [El comienzo de tu historia. Puede ser el primer trabajo, el primer proyecto,
-              o el momento en que decidiste entrar al mundo tech. Este es el "Hello World" de tu carrera.]
-            </p>
+            <div class="version-card__tag">v1.0.0 — El origen · 2021-2023</div>
+            <div class="version-card__title">Responsable de Bodega / Cajero</div>
+            <div class="version-card__period">📍 Pige / Electromecánicas ISAIAS · Quito, Ecuador</div>
+            <p class="version-card__desc">En Pige: Control de stock, embalaje de pedidos y mantenimiento de hojas de seguimiento de entregas. Único responsable de bodega y coordinación con el área de despacho. Atención directa al cliente en sala y gestión de pedidos. En Electromecánicas ISAIAS: Apoyo en producción y fabricación de estructuras metálicas. Atención al cliente y manejo de caja. Cuadre diario de valores con responsabilidad sobre el registro de transacciones.</p>
           </div>
         </div>
-
-      </div><!-- /timeline -->
+      </div>
     </div>
   </section>
 
-  <!-- ─────────────────────────────
-       SECCIÓN: HABILIDADES
-  ───────────────────────────────── -->
+  <!-- SECCIÓN: HABILIDADES -->
   <section id="habilidades" class="section">
     <div class="container">
       <div class="section__header">
@@ -358,102 +222,26 @@
         <h2 class="section__title text-gradient">Stack tecnológico</h2>
         <p class="section__subtitle">Dependencias instaladas en mi sistema</p>
       </div>
-
       <div class="bento-grid">
-
-        <!-- Skills técnicas con barras -->
         <div class="bento-col-6 card card--glow reveal">
           <p class="font-code" style="color:var(--neon-primary); font-size:var(--text-sm); margin-bottom:var(--space-6);">// technical.skills</p>
-
-          <!-- Repite este bloque por cada habilidad -->
-          <div class="progress-wrap">
-            <div class="progress-header">
-              <span class="progress-label">[Tecnología 1]</span>
-              <span class="progress-value">[90]%</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" data-width="90%"></div>
-            </div>
-          </div>
-
-          <div class="progress-wrap">
-            <div class="progress-header">
-              <span class="progress-label">[Tecnología 2]</span>
-              <span class="progress-value">[80]%</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" data-width="80%"></div>
-            </div>
-          </div>
-
-          <div class="progress-wrap">
-            <div class="progress-header">
-              <span class="progress-label">[Tecnología 3]</span>
-              <span class="progress-value">[75]%</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" data-width="75%"></div>
-            </div>
-          </div>
-
-          <div class="progress-wrap">
-            <div class="progress-header">
-              <span class="progress-label">[Tecnología 4]</span>
-              <span class="progress-value">[70]%</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" data-width="70%"></div>
-            </div>
-          </div>
-
-        </div><!-- /card habilidades -->
-
-        <!-- Tags de tecnologías -->
-        <div class="bento-col-6 reveal delay-200" style="display:flex; flex-direction:column; gap:var(--space-6);">
-
-          <!-- Frontend -->
-          <div class="card card--glass">
-            <p class="font-code" style="color:var(--neon-cyan); font-size:var(--text-xs); margin-bottom:var(--space-4);">// frontend</p>
-            <div style="display:flex; flex-wrap:wrap; gap:var(--space-2);">
-              <span class="skill-tag">[HTML]</span>
-              <span class="skill-tag">[CSS]</span>
-              <span class="skill-tag">[JavaScript]</span>
-              <span class="skill-tag">[React]</span>
-              <!-- Agrega los que uses -->
-            </div>
-          </div>
-
-          <!-- Backend -->
-          <div class="card card--glass">
-            <p class="font-code" style="color:var(--neon-pink); font-size:var(--text-xs); margin-bottom:var(--space-4);">// backend</p>
-            <div style="display:flex; flex-wrap:wrap; gap:var(--space-2);">
-              <span class="skill-tag">[Node.js]</span>
-              <span class="skill-tag">[Python]</span>
-              <span class="skill-tag">[SQL]</span>
-              <!-- Agrega los que uses -->
-            </div>
-          </div>
-
-          <!-- Tools -->
-          <div class="card card--glass">
-            <p class="font-code" style="color:var(--neon-green); font-size:var(--text-xs); margin-bottom:var(--space-4);">// tools</p>
-            <div style="display:flex; flex-wrap:wrap; gap:var(--space-2);">
-              <span class="skill-tag">[Git]</span>
-              <span class="skill-tag">[Docker]</span>
-              <span class="skill-tag">[VS Code]</span>
-              <!-- Agrega los que uses -->
-            </div>
-          </div>
-
+          <div class="progress-wrap"><div class="progress-header"><span class="progress-label">SQL / PostgreSQL</span><span class="progress-value">95%</span></div><div class="progress-bar"><div class="progress-fill" data-width="95%"></div></div></div>
+          <div class="progress-wrap"><div class="progress-header"><span class="progress-label">JavaScript / Node.js</span><span class="progress-value">85%</span></div><div class="progress-bar"><div class="progress-fill" data-width="85%"></div></div></div>
+          <div class="progress-wrap"><div class="progress-header"><span class="progress-label">React / Angular / Vue</span><span class="progress-value">85%</span></div><div class="progress-bar"><div class="progress-fill" data-width="85%"></div></div></div>
+          <div class="progress-wrap"><div class="progress-header"><span class="progress-label">Flutter</span><span class="progress-value">85%</span></div><div class="progress-bar"><div class="progress-fill" data-width="85%"></div></div></div>
+          <div class="progress-wrap"><div class="progress-header"><span class="progress-label">PHP / MySQL</span><span class="progress-value">85%</span></div><div class="progress-bar"><div class="progress-fill" data-width="85%"></div></div></div>
+          <div class="progress-wrap"><div class="progress-header"><span class="progress-label">C# (.NET)</span><span class="progress-value">60%</span></div><div class="progress-bar"><div class="progress-fill" data-width="60%"></div></div></div>
         </div>
-
+        <div class="bento-col-6 reveal delay-200" style="display:flex; flex-direction:column; gap:var(--space-6);">
+          <div class="card card--glass"><p class="font-code" style="color:var(--neon-cyan); font-size:var(--text-xs); margin-bottom:var(--space-4);">// frontend</p><div style="display:flex; flex-wrap:wrap; gap:var(--space-2);"><span class="skill-tag">HTML</span><span class="skill-tag">CSS</span><span class="skill-tag">JavaScript</span><span class="skill-tag">React</span><span class="skill-tag">Angular</span><span class="skill-tag">Vue</span><span class="skill-tag">Flutter</span></div></div>
+          <div class="card card--glass"><p class="font-code" style="color:var(--neon-pink); font-size:var(--text-xs); margin-bottom:var(--space-4);">// backend</p><div style="display:flex; flex-wrap:wrap; gap:var(--space-2);"><span class="skill-tag">Node.js</span><span class="skill-tag">PHP</span><span class="skill-tag">C# (.NET)</span><span class="skill-tag">SQL</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">MySQL</span></div></div>
+          <div class="card card--glass"><p class="font-code" style="color:var(--neon-green); font-size:var(--text-xs); margin-bottom:var(--space-4);">// tools</p><div style="display:flex; flex-wrap:wrap; gap:var(--space-2);"><span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">Scrum</span><span class="skill-tag">Excel</span><span class="skill-tag">Power BI</span><span class="skill-tag">Android Studio</span></div></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ─────────────────────────────
-       SECCIÓN: CERTIFICADOS
-  ───────────────────────────────── -->
+  <!-- SECCIÓN: CERTIFICADOS -->
   <section id="certificados" class="section">
     <div class="container">
       <div class="section__header">
@@ -461,65 +249,112 @@
         <h2 class="section__title text-gradient">Certificados</h2>
         <p class="section__subtitle">Evidencia de cada módulo aprendido</p>
       </div>
-
-      <!-- Filtros -->
-      <div class="nav-pills" style="justify-content:center; margin-bottom:var(--space-8);"
-           data-filter-group="certificados">
+      <div class="nav-pills" style="justify-content:center; margin-bottom:var(--space-8);" data-filter-group="certificados">
         <button class="nav-pill active" data-filter="all">Todos</button>
         <button class="nav-pill" data-filter="dev">Desarrollo</button>
-        <button class="nav-pill" data-filter="cloud">Cloud</button>
         <button class="nav-pill" data-filter="otros">Otros</button>
       </div>
-
-      <!-- Grid de certificados -->
       <div class="grid-auto" data-filter-container="certificados">
-
-        <!-- Certificado 1 — con imagen -->
-        <div class="cert-card reveal" data-category="dev" data-modal="modal-cert-1">
-          <div class="cert-card__preview--placeholder">
-            📜
-            <span style="font-size:var(--text-sm); font-family:var(--font-code);">[Nombre del cert]</span>
-          </div>
-          <!-- Si tienes imagen: <img src="assets/img/certificates/cert1.jpg" class="cert-card__preview" alt="..."> -->
-          <div class="cert-card__body">
-            <div class="cert-card__title">[Nombre del certificado]</div>
-            <div class="cert-card__issuer">[Institución] · [Año]</div>
-          </div>
+        <!-- Scrum -->
+        <div class="cert-card reveal" data-category="dev" data-modal="modal-scrum">
+          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Scrum Foundation</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Scrum Foundation Professional Certification (SFPC)</div><div class="cert-card__issuer">CertiProf · 2024 · ID: 97092055R</div></div>
         </div>
-
-        <!-- Certificado 2 -->
-        <div class="cert-card reveal delay-100" data-category="cloud" data-modal="modal-cert-2">
-          <div class="cert-card__preview--placeholder">
-            ☁️
-            <span style="font-size:var(--text-sm); font-family:var(--font-code);">[Nombre del cert]</span>
-          </div>
-          <div class="cert-card__body">
-            <div class="cert-card__title">[Nombre del certificado]</div>
-            <div class="cert-card__issuer">[Institución] · [Año]</div>
-          </div>
+        <!-- PHP MySQL -->
+        <div class="cert-card reveal delay-100" data-category="dev" data-modal="modal-php">
+          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">PHP/MySQL</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">PHP / MySQL</div><div class="cert-card__issuer">2026</div></div>
         </div>
-
-        <!-- Certificado 3 -->
-        <div class="cert-card reveal delay-200" data-category="otros" data-modal="modal-cert-3">
-          <div class="cert-card__preview--placeholder">
-            🏆
-            <span style="font-size:var(--text-sm); font-family:var(--font-code);">[Nombre del cert]</span>
-          </div>
-          <div class="cert-card__body">
-            <div class="cert-card__title">[Nombre del certificado]</div>
-            <div class="cert-card__issuer">[Institución] · [Año]</div>
-          </div>
+        <!-- Diseño Web -->
+        <div class="cert-card reveal delay-200" data-category="dev" data-modal="modal-disenio">
+          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Diseño Web</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Diseño Web Adaptativo V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
         </div>
-
-        <!-- Agrega más cert-cards según necesites -->
-
+        <!-- Front-end -->
+        <div class="cert-card reveal" data-category="dev" data-modal="modal-frontend">
+          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Front-end</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Frontend Development Libraries V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
+        </div>
+        <!-- Back-end -->
+        <div class="cert-card reveal delay-100" data-category="dev" data-modal="modal-backend">
+          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Back-end</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Backend Development and APIs V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
+        </div>
+        <!-- Base de Datos -->
+        <div class="cert-card reveal delay-200" data-category="dev" data-modal="modal-bd">
+          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Base de Datos</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Base de Datos Relacional V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
+        </div>
+        <!-- Algoritmos -->
+        <div class="cert-card reveal" data-category="dev" data-modal="modal-algos">
+          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Algoritmos JS</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Algoritmos y Estructuras de Datos JS V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
+        </div>
+        <!-- Visualización Datos -->
+        <div class="cert-card reveal delay-100" data-category="dev" data-modal="modal-viz">
+          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Visualización</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Visualización de Datos V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
+        </div>
+        <!-- Asistente Virtual -->
+        <div class="cert-card reveal delay-200" data-category="otros" data-modal="modal-asistente">
+          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Asistente Virtual</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Asistente Virtual – Workana & Upwork</div><div class="cert-card__issuer">Claseflix · 2026</div></div>
+        </div>
+        <!-- Automatizaciones IA -->
+        <div class="cert-card reveal" data-category="otros" data-modal="modal-ia">
+          <div class="cert-card__preview--placeholder">🤖<span style="font-size:var(--text-sm); font-family:var(--font-code);">Automatizaciones IA</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Automatizaciones con IA</div><div class="cert-card__issuer">Claseflix · 2026</div></div>
+        </div>
+        <!-- Power BI -->
+        <div class="cert-card reveal delay-100" data-category="otros" data-modal="modal-powerbi">
+          <div class="cert-card__preview--placeholder">📊<span style="font-size:var(--text-sm); font-family:var(--font-code);">Power BI</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Power BI</div><div class="cert-card__issuer">Claseflix · 2026</div></div>
+        </div>
+        <!-- Excel -->
+        <div class="cert-card reveal delay-200" data-category="otros" data-modal="modal-excel">
+          <div class="cert-card__preview--placeholder">📊<span style="font-size:var(--text-sm); font-family:var(--font-code);">Excel</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Excel desde Cero / Básico y Intermedio</div><div class="cert-card__issuer">2026</div></div>
+        </div>
+        <!-- Contabilidad -->
+        <div class="cert-card reveal" data-category="otros" data-modal="modal-contabilidad">
+          <div class="cert-card__preview--placeholder">📋<span style="font-size:var(--text-sm); font-family:var(--font-code);">Contabilidad</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Contabilidad</div><div class="cert-card__issuer">Claseflix · 2026</div></div>
+        </div>
+        <!-- Gerencia -->
+        <div class="cert-card reveal delay-100" data-category="otros" data-modal="modal-gerencia">
+          <div class="cert-card__preview--placeholder">📋<span style="font-size:var(--text-sm); font-family:var(--font-code);">Gerencia</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Curso de Gerencia</div><div class="cert-card__issuer">2026</div></div>
+        </div>
+        <!-- Marketing -->
+        <div class="cert-card reveal delay-200" data-category="otros" data-modal="modal-marketing">
+          <div class="cert-card__preview--placeholder">📢<span style="font-size:var(--text-sm); font-family:var(--font-code);">Marketing</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Curso de Marketing</div><div class="cert-card__issuer">Claseflix · 2026</div></div>
+        </div>
+        <!-- C++ -->
+        <div class="cert-card reveal" data-category="dev" data-modal="modal-cpp">
+          <div class="cert-card__preview--placeholder">⚙️<span style="font-size:var(--text-sm); font-family:var(--font-code);">C++</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Certificado C++</div><div class="cert-card__issuer">2025</div></div>
+        </div>
+        <!-- Java -->
+        <div class="cert-card reveal delay-100" data-category="dev" data-modal="modal-java">
+          <div class="cert-card__preview--placeholder">☕<span style="font-size:var(--text-sm); font-family:var(--font-code);">Java</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Certificado Java</div><div class="cert-card__issuer">2025</div></div>
+        </div>
+        <!-- Inglés A2.2 -->
+        <div class="cert-card reveal delay-200" data-category="otros" data-modal="modal-ingles">
+          <div class="cert-card__preview--placeholder">🇬🇧<span style="font-size:var(--text-sm); font-family:var(--font-code);">Inglés A2.2</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Certificado Inglés A2.2</div><div class="cert-card__issuer">2025</div></div>
+        </div>
+        <!-- Vinculación -->
+        <div class="cert-card reveal" data-category="otros" data-modal="modal-vinculacion">
+          <div class="cert-card__preview--placeholder">🎓<span style="font-size:var(--text-sm); font-family:var(--font-code);">Vinculación</span></div>
+          <div class="cert-card__body"><div class="cert-card__title">Certificado Vinculación</div><div class="cert-card__issuer">Yavirac</div></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ─────────────────────────────
-       SECCIÓN: DOCUMENTOS OFICIALES
-  ───────────────────────────────── -->
+  <!-- SECCIÓN: DOCUMENTOS OFICIALES -->
   <section id="documentos" class="section">
     <div class="container">
       <div class="section__header">
@@ -527,228 +362,190 @@
         <h2 class="section__title text-gradient">Documentos oficiales</h2>
         <p class="section__subtitle">Cartas de recomendación, récord policial y más</p>
       </div>
-
       <div class="grid-auto">
-
-        <!-- Carta de recomendación -->
-        <div class="card card--glow reveal" style="cursor:pointer;" data-modal="modal-carta-1">
+        <!-- Carta Gustavo Guevara -->
+        <div class="card card--glow reveal" style="cursor:pointer;" data-modal="modal-carta-gus">
           <div style="font-size:2rem; margin-bottom:var(--space-4);">📄</div>
-          <div class="font-code" style="color:var(--neon-primary); font-size:var(--text-xs); margin-bottom:var(--space-2);">carta_recomendacion.pdf</div>
+          <div class="font-code" style="color:var(--neon-primary); font-size:var(--text-xs); margin-bottom:var(--space-2);">carta_recomendacion_gus.docx</div>
           <h3 style="font-size:var(--text-lg); font-weight:var(--weight-semi); margin-bottom:var(--space-2);">Carta de Recomendación</h3>
-          <p style="color:var(--text-secondary); font-size:var(--text-sm);">
-            [Nombre de quien la firma] · [Cargo] · [Empresa]
-          </p>
-          <div style="margin-top:var(--space-4);">
-            <span class="badge badge--green">Verificado</span>
-          </div>
+          <p style="color:var(--text-secondary); font-size:var(--text-sm);">Gustavo Guevara · Electromecánica ISAIAS</p>
+          <div style="margin-top:var(--space-4);"><span class="badge badge--green">Verificado</span></div>
         </div>
-
-        <!-- Récord policial -->
-        <div class="card card--glow reveal delay-100" style="cursor:pointer;" data-modal="modal-record">
-          <div style="font-size:2rem; margin-bottom:var(--space-4);">🔒</div>
-          <div class="font-code" style="color:var(--neon-cyan); font-size:var(--text-xs); margin-bottom:var(--space-2);">record_policial.pdf</div>
-          <h3 style="font-size:var(--text-lg); font-weight:var(--weight-semi); margin-bottom:var(--space-2);">Récord Policial</h3>
-          <p style="color:var(--text-secondary); font-size:var(--text-sm);">
-            Emitido por [Institución] · [Fecha]
-          </p>
-          <div style="margin-top:var(--space-4);">
-            <span class="badge badge--green">Sin antecedentes</span>
-          </div>
+        <!-- Carta Marco Almeida -->
+        <div class="card card--glow reveal delay-100" style="cursor:pointer;" data-modal="modal-carta-marco">
+          <div style="font-size:2rem; margin-bottom:var(--space-4);">📄</div>
+          <div class="font-code" style="color:var(--neon-primary); font-size:var(--text-xs); margin-bottom:var(--space-2);">carta_recomendacion_marco.docx</div>
+          <h3 style="font-size:var(--text-lg); font-weight:var(--weight-semi); margin-bottom:var(--space-2);">Carta de Recomendación</h3>
+          <p style="color:var(--text-secondary); font-size:var(--text-sm);">Marco Almeida · Qo-Fin</p>
+          <div style="margin-top:var(--space-4);"><span class="badge badge--green">Verificado</span></div>
         </div>
-
-        <!-- Agrega más documentos según necesites -->
-        <div class="card card--glass reveal delay-200" style="cursor:pointer;" data-modal="modal-doc-3">
-          <div style="font-size:2rem; margin-bottom:var(--space-4);">📋</div>
-          <div class="font-code" style="color:var(--neon-pink); font-size:var(--text-xs); margin-bottom:var(--space-2);">[nombre_doc].pdf</div>
-          <h3 style="font-size:var(--text-lg); font-weight:var(--weight-semi); margin-bottom:var(--space-2);">[Tipo de documento]</h3>
-          <p style="color:var(--text-secondary); font-size:var(--text-sm);">
-            [Descripción corta]
-          </p>
-          <div style="margin-top:var(--space-4);">
-            <span class="badge badge--purple">Oficial</span>
-          </div>
+        <!-- CV Ronny -->
+        <div class="card card--glow reveal delay-200" style="cursor:pointer;" data-modal="modal-cv">
+          <div style="font-size:2rem; margin-bottom:var(--space-4);">📄</div>
+          <div class="font-code" style="color:var(--neon-cyan); font-size:var(--text-xs); margin-bottom:var(--space-2);">C.V.R.pdf</div>
+          <h3 style="font-size:var(--text-lg); font-weight:var(--weight-semi); margin-bottom:var(--space-2);">Currículum Vitae</h3>
+          <p style="color:var(--text-secondary); font-size:var(--text-sm);">Documento actualizado 2026</p>
+          <div style="margin-top:var(--space-4);"><span class="badge badge--purple">Oficial</span></div>
         </div>
-
+        <!-- Cédula -->
+        <div class="card card--glow reveal" style="cursor:pointer;" data-modal="modal-cedula">
+          <div style="font-size:2rem; margin-bottom:var(--space-4);">🆔</div>
+          <div class="font-code" style="color:var(--neon-green); font-size:var(--text-xs); margin-bottom:var(--space-2);">cédula_y_papeleta.pdf</div>
+          <h3 style="font-size:var(--text-lg); font-weight:var(--weight-semi); margin-bottom:var(--space-2);">Cédula y Papeleta de Votación</h3>
+          <p style="color:var(--text-secondary); font-size:var(--text-sm);">Documento de identificación oficial</p>
+          <div style="margin-top:var(--space-4);"><span class="badge badge--green">Verificado</span></div>
+        </div>
+        <!-- Certificado Bachiller -->
+        <div class="card card--glow reveal delay-100" style="cursor:pointer;" data-modal="modal-bachiller">
+          <div style="font-size:2rem; margin-bottom:var(--space-4);">🎓</div>
+          <div class="font-code" style="color:var(--neon-pink); font-size:var(--text-xs); margin-bottom:var(--space-2);">certificado_bachiller.pdf</div>
+          <h3 style="font-size:var(--text-lg); font-weight:var(--weight-semi); margin-bottom:var(--space-2);">Certificado de Bachiller</h3>
+          <p style="color:var(--text-secondary); font-size:var(--text-sm);">Unidad Educativa Abdón Calderón · 2018</p>
+          <div style="margin-top:var(--space-4);"><span class="badge badge--purple">Oficial</span></div>
+        </div>
+        <!-- Pasantías LINKEARNET -->
+        <div class="card card--glow reveal delay-200" style="cursor:pointer;" data-modal="modal-pasantias">
+          <div style="font-size:2rem; margin-bottom:var(--space-4);">🏢</div>
+          <div class="font-code" style="color:var(--neon-primary); font-size:var(--text-xs); margin-bottom:var(--space-2);">certificado_pasantias_linkear.docx</div>
+          <h3 style="font-size:var(--text-lg); font-weight:var(--weight-semi); margin-bottom:var(--space-2);">Certificado Pasantías</h3>
+          <p style="color:var(--text-secondary); font-size:var(--text-sm);">LINKEARNET S.A. · Desarrollo Full Stack</p>
+          <div style="margin-top:var(--space-4);"><span class="badge badge--green">Verificado</span></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ─────────────────────────────
-       SECCIÓN: CONTACTO
-  ───────────────────────────────── -->
+  <!-- SECCIÓN: CONTACTO -->
   <section id="contacto" class="section section--lg">
     <div class="container-sm">
       <div class="section__header">
-        <div class="section__eyebrow">ping [tu-nombre] --connect</div>
+        <div class="section__eyebrow">ping RonnyVilla --connect</div>
         <h2 class="section__title text-gradient">Conectemos</h2>
         <p class="section__subtitle">¿Listo para iniciar una nueva sesión?</p>
       </div>
-
       <div class="bento-grid">
-
-        <!-- Info de contacto -->
         <div class="bento-col-6 reveal" style="display:flex; flex-direction:column; gap:var(--space-4);">
-
-          <!-- Email -->
           <div class="card card--glass">
             <div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-2);">// email</div>
             <div style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-3);">
-              <span style="color:var(--text-secondary); font-size:var(--text-sm);">tu@email.com</span>
-              <button class="btn btn--ghost btn--sm" data-copy="tu@email.com">Copiar</button>
+              <span style="color:var(--text-secondary); font-size:var(--text-sm);">ronnievillavilla@gmail.com</span>
+              <button class="btn btn--ghost btn--sm" data-copy="ronnievillavilla@gmail.com">Copiar</button>
             </div>
           </div>
-
-          <!-- Teléfono -->
           <div class="card card--glass">
             <div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-2);">// teléfono</div>
             <div style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-3);">
-              <span style="color:var(--text-secondary); font-size:var(--text-sm);">[+593 XX XXX XXXX]</span>
-              <button class="btn btn--ghost btn--sm" data-copy="+593XXXXXXXX">Copiar</button>
+              <span style="color:var(--text-secondary); font-size:var(--text-sm);">+593 939 819 639</span>
+              <button class="btn btn--ghost btn--sm" data-copy="+593939819639">Copiar</button>
             </div>
           </div>
-
-          <!-- WhatsApp -->
-          <a href="https://wa.me/593XXXXXXXXX?text=Hola,%20vi%20tu%20portfolio%20y..."
-             target="_blank"
-             rel="noopener"
-             class="btn btn--primary btn--full">
-            💬 Escribir por WhatsApp
-          </a>
-
-          <!-- LinkedIn -->
-          <a href="#" target="_blank" rel="noopener" class="btn btn--outline btn--full">
-            Ver LinkedIn →
-          </a>
-
+          <a href="https://wa.me/593939819639?text=Hola%20Ronny,%20vi%20tu%20portfolio%20y%20me%20interesa%20contactarte" target="_blank" rel="noopener" class="btn btn--primary btn--full">💬 Escribir por WhatsApp</a>
+          <a href="#" target="_blank" rel="noopener" class="btn btn--outline btn--full">Ver LinkedIn →</a>
         </div>
-
-        <!-- Ubicación y disponibilidad -->
         <div class="bento-col-6 reveal delay-200">
           <div class="card card--glow" style="height:100%;">
             <div class="font-code" style="color:var(--neon-primary); font-size:var(--text-sm); margin-bottom:var(--space-6);">// status.json</div>
             <div style="display:flex; flex-direction:column; gap:var(--space-5);">
-              <div>
-                <div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"ubicación":</div>
-                <div style="color:var(--text-secondary);">"[Tu ciudad, País]"</div>
-              </div>
-              <div>
-                <div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"modalidad":</div>
-                <div style="color:var(--text-secondary);">"[Presencial / Remoto / Híbrido]"</div>
-              </div>
-              <div>
-                <div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"disponibilidad":</div>
-                <div style="display:flex; align-items:center; gap:var(--space-2);">
-                  <span class="badge badge--status badge--green">Inmediata</span>
-                </div>
-              </div>
-              <div>
-                <div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"pretensión_salarial":</div>
-                <div style="color:var(--text-secondary);">"[A convenir]"</div>
-              </div>
+              <div><div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"ubicación":</div><div style="color:var(--text-secondary);">"Quito, Ecuador"</div></div>
+              <div><div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"modalidad":</div><div style="color:var(--text-secondary);">"Remoto / Híbrido / Presencial"</div></div>
+              <div><div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"disponibilidad":</div><div style="display:flex; align-items:center; gap:var(--space-2);"><span class="badge badge--status badge--green">Inmediata</span></div></div>
+              <div><div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"pretensión_salarial":</div><div style="color:var(--text-secondary);">"A convenir"</div></div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-</main><!-- /main-content -->
+</main>
 
-<!-- ═══════════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="container footer__inner">
-    <div class="font-display text-gradient" style="font-size:var(--text-lg); letter-spacing:var(--tracking-wider);">
-      [TU_NOMBRE].dev
-    </div>
-    <p>
-      <span style="color:var(--neon-primary);">v4.0.0</span>
-      · Compilado con ☕ y muchas horas de debug
-      · <span style="color:var(--text-muted);">[Año actual]</span>
-    </p>
-    <p style="font-size:var(--text-xs); color:var(--text-muted);">
-      Diseñado y construido por [Tu nombre] · Todos los derechos reservados
-    </p>
+    <div class="font-display text-gradient" style="font-size:var(--text-lg); letter-spacing:var(--tracking-wider);">RonnyVilla.dev</div>
+    <p><span style="color:var(--neon-primary);">v4.0.0</span> · Compilado con ☕ y muchas horas de debug · <span style="color:var(--text-muted);">2025-2026</span></p>
+    <p style="font-size:var(--text-xs); color:var(--text-muted);">Diseñado y construido por Ronny Antonio Villa Villa · Todos los derechos reservados</p>
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════════════════
-     MODALES DE CERTIFICADOS
-     (duplica este bloque por cada certificado)
-══════════════════════════════════════════════════ -->
-<div id="modal-cert-1" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-cert-1-title">
-  <div class="modal">
-    <div class="modal__header">
-      <h3 class="modal__title" id="modal-cert-1-title">[Nombre del certificado]</h3>
-      <button class="modal__close" aria-label="Cerrar">✕</button>
-    </div>
-    <div class="modal__body">
-      <!-- Imagen del certificado -->
-      <img src="assets/img/certificates/cert1.jpg"
-           alt="Certificado: [nombre]"
-           style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" />
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-4);">
-        <div>
-          <p style="color:var(--text-secondary); font-size:var(--text-sm);">
-            Institución: <strong style="color:var(--text-primary);">[Institución]</strong>
-          </p>
-          <p style="color:var(--text-secondary); font-size:var(--text-sm);">
-            Fecha: <strong style="color:var(--text-primary);">[Fecha]</strong>
-          </p>
-        </div>
-        <a href="assets/img/certificates/cert1.jpg" download class="btn btn--outline btn--sm">
-          ↓ Descargar
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- MODALES DE CERTIFICADOS (con rutas reales) -->
+<div id="modal-scrum" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Scrum Foundation Professional Certification</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20scrum.jpg" alt="Certificado Scrum" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><p>Institución: CertiProf</p><p>Fecha: Junio 2024</p><p>ID: 97092055R</p></div><div style="margin-top:var(--space-4);"><a href="Doc/certificados/certificado%20scrum.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
 
-<!-- Modal Carta de Recomendación -->
-<div id="modal-carta-1" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-carta-1-title">
-  <div class="modal">
-    <div class="modal__header">
-      <h3 class="modal__title" id="modal-carta-1-title">Carta de Recomendación</h3>
-      <button class="modal__close" aria-label="Cerrar">✕</button>
-    </div>
-    <div class="modal__body">
-      <img src="assets/img/recommendations/carta1.jpg"
-           alt="Carta de recomendación"
-           style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" />
-      <div style="display:flex; justify-content:flex-end;">
-        <a href="assets/img/recommendations/carta1.jpg" download class="btn btn--outline btn--sm">
-          ↓ Descargar
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+<div id="modal-php" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>PHP / MySQL</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20php.png" alt="Certificado PHP" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20php.png" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
 
-<!-- Modal Récord Policial -->
-<div id="modal-record" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-record-title">
-  <div class="modal">
-    <div class="modal__header">
-      <h3 class="modal__title" id="modal-record-title">Récord Policial</h3>
-      <button class="modal__close" aria-label="Cerrar">✕</button>
-    </div>
-    <div class="modal__body">
-      <img src="assets/img/recommendations/record-policial.jpg"
-           alt="Récord policial"
-           style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" />
-      <div style="display:flex; justify-content:flex-end;">
-        <a href="assets/img/recommendations/record-policial.jpg" download class="btn btn--outline btn--sm">
-          ↓ Descargar
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+<div id="modal-disenio" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Diseño Web Adaptativo V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20dise%C3%B1o%20web.jpeg" alt="Certificado Diseño Web" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20dise%C3%B1o%20web.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
 
-<!-- ═══════════════════════════════════════════════
-     SCRIPTS
-══════════════════════════════════════════════════ -->
+<div id="modal-frontend" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Frontend Development Libraries V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20front-end.jpeg" alt="Certificado Frontend" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20front-end.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-backend" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Backend Development and APIs V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20back-end.jpeg" alt="Certificado Backend" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20back-end.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-bd" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Base de Datos Relacional V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20base%20de%20datos.jpeg" alt="Certificado Base de Datos" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20base%20de%20datos.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-algos" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Algoritmos y Estructuras de Datos JS V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20v8.jpeg" alt="Certificado Algoritmos" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20v8.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-viz" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Visualización de Datos V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><p>Certificado freeCodeCamp - 2025</p><a href="#" class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div>
+
+<div id="modal-asistente" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Asistente Virtual – Workana & Upwork</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20asistente%20vistual%20claseflix.jpg" alt="Certificado Asistente Virtual" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20asistente%20vistual%20claseflix.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-ia" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Automatizaciones con IA</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20automaticacion%20con%20IA%20clasefix.jpg" alt="Certificado IA" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20automaticacion%20con%20IA%20clasefix.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-powerbi" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Power BI</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20power%20Bi%20claseflix.jpg" alt="Certificado Power BI" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20power%20Bi%20claseflix.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-excel" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Excel</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20excel%20clasefix.jpg" alt="Certificado Excel" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20excel%20clasefix.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-contabilidad" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Contabilidad</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20contabilidad%20clasefix.jpg" alt="Certificado Contabilidad" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20contabilidad%20clasefix.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-gerencia" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Curso de Gerencia</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20gerencia%20clasefix.jpg" alt="Certificado Gerencia" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20gerencia%20clasefix.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-marketing" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Curso de Marketing</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20marketing%20claseflix.jpg" alt="Certificado Marketing" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20marketing%20claseflix.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-cpp" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>C++</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20c%2B%2B.jpeg" alt="Certificado C++" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20c%2B%2B.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-java" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Java</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20java.jpeg" alt="Certificado Java" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20java.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-ingles" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Certificado Inglés A2.2</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20A2.2_page-0001.jpg" alt="Certificado Inglés" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20A2.2_page-0001.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-vinculacion" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Certificado Vinculación</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20vinculacion.jpeg" alt="Certificado Vinculación" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20vinculacion.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<!-- MODALES DE DOCUMENTOS -->
+<div id="modal-carta-gus" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Carta de Recomendación - Gustavo Guevara</h3><button class="modal__close">✕</button></div><div class="modal__body"><embed src="Doc/cartas_recomendacion/Carta%20de%20recomendacion%20GUS.docx" width="100%" height="500px" style="border-radius:var(--radius-lg);" /><div style="margin-top:var(--space-4);"><a href="Doc/cartas_recomendacion/Carta%20de%20recomendacion%20GUS.docx" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-carta-marco" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Carta de Recomendación - Marco Almeida</h3><button class="modal__close">✕</button></div><div class="modal__body"><embed src="Doc/cartas_recomendacion/Carta%20de%20recomendacion%20Marco.docx" width="100%" height="500px" style="border-radius:var(--radius-lg);" /><div style="margin-top:var(--space-4);"><a href="Doc/cartas_recomendacion/Carta%20de%20recomendacion%20Marco.docx" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-cv" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Currículum Vitae - Ronny Villa</h3><button class="modal__close">✕</button></div><div class="modal__body"><embed src="Doc/documentos_generales/C.V.R.pdf" width="100%" height="600px" style="border-radius:var(--radius-lg);" /><div style="margin-top:var(--space-4);"><a href="Doc/documentos_generales/C.V.R.pdf" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-cedula" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Cédula y Papeleta de Votación</h3><button class="modal__close">✕</button></div><div class="modal__body"><embed src="Doc/documentos_generales/c%C3%A9dula%20y%20papeleta%20Ronny.pdf" width="100%" height="600px" style="border-radius:var(--radius-lg);" /><div style="margin-top:var(--space-4);"><a href="Doc/documentos_generales/c%C3%A9dula%20y%20papeleta%20Ronny.pdf" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-bachiller" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Certificado de Bachiller</h3><button class="modal__close">✕</button></div><div class="modal__body"><embed src="Doc/documentos_generales/certificado%20bachiller.pdf" width="100%" height="600px" style="border-radius:var(--radius-lg);" /><div style="margin-top:var(--space-4);"><a href="Doc/documentos_generales/certificado%20bachiller.pdf" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<div id="modal-pasantias" class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal"><div class="modal__header"><h3>Certificado Pasantías - LINKEARNET S.A.</h3><button class="modal__close">✕</button></div><div class="modal__body"><embed src="Doc/pasantias/certificado%20pasantias%20linkear.docx" width="100%" height="500px" style="border-radius:var(--radius-lg);" /><div style="margin-top:var(--space-4);"><a href="Doc/pasantias/certificado%20pasantias%20linkear.docx" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+
+<!-- SCRIPTS -->
 <script src="assets/js/animations.js"></script>
 <script src="assets/js/main.js"></script>
 
