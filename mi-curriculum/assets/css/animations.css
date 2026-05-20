@@ -212,10 +212,6 @@
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.reveal--left.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
 
 .reveal--right {
   opacity: 0;
@@ -223,10 +219,7 @@
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.reveal--right.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
+
 
 /* ============================================================
    EFECTO HOLOGRAMA — efecto de escaneo
@@ -343,10 +336,7 @@
 .progress-fill {
   width: 0%;
 }
-
-.progress-fill.animate {
-  animation: progress-grow 1.4s cubic-bezier(0.4,0,0.2,1) forwards;
-}
+/* GSAP maneja la animación, no CSS */
 
 @keyframes progress-grow {
   from { width: 0%; }
