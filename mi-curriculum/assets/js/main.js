@@ -179,10 +179,10 @@ function initProgressBars() {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const bar   = entry.target;
+        const bar = entry.target;
         const width = bar.getAttribute('data-width');
-        bar.style.setProperty('--target-width', width);
-        bar.classList.add('animate');
+        // Aplicar el ancho directamente al style
+        bar.style.width = width;
         observer.unobserve(bar);
       }
     });

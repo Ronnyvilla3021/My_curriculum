@@ -6,11 +6,13 @@
   <meta name="description" content="Portfolio & CV — Ronny Antonio Villa Villa | Full Stack Developer" />
   <meta name="theme-color" content="#050b14" />
 
-  <!-- Open Graph (para redes sociales) -->
+  <!-- Open Graph -->
   <meta property="og:title"       content="Ronny Antonio Villa Villa — Portfolio" />
   <meta property="og:description" content="Full Stack Developer · Mi vida convertida en software" />
   <meta property="og:image"       content="assets/img/profile/og-image.jpg" />
   <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://ronnyvilla.dev" />
+  <meta property="og:locale"      content="es_EC" />
 
   <title>Ronny Antonio Villa Villa — Portfolio</title>
 
@@ -34,13 +36,14 @@
   <div class="navbar__inner">
     <a href="#inicio" class="navbar__logo">RonnyVilla.dev</a>
     <ul class="navbar__links" role="list">
-      <li><a href="#inicio"       class="navbar__link active">~/inicio</a></li>
-      <li><a href="#sobre-mi"     class="navbar__link">~/sobre-mí</a></li>
-      <li><a href="#experiencia"  class="navbar__link">~/experiencia</a></li>
-      <li><a href="#habilidades"  class="navbar__link">~/habilidades</a></li>
-      <li><a href="#certificados" class="navbar__link">~/certificados</a></li>
-      <li><a href="#documentos"   class="navbar__link">~/documentos</a></li>
-      <li><a href="#contacto"     class="navbar__link">~/contacto</a></li>
+      <li><a href="#inicio"       class="navbar__link active">inicio</a></li>
+      <li><a href="#sobre-mi"     class="navbar__link">sobre-mí</a></li>
+      <li><a href="#experiencia"  class="navbar__link">experiencia</a></li>
+      <li><a href="#pasantias"    class="navbar__link">prácticas</a></li>
+      <li><a href="#habilidades"  class="navbar__link">habilidades</a></li>
+      <li><a href="#certificados" class="navbar__link">certificados</a></li>
+      <li><a href="#documentos"   class="navbar__link">documentos</a></li>
+      <li><a href="#contacto"     class="navbar__link">contacto</a></li>
     </ul>
     <div class="navbar__actions">
       <a href="Doc/documentos_generales/C.V.R.pdf" download class="btn btn--outline btn--sm">↓ Descargar CV</a>
@@ -61,6 +64,7 @@
       <li><a href="#inicio"       class="btn btn--ghost btn--full" style="justify-content:flex-start;">⌂ Inicio</a></li>
       <li><a href="#sobre-mi"     class="btn btn--ghost btn--full" style="justify-content:flex-start;">◉ Sobre mí</a></li>
       <li><a href="#experiencia"  class="btn btn--ghost btn--full" style="justify-content:flex-start;">⏱ Experiencia</a></li>
+      <li><a href="#pasantias"    class="btn btn--ghost btn--full" style="justify-content:flex-start;">🏢 Prácticas</a></li>
       <li><a href="#habilidades"  class="btn btn--ghost btn--full" style="justify-content:flex-start;">⚡ Habilidades</a></li>
       <li><a href="#certificados" class="btn btn--ghost btn--full" style="justify-content:flex-start;">✦ Certificados</a></li>
       <li><a href="#documentos"   class="btn btn--ghost btn--full" style="justify-content:flex-start;">◈ Documentos</a></li>
@@ -72,7 +76,9 @@
 <!-- CONTENIDO PRINCIPAL -->
 <main class="main-content">
 
-  <!-- SECCIÓN: HERO / INICIO -->
+  <!-- ══════════════════════════════════════════
+       SECCIÓN: HERO / INICIO
+  ══════════════════════════════════════════ -->
   <section id="inicio" class="hero">
     <div class="hero__bg" aria-hidden="true">
       <div class="hero__orb hero__orb--1"></div>
@@ -91,9 +97,7 @@
           <h1 class="font-display text-gradient-hero" style="font-size:clamp(2.5rem, 6vw, 4.5rem); font-weight:900; line-height:1.1; letter-spacing:0.04em; margin-bottom:var(--space-4);">
             Ronny Antonio Villa Villa<br>
             <span class="font-display" style="font-size:clamp(1.2rem, 3vw, 2rem); color:var(--text-secondary); font-weight:500; letter-spacing:0.08em;">
-              <span class="typing-cursor" data-typing='["Full Stack Developer","Software Engineer","Problem Solver","Tu próxima apuesta"]'>
-                Full Stack Developer
-              </span>
+              <span class="typing-cursor" data-typing='["Full Stack Developer","Software Engineer","Problem Solver","Tu próxima apuesta"]'>Full Stack Developer</span>
             </span>
           </h1>
           <p style="font-size:var(--text-lg); color:var(--text-secondary); max-width:580px; line-height:var(--leading-loose); margin-bottom:var(--space-8);">
@@ -105,35 +109,34 @@
           </div>
           <div class="social-links">
             <a href="https://github.com/Ronnyvilla3021" class="social-link" target="_blank" rel="noopener">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-              </svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
               GitHub
             </a>
-            <a href="#" class="social-link" target="_blank" rel="noopener">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
+            <a href="https://www.linkedin.com/in/ronny-antonio-villa-villa/" class="social-link" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               LinkedIn
             </a>
             <a href="mailto:ronnievillavilla@gmail.com" class="social-link">✉ ronnievillavilla@gmail.com</a>
           </div>
         </div>
+
         <div class="bento-col-4 reveal delay-200" style="display:flex; flex-direction:column; align-items:center; gap:var(--space-6);">
           <div class="avatar avatar--lg" style="margin-top:var(--space-4);">
-            <img src="assets/img/profile/foto.jpg" alt="Ronny Antonio Villa Villa" class="avatar__img" width="140" height="140" onerror="this.style.background='var(--bg-elevated)';this.style.display='block';" />
+            <img src="Doc/Foto%20perfil/foto_perfil.jpg" alt="Ronny Antonio Villa Villa" class="avatar__img" width="140" height="140" />
             <div class="avatar__ring" aria-hidden="true"></div>
           </div>
           <div style="width:100%; display:flex; flex-direction:column; gap:var(--space-3);">
             <div class="stat-card"><div class="stat-card__value" data-count="3" data-suffix="+" data-decimals="0">0+</div><div class="stat-card__label">años de experiencia</div></div>
-            <div class="stat-card"><div class="stat-card__value" data-count="15" data-suffix="+" data-decimals="0">0+</div><div class="stat-card__label">proyectos completados</div></div>
+            <div class="stat-card"><div class="stat-card__value" data-count="5" data-suffix="+" data-decimals="0">0+</div><div class="stat-card__label">proyectos completados</div></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECCIÓN: SOBRE MÍ -->
+  <!-- ══════════════════════════════════════════
+       SECCIÓN: SOBRE MÍ
+  ══════════════════════════════════════════ -->
   <section id="sobre-mi" class="section">
     <div class="container">
       <div class="section__header">
@@ -145,10 +148,10 @@
         <div class="bento-col-8 card card--glow reveal">
           <p class="font-code" style="color:var(--neon-primary); font-size:var(--text-sm); margin-bottom:var(--space-4);">// bio.txt</p>
           <p style="color:var(--text-secondary); line-height:var(--leading-loose); margin-bottom:var(--space-4);">
-            Tecnólogo en Desarrollo de Software Full Stack con experiencia en desarrollo web y móvil, bases de datos relacionales y metodologías ágiles. Certificado como Scrum Foundation Professional, con dominio de JavaScript, Node.js, React, Vue, Angular, Flutter, SQL y PHP. Experiencia liderando equipos de hasta 12 personas como Scrum Master y desarrollando aplicaciones reales en entornos de producción. Orientado a resultados, con alta capacidad de adaptación y aprendizaje continuo.
+            Tecnólogo en Desarrollo de Software Full Stack con experiencia en desarrollo web y móvil, bases de datos relacionales y metodologías ágiles. Certificado como Scrum Foundation Professional, con conocimientos en JavaScript, Node.js, React, Vue, Angular, Flutter, SQL y PHP. He participado en proyectos reales en entornos de producción y liderado equipos de desarrollo como Scrum Master, destacando por mi capacidad de adaptación, aprendizaje continuo y orientación a resultados.
           </p>
           <p style="color:var(--text-secondary); line-height:var(--leading-loose);">
-            Me apasiona crear soluciones tecnológicas que impacten positivamente en las personas, especialmente en el ámbito de accesibilidad. Disfruto trabajar en equipo, aprender nuevas tecnologías y enfrentar desafíos complejos. Busco formar parte de una empresa donde pueda seguir creciendo profesionalmente mientras aporto todo mi conocimiento y entusiasmo.
+            Me interesa desarrollar soluciones tecnológicas innovadoras y accesibles que generen un impacto positivo en las personas. Disfruto trabajar en equipo, aprender nuevas tecnologías y afrontar nuevos desafíos, buscando seguir creciendo profesionalmente mientras aporto compromiso, creatividad y responsabilidad en cada proyecto.
           </p>
         </div>
         <div class="bento-col-4 reveal delay-200" style="display:flex; flex-direction:column; gap:var(--space-4);">
@@ -166,55 +169,160 @@
     </div>
   </section>
 
-  <!-- SECCIÓN: EXPERIENCIA (VERSIONES) -->
+  <!-- ══════════════════════════════════════════
+       SECCIÓN: EXPERIENCIA LABORAL (actualizada)
+  ══════════════════════════════════════════ -->
   <section id="experiencia" class="section">
     <div class="container">
       <div class="section__header">
         <div class="section__eyebrow">git log --oneline</div>
         <h2 class="section__title text-gradient">Historial de versiones</h2>
-        <p class="section__subtitle">Mi vida narrada como releases de software</p>
+        <p class="section__subtitle">Mi experiencia laboral narrada como releases de software</p>
       </div>
       <div class="timeline reveal">
+
+        <!-- v4.0.0 - Desarrollador Web Qo-Fin -->
         <div class="timeline__item active">
           <div class="version-card card--glow">
-            <div class="version-card__tag">v4.0.0 — ACTUAL · 2025-presente</div>
+            <div class="version-card__tag">v4.0.0 — sep 2025 - dic 2025</div>
             <div class="version-card__title">Desarrollador Web</div>
             <div class="version-card__period">📍 Qo-Fin · Quito, Ecuador</div>
-            <p class="version-card__desc">Desarrollo de aplicación móvil con Flutter y Android Studio, integrando páginas web embebidas dentro de la app. Implementación de módulo frontend completo incluyendo sección de contactos y navegación de la interfaz.</p>
-            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);"><span class="skill-tag">Flutter</span><span class="skill-tag">Android Studio</span><span class="skill-tag">Frontend</span></div>
+            <p class="version-card__desc">
+              • Desarrollo de aplicación móvil con Flutter y Android Studio, integrando páginas web embebidas dentro de la app<br>
+              • Implementación de módulo frontend completo incluyendo sección de contactos y navegación de la interfaz
+            </p>
+            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);">
+              <span class="skill-tag">Flutter</span><span class="skill-tag">Android Studio</span><span class="skill-tag">Frontend</span><span class="skill-tag">Dart</span>
+            </div>
           </div>
         </div>
+
+        <!-- v3.0.0 - Ayudante de Camión Dibeal -->
         <div class="timeline__item reveal">
           <div class="version-card">
-            <div class="version-card__tag">v3.0.0 — 2024-2025</div>
-            <div class="version-card__title">Desarrollador Full Stack</div>
-            <div class="version-card__period">📍 LINKEARNET S.A. · Quito, Ecuador</div>
-            <p class="version-card__desc">Desarrollo de aplicación tipo Spotify con Vue/React, Node.js y PostgreSQL. Desarrollo de app de accesibilidad visual web y móvil con React y Node.js. Rol de Scrum Master liderando equipos de hasta 12 personas en proyectos de impacto real.</p>
-            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);"><span class="skill-tag">Vue</span><span class="skill-tag">React</span><span class="skill-tag">Node.js</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">Scrum Master</span></div>
+            <div class="version-card__tag">v3.0.0 — nov 2023 - dic 2024</div>
+            <div class="version-card__title">Ayudante de Camión</div>
+            <div class="version-card__period">📍 Dibeal · Quito, Ecuador</div>
+            <p class="version-card__desc">
+              • Verificación, empaque y carga de productos en bodega central<br>
+              • Gestión de hoja de ruta y entrega con facturas en tiendas y fábricas<br>
+              • Cobro en punto de entrega y elaboración de documentación de recepción<br>
+              • Atención al cliente en cada punto de entrega
+            </p>
+            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);">
+              <span class="skill-tag">Logística</span><span class="skill-tag">Atención al cliente</span><span class="skill-tag">Gestión de rutas</span>
+            </div>
           </div>
         </div>
+
+        <!-- v2.0.0 - Responsable de Bodega Pige -->
         <div class="timeline__item reveal">
           <div class="version-card">
-            <div class="version-card__tag">v2.0.0 — 2023-2024</div>
-            <div class="version-card__title">Desarrollador Full Stack + Ayudante de Camión</div>
-            <div class="version-card__period">📍 LINKEARNET S.A. / Dibeal · Quito, Ecuador</div>
-            <p class="version-card__desc">En LINKEARNET: Desarrollo de aplicación de calendario con Node.js, SQL y Angular. Inicio de sistema de facturación con Node.js, React y SQL. Trabajo en equipo bajo metodología Scrum aplicando buenas prácticas de desarrollo full stack. En Dibeal: Verificación, empaque y carga de productos en bodega central. Gestión de hoja de ruta y entrega con facturas. Cobro en punto de entrega y atención al cliente.</p>
-            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);"><span class="skill-tag">Angular</span><span class="skill-tag">Node.js</span><span class="skill-tag">SQL</span><span class="skill-tag">React</span></div>
+            <div class="version-card__tag">v2.0.0 — jun 2022 - ago 2023</div>
+            <div class="version-card__title">Responsable de Bodega</div>
+            <div class="version-card__period">📍 Pige · Quito, Ecuador</div>
+            <p class="version-card__desc">
+              • Control de stock, embalaje de pedidos y mantenimiento de hojas de seguimiento de entregas<br>
+              • Único responsable de bodega y coordinación con el área de despacho<br>
+              • Atención directa al cliente en sala y gestión de pedidos
+            </p>
+            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);">
+              <span class="skill-tag">Control de inventario</span><span class="skill-tag">Coordinación</span><span class="skill-tag">Atención al cliente</span>
+            </div>
           </div>
         </div>
+
+        <!-- v1.0.0 - Cajero Electromecánicas ISAIAS -->
         <div class="timeline__item reveal">
           <div class="version-card">
-            <div class="version-card__tag">v1.0.0 — El origen · 2021-2023</div>
-            <div class="version-card__title">Responsable de Bodega / Cajero</div>
-            <div class="version-card__period">📍 Pige / Electromecánicas ISAIAS · Quito, Ecuador</div>
-            <p class="version-card__desc">En Pige: Control de stock, embalaje de pedidos y mantenimiento de hojas de seguimiento de entregas. Único responsable de bodega y coordinación con el área de despacho. Atención directa al cliente en sala y gestión de pedidos. En Electromecánicas ISAIAS: Apoyo en producción y fabricación de estructuras metálicas. Atención al cliente y manejo de caja. Cuadre diario de valores con responsabilidad sobre el registro de transacciones.</p>
+            <div class="version-card__tag">v1.0.0 — abr 2021 - may 2022</div>
+            <div class="version-card__title">Cajero</div>
+            <div class="version-card__period">📍 Electromecánicas ISAIAS · Quito, Ecuador</div>
+            <p class="version-card__desc">
+              • Apoyo en producción y fabricación de estructuras metálicas<br>
+              • Atención al cliente y manejo de caja<br>
+              • Cuadre diario de valores con responsabilidad sobre el registro de transacciones
+            </p>
+            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);">
+              <span class="skill-tag">Manejo de caja</span><span class="skill-tag">Atención al cliente</span><span class="skill-tag">Producción</span>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- SECCIÓN: HABILIDADES -->
+  <!-- ══════════════════════════════════════════
+       SECCIÓN: PRÁCTICAS (actualizada)
+  ══════════════════════════════════════════ -->
+  <section id="pasantias" class="section">
+    <div class="container">
+      <div class="section__header">
+        <div class="section__eyebrow">git branch internships</div>
+        <h2 class="section__title text-gradient">Prácticas Profesionales</h2>
+        <p class="section__subtitle">Experiencia académica aplicada en entornos reales</p>
+      </div>
+      <div class="timeline reveal">
+
+        <!-- Práctica 2026 - Navegación asistida -->
+        <div class="timeline__item">
+          <div class="version-card card--glow">
+            <div class="version-card__tag">internship/v3.0.0 · ene 2026 - abr 2026</div>
+            <div class="version-card__title">Desarrollador Full Stack</div>
+            <div class="version-card__period">📍 LINKEARNET S.A. · Quito, Ecuador</div>
+            <p class="version-card__desc">
+              • Desarrollo de aplicación de navegación asistida para personas con discapacidad visual total y parcial con React, IA y Google Maps<br>
+              • Implementación de inteligencia artificial para reconocimiento de voz y generación de rutas accesibles<br>
+              • Trabajo en equipo bajo metodología Scrum aplicando buenas prácticas de desarrollo full stack
+            </p>
+            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);">
+              <span class="skill-tag">React</span><span class="skill-tag">IA</span><span class="skill-tag">Google Maps API</span><span class="skill-tag">Scrum</span><span class="skill-tag">Reconocimiento de voz</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Práctica 2025 - Spotify clone + accesibilidad -->
+        <div class="timeline__item reveal">
+          <div class="version-card">
+            <div class="version-card__tag">internship/v2.0.0 · ene 2025 - dic 2025</div>
+            <div class="version-card__title">Desarrollador Full Stack</div>
+            <div class="version-card__period">📍 LINKEARNET S.A. · Quito, Ecuador</div>
+            <p class="version-card__desc">
+              • Desarrollo de aplicación tipo Spotify con Vue/React, Node.js y PostgreSQL<br>
+              • Desarrollo de app de accesibilidad visual web y móvil con React y Node.js<br>
+              • Rol de Scrum Master liderando equipos de hasta 12 personas en proyectos de impacto real
+            </p>
+            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);">
+              <span class="skill-tag">Vue</span><span class="skill-tag">React</span><span class="skill-tag">Node.js</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">Scrum Master</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Práctica 2024 - Calendario + facturación -->
+        <div class="timeline__item reveal">
+          <div class="version-card">
+            <div class="version-card__tag">internship/v1.0.0 · ene 2024 - dic 2024</div>
+            <div class="version-card__title">Desarrollador Full Stack</div>
+            <div class="version-card__period">📍 LINKEARNET S.A. · Quito, Ecuador</div>
+            <p class="version-card__desc">
+              • Desarrollo de aplicación de calendario con Node.js, SQL y Angular<br>
+              • Inicio de sistema de facturación con Node.js, React y SQL<br>
+              • Trabajo en equipo bajo metodología Scrum aplicando buenas prácticas de desarrollo full stack
+            </p>
+            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top:var(--space-4);">
+              <span class="skill-tag">Angular</span><span class="skill-tag">Node.js</span><span class="skill-tag">SQL</span><span class="skill-tag">React</span><span class="skill-tag">Scrum</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SECCIÓN: HABILIDADES
+  ══════════════════════════════════════════ -->
   <section id="habilidades" class="section">
     <div class="container">
       <div class="section__header">
@@ -241,145 +349,181 @@
     </div>
   </section>
 
-  <!-- SECCIÓN: CERTIFICADOS -->
-  <section id="certificados" class="section">
-    <div class="container">
-      <div class="section__header">
-        <div class="section__eyebrow">ls -la ~/certificados/</div>
-        <h2 class="section__title text-gradient">Certificados</h2>
-        <p class="section__subtitle">Evidencia de cada módulo aprendido</p>
-      </div>
-      <div class="nav-pills" style="justify-content:center; margin-bottom:var(--space-8);" data-filter-group="certificados">
-        <button class="nav-pill active" data-filter="all">Todos</button>
-        <button class="nav-pill" data-filter="dev">Desarrollo</button>
-        <button class="nav-pill" data-filter="otros">Otros</button>
-      </div>
-      <div class="grid-auto" data-filter-container="certificados">
-        <!-- Scrum -->
-        <div class="cert-card reveal" data-category="dev" data-modal="modal-scrum">
-          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Scrum Foundation</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Scrum Foundation Professional Certification (SFPC)</div><div class="cert-card__issuer">CertiProf · 2024 · ID: 97092055R</div></div>
-        </div>
-        <!-- PHP MySQL -->
-        <div class="cert-card reveal delay-100" data-category="dev" data-modal="modal-php">
-          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">PHP/MySQL</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">PHP / MySQL</div><div class="cert-card__issuer">2026</div></div>
-        </div>
-        <!-- Diseño Web -->
-        <div class="cert-card reveal delay-200" data-category="dev" data-modal="modal-disenio">
-          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Diseño Web</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Diseño Web Adaptativo V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
-        </div>
-        <!-- Front-end -->
-        <div class="cert-card reveal" data-category="dev" data-modal="modal-frontend">
-          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Front-end</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Frontend Development Libraries V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
-        </div>
-        <!-- Back-end -->
-        <div class="cert-card reveal delay-100" data-category="dev" data-modal="modal-backend">
-          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Back-end</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Backend Development and APIs V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
-        </div>
-        <!-- Base de Datos -->
-        <div class="cert-card reveal delay-200" data-category="dev" data-modal="modal-bd">
-          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Base de Datos</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Base de Datos Relacional V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
-        </div>
-        <!-- Algoritmos -->
-        <div class="cert-card reveal" data-category="dev" data-modal="modal-algos">
-          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Algoritmos JS</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Algoritmos y Estructuras de Datos JS V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
-        </div>
-        <!-- Visualización Datos -->
-        <div class="cert-card reveal delay-100" data-category="dev" data-modal="modal-viz">
-          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Visualización</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Visualización de Datos V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
-        </div>
-        <!-- Asistente Virtual -->
-        <div class="cert-card reveal delay-200" data-category="otros" data-modal="modal-asistente">
-          <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Asistente Virtual</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Asistente Virtual – Workana & Upwork</div><div class="cert-card__issuer">Claseflix · 2026</div></div>
-        </div>
-        <!-- Automatizaciones IA -->
-        <div class="cert-card reveal" data-category="otros" data-modal="modal-ia">
-          <div class="cert-card__preview--placeholder">🤖<span style="font-size:var(--text-sm); font-family:var(--font-code);">Automatizaciones IA</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Automatizaciones con IA</div><div class="cert-card__issuer">Claseflix · 2026</div></div>
-        </div>
-        <!-- Power BI -->
-        <div class="cert-card reveal delay-100" data-category="otros" data-modal="modal-powerbi">
-          <div class="cert-card__preview--placeholder">📊<span style="font-size:var(--text-sm); font-family:var(--font-code);">Power BI</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Power BI</div><div class="cert-card__issuer">Claseflix · 2026</div></div>
-        </div>
-        <!-- Excel -->
-        <div class="cert-card reveal delay-200" data-category="otros" data-modal="modal-excel">
-          <div class="cert-card__preview--placeholder">📊<span style="font-size:var(--text-sm); font-family:var(--font-code);">Excel</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Excel desde Cero / Básico y Intermedio</div><div class="cert-card__issuer">2026</div></div>
-        </div>
-        <!-- Contabilidad -->
-        <div class="cert-card reveal" data-category="otros" data-modal="modal-contabilidad">
-          <div class="cert-card__preview--placeholder">📋<span style="font-size:var(--text-sm); font-family:var(--font-code);">Contabilidad</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Contabilidad</div><div class="cert-card__issuer">Claseflix · 2026</div></div>
-        </div>
-        <!-- Gerencia -->
-        <div class="cert-card reveal delay-100" data-category="otros" data-modal="modal-gerencia">
-          <div class="cert-card__preview--placeholder">📋<span style="font-size:var(--text-sm); font-family:var(--font-code);">Gerencia</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Curso de Gerencia</div><div class="cert-card__issuer">2026</div></div>
-        </div>
-        <!-- Marketing -->
-        <div class="cert-card reveal delay-200" data-category="otros" data-modal="modal-marketing">
-          <div class="cert-card__preview--placeholder">📢<span style="font-size:var(--text-sm); font-family:var(--font-code);">Marketing</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Curso de Marketing</div><div class="cert-card__issuer">Claseflix · 2026</div></div>
-        </div>
-        <!-- C++ -->
-        <div class="cert-card reveal" data-category="dev" data-modal="modal-cpp">
-          <div class="cert-card__preview--placeholder">⚙️<span style="font-size:var(--text-sm); font-family:var(--font-code);">C++</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Certificado C++</div><div class="cert-card__issuer">2025</div></div>
-        </div>
-        <!-- Java -->
-        <div class="cert-card reveal delay-100" data-category="dev" data-modal="modal-java">
-          <div class="cert-card__preview--placeholder">☕<span style="font-size:var(--text-sm); font-family:var(--font-code);">Java</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Certificado Java</div><div class="cert-card__issuer">2025</div></div>
-        </div>
-        <!-- Inglés A2.2 -->
-        <div class="cert-card reveal delay-200" data-category="otros" data-modal="modal-ingles">
-          <div class="cert-card__preview--placeholder">🇬🇧<span style="font-size:var(--text-sm); font-family:var(--font-code);">Inglés A2.2</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Certificado Inglés A2.2</div><div class="cert-card__issuer">2025</div></div>
-        </div>
-        <!-- Vinculación -->
-        <div class="cert-card reveal" data-category="otros" data-modal="modal-vinculacion">
-          <div class="cert-card__preview--placeholder">🎓<span style="font-size:var(--text-sm); font-family:var(--font-code);">Vinculación</span></div>
-          <div class="cert-card__body"><div class="cert-card__title">Certificado Vinculación</div><div class="cert-card__issuer">Yavirac</div></div>
-        </div>
-      </div>
+  <!-- ══════════════════════════════════════════
+     SECCIÓN: CERTIFICADOS
+══════════════════════════════════════════ -->
+<section id="certificados" class="section">
+  <div class="container">
+    <div class="section__header">
+      <div class="section__eyebrow">ls -la ~/certificados/</div>
+      <h2 class="section__title text-gradient">Certificados</h2>
+      <p class="section__subtitle">Evidencia de cada módulo aprendido</p>
     </div>
-  </section>
 
-  <!-- SECCIÓN: DOCUMENTOS OFICIALES -->
+    <!-- FILTROS -->
+    <div class="nav-pills" style="justify-content:center; margin-bottom:var(--space-8);" data-filter-group="certificados">
+      <button class="nav-pill active" data-filter="all">Todos</button>
+      <button class="nav-pill" data-filter="dev">Desarrollo</button>
+      <button class="nav-pill" data-filter="estudio">Estudio</button>
+      <button class="nav-pill" data-filter="otros">Otros</button>
+    </div>
+
+    <div class="grid-auto" data-filter-container="certificados">
+      
+      <!-- ███████████████████████████████████████████████████████████████ -->
+      <!-- CERTIFICADOS DE DESARROLLO (data-category="dev") -->
+      <!-- ███████████████████████████████████████████████████████████████ -->
+      
+      <div class="cert-card reveal" data-category="dev" data-modal="modal-scrum">
+        <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Scrum Foundation</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Scrum Foundation Professional Certification (SFPC)</div><div class="cert-card__issuer">CertiProf · 2024 · ID: 97092055R</div></div>
+      </div>
+
+      <div class="cert-card reveal delay-100" data-category="dev" data-modal="modal-php">
+        <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">PHP/MySQL</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">PHP / MySQL</div><div class="cert-card__issuer">2026</div></div>
+      </div>
+
+      <div class="cert-card reveal delay-200" data-category="dev" data-modal="modal-disenio">
+        <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Diseño Web</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Diseño Web Adaptativo V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
+      </div>
+
+      <div class="cert-card reveal" data-category="dev" data-modal="modal-frontend">
+        <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Front-end</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Frontend Development Libraries V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
+      </div>
+
+      <div class="cert-card reveal delay-100" data-category="dev" data-modal="modal-backend">
+        <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Back-end</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Backend Development and APIs V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
+      </div>
+
+      <div class="cert-card reveal delay-200" data-category="dev" data-modal="modal-bd">
+        <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Base de Datos</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Base de Datos Relacional V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
+      </div>
+
+      <div class="cert-card reveal" data-category="dev" data-modal="modal-algos">
+        <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Algoritmos JS</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Algoritmos y Estructuras de Datos JS V8</div><div class="cert-card__issuer">freeCodeCamp · 2025</div></div>
+      </div>
+
+      <div class="cert-card reveal delay-100" data-category="dev" data-modal="modal-cpp">
+        <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">C++</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Certificado C++</div><div class="cert-card__issuer">2025</div></div>
+      </div>
+
+      <div class="cert-card reveal delay-200" data-category="dev" data-modal="modal-java">
+        <div class="cert-card__preview--placeholder">📜<span style="font-size:var(--text-sm); font-family:var(--font-code);">Java</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Certificado Java</div><div class="cert-card__issuer">2025</div></div>
+      </div>
+
+      <!-- ███████████████████████████████████████████████████████████████ -->
+      <!-- CERTIFICADOS DE ESTUDIO (data-category="estudio") -->
+      <!-- ███████████████████████████████████████████████████████████████ -->
+
+      <div class="cert-card reveal" data-category="estudio" data-modal="modal-ingles">
+        <div class="cert-card__preview--placeholder">🎓<span style="font-size:var(--text-sm); font-family:var(--font-code);">Inglés B1.1</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Certificado Inglés B1.1</div><div class="cert-card__issuer">2025</div></div>
+      </div>
+
+      <div class="cert-card reveal delay-100" data-category="estudio" data-modal="modal-bachiller">
+        <div class="cert-card__preview--placeholder">🎓<span style="font-size:var(--text-sm); font-family:var(--font-code);">Bachiller</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Certificado de Bachiller</div><div class="cert-card__issuer">Unidad Educativa Abdón Calderón · 2018</div></div>
+      </div>
+
+      <div class="cert-card reveal delay-200" data-category="estudio" data-modal="modal-vinculacion">
+        <div class="cert-card__preview--placeholder">🎓<span style="font-size:var(--text-sm); font-family:var(--font-code);">Vinculación</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Certificado Vinculación</div><div class="cert-card__issuer">Yavirac</div></div>
+      </div>
+
+      <div class="cert-card reveal" data-category="estudio" data-modal="modal-pasantias">
+        <div class="cert-card__preview--placeholder">🎓<span style="font-size:var(--text-sm); font-family:var(--font-code);">Pasantías</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Certificado Pasantías</div><div class="cert-card__issuer">LINKEARNET S.A. · Desarrollo Full Stack</div></div>
+      </div>
+
+      <!-- ███████████████████████████████████████████████████████████████ -->
+      <!-- OTROS CERTIFICADOS (data-category="otros") -->
+      <!-- ███████████████████████████████████████████████████████████████ -->
+
+      <div class="cert-card reveal delay-100" data-category="otros" data-modal="modal-asistente">
+        <div class="cert-card__preview--placeholder">💻<span style="font-size:var(--text-sm); font-family:var(--font-code);">Asistente Virtual</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Asistente Virtual – Workana & Upwork</div><div class="cert-card__issuer">Claseflix · 2026</div></div>
+      </div>
+
+      <div class="cert-card reveal delay-200" data-category="otros" data-modal="modal-ia">
+        <div class="cert-card__preview--placeholder">🤖<span style="font-size:var(--text-sm); font-family:var(--font-code);">Automatizaciones IA</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Automatizaciones con IA</div><div class="cert-card__issuer">Claseflix · 2026</div></div>
+      </div>
+
+      <div class="cert-card reveal" data-category="otros" data-modal="modal-powerbi">
+        <div class="cert-card__preview--placeholder">📊<span style="font-size:var(--text-sm); font-family:var(--font-code);">Power BI</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Power BI</div><div class="cert-card__issuer">Claseflix · 2026</div></div>
+      </div>
+
+      <div class="cert-card reveal delay-100" data-category="otros" data-modal="modal-excel">
+        <div class="cert-card__preview--placeholder">📔<span style="font-size:var(--text-sm); font-family:var(--font-code);">Excel</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Excel desde Cero / Básico y Intermedio</div><div class="cert-card__issuer">2026</div></div>
+      </div>
+
+      <div class="cert-card reveal delay-200" data-category="otros" data-modal="modal-contabilidad">
+        <div class="cert-card__preview--placeholder">📋<span style="font-size:var(--text-sm); font-family:var(--font-code);">Contabilidad</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Contabilidad</div><div class="cert-card__issuer">Claseflix · 2026</div></div>
+      </div>
+
+      <div class="cert-card reveal" data-category="otros" data-modal="modal-gerencia">
+        <div class="cert-card__preview--placeholder">🦺<span style="font-size:var(--text-sm); font-family:var(--font-code);">Gerencia</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Curso de Gerencia</div><div class="cert-card__issuer">2026</div></div>
+      </div>
+
+      <div class="cert-card reveal delay-100" data-category="otros" data-modal="modal-marketing">
+        <div class="cert-card__preview--placeholder">📢<span style="font-size:var(--text-sm); font-family:var(--font-code);">Marketing</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Curso de Marketing</div><div class="cert-card__issuer">Claseflix · 2026</div></div>
+      </div>
+
+      <div class="cert-card reveal delay-200" data-category="otros" data-modal="modal-asistente-credito">
+        <div class="cert-card__preview--placeholder">💰<span style="font-size:var(--text-sm); font-family:var(--font-code);">Asistente Crédito</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Asistente de Crédito</div><div class="cert-card__issuer">2025</div></div>
+      </div>
+
+      <div class="cert-card reveal" data-category="otros" data-modal="modal-cajero">
+        <div class="cert-card__preview--placeholder">🏦<span style="font-size:var(--text-sm); font-family:var(--font-code);">Cajero Bancario</span></div>
+        <div class="cert-card__body"><div class="cert-card__title">Cajero Bancario y Comercial</div><div class="cert-card__issuer">2025</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- ══════════════════════════════════════════
+       SECCIÓN: DOCUMENTOS OFICIALES (solo cartas y documentos generales)
+  ══════════════════════════════════════════ -->
   <section id="documentos" class="section">
     <div class="container">
       <div class="section__header">
         <div class="section__eyebrow">cat /etc/documentos/</div>
         <h2 class="section__title text-gradient">Documentos oficiales</h2>
-        <p class="section__subtitle">Cartas de recomendación, récord policial y más</p>
+        <p class="section__subtitle">Cartas de recomendación y documentos personales</p>
       </div>
       <div class="grid-auto">
-        <!-- Carta Gustavo Guevara -->
+
         <div class="card card--glow reveal" style="cursor:pointer;" data-modal="modal-carta-gus">
           <div style="font-size:2rem; margin-bottom:var(--space-4);">📄</div>
-          <div class="font-code" style="color:var(--neon-primary); font-size:var(--text-xs); margin-bottom:var(--space-2);">carta_recomendacion_gus.docx</div>
+          <div class="font-code" style="color:var(--neon-primary); font-size:var(--text-xs); margin-bottom:var(--space-2);">Carta de recomendacion GUS.docx</div>
           <h3 style="font-size:var(--text-lg); font-weight:var(--weight-semi); margin-bottom:var(--space-2);">Carta de Recomendación</h3>
           <p style="color:var(--text-secondary); font-size:var(--text-sm);">Gustavo Guevara · Electromecánica ISAIAS</p>
           <div style="margin-top:var(--space-4);"><span class="badge badge--green">Verificado</span></div>
         </div>
-        <!-- Carta Marco Almeida -->
+
         <div class="card card--glow reveal delay-100" style="cursor:pointer;" data-modal="modal-carta-marco">
           <div style="font-size:2rem; margin-bottom:var(--space-4);">📄</div>
-          <div class="font-code" style="color:var(--neon-primary); font-size:var(--text-xs); margin-bottom:var(--space-2);">carta_recomendacion_marco.docx</div>
+          <div class="font-code" style="color:var(--neon-primary); font-size:var(--text-xs); margin-bottom:var(--space-2);">Carta de recomendacion Marco.docx</div>
           <h3 style="font-size:var(--text-lg); font-weight:var(--weight-semi); margin-bottom:var(--space-2);">Carta de Recomendación</h3>
           <p style="color:var(--text-secondary); font-size:var(--text-sm);">Marco Almeida · Qo-Fin</p>
           <div style="margin-top:var(--space-4);"><span class="badge badge--green">Verificado</span></div>
         </div>
-        <!-- CV Ronny -->
+
         <div class="card card--glow reveal delay-200" style="cursor:pointer;" data-modal="modal-cv">
           <div style="font-size:2rem; margin-bottom:var(--space-4);">📄</div>
           <div class="font-code" style="color:var(--neon-cyan); font-size:var(--text-xs); margin-bottom:var(--space-2);">C.V.R.pdf</div>
@@ -387,35 +531,22 @@
           <p style="color:var(--text-secondary); font-size:var(--text-sm);">Documento actualizado 2026</p>
           <div style="margin-top:var(--space-4);"><span class="badge badge--purple">Oficial</span></div>
         </div>
-        <!-- Cédula -->
+
         <div class="card card--glow reveal" style="cursor:pointer;" data-modal="modal-cedula">
           <div style="font-size:2rem; margin-bottom:var(--space-4);">🆔</div>
-          <div class="font-code" style="color:var(--neon-green); font-size:var(--text-xs); margin-bottom:var(--space-2);">cédula_y_papeleta.pdf</div>
+          <div class="font-code" style="color:var(--neon-green); font-size:var(--text-xs); margin-bottom:var(--space-2);">cédula y papeleta Ronny.pdf</div>
           <h3 style="font-size:var(--text-lg); font-weight:var(--weight-semi); margin-bottom:var(--space-2);">Cédula y Papeleta de Votación</h3>
           <p style="color:var(--text-secondary); font-size:var(--text-sm);">Documento de identificación oficial</p>
           <div style="margin-top:var(--space-4);"><span class="badge badge--green">Verificado</span></div>
         </div>
-        <!-- Certificado Bachiller -->
-        <div class="card card--glow reveal delay-100" style="cursor:pointer;" data-modal="modal-bachiller">
-          <div style="font-size:2rem; margin-bottom:var(--space-4);">🎓</div>
-          <div class="font-code" style="color:var(--neon-pink); font-size:var(--text-xs); margin-bottom:var(--space-2);">certificado_bachiller.pdf</div>
-          <h3 style="font-size:var(--text-lg); font-weight:var(--weight-semi); margin-bottom:var(--space-2);">Certificado de Bachiller</h3>
-          <p style="color:var(--text-secondary); font-size:var(--text-sm);">Unidad Educativa Abdón Calderón · 2018</p>
-          <div style="margin-top:var(--space-4);"><span class="badge badge--purple">Oficial</span></div>
-        </div>
-        <!-- Pasantías LINKEARNET -->
-        <div class="card card--glow reveal delay-200" style="cursor:pointer;" data-modal="modal-pasantias">
-          <div style="font-size:2rem; margin-bottom:var(--space-4);">🏢</div>
-          <div class="font-code" style="color:var(--neon-primary); font-size:var(--text-xs); margin-bottom:var(--space-2);">certificado_pasantias_linkear.docx</div>
-          <h3 style="font-size:var(--text-lg); font-weight:var(--weight-semi); margin-bottom:var(--space-2);">Certificado Pasantías</h3>
-          <p style="color:var(--text-secondary); font-size:var(--text-sm);">LINKEARNET S.A. · Desarrollo Full Stack</p>
-          <div style="margin-top:var(--space-4);"><span class="badge badge--green">Verificado</span></div>
-        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- SECCIÓN: CONTACTO -->
+  <!-- ══════════════════════════════════════════
+       SECCIÓN: CONTACTO
+  ══════════════════════════════════════════ -->
   <section id="contacto" class="section section--lg">
     <div class="container-sm">
       <div class="section__header">
@@ -440,7 +571,7 @@
             </div>
           </div>
           <a href="https://wa.me/593939819639?text=Hola%20Ronny,%20vi%20tu%20portfolio%20y%20me%20interesa%20contactarte" target="_blank" rel="noopener" class="btn btn--primary btn--full">💬 Escribir por WhatsApp</a>
-          <a href="#" target="_blank" rel="noopener" class="btn btn--outline btn--full">Ver LinkedIn →</a>
+          <a href="https://www.linkedin.com/in/ronny-antonio-villa-villa/" target="_blank" rel="noopener" class="btn btn--outline btn--full">Ver LinkedIn →</a>
         </div>
         <div class="bento-col-6 reveal delay-200">
           <div class="card card--glow" style="height:100%;">
@@ -468,88 +599,45 @@
   </div>
 </footer>
 
-<!-- MODALES DE CERTIFICADOS (con rutas reales) -->
-<div id="modal-scrum" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Scrum Foundation Professional Certification</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20scrum.jpg" alt="Certificado Scrum" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><p>Institución: CertiProf</p><p>Fecha: Junio 2024</p><p>ID: 97092055R</p></div><div style="margin-top:var(--space-4);"><a href="Doc/certificados/certificado%20scrum.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+<!-- ══════════════════════════════════════════
+     MODALES
+══════════════════════════════════════════ -->
 
-<div id="modal-php" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>PHP / MySQL</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20php.png" alt="Certificado PHP" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20php.png" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+<!-- MODALES CERTIFICADOS -->
+<div id="modal-scrum" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Scrum Foundation Professional Certification</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20scrum.jpg" alt="Certificado Scrum" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20scrum.jpg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-php" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">PHP / MySQL</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20php.png" alt="Certificado PHP" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20php.png" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
 
-<div id="modal-disenio" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Diseño Web Adaptativo V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20dise%C3%B1o%20web.jpeg" alt="Certificado Diseño Web" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20dise%C3%B1o%20web.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+<div <div id="modal-disenio" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Diseño Web Adaptativo V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20%20dise%C3%B1o%20web.jpeg" alt="Certificado Diseño Web" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20%20dise%C3%B1o%20web.jpeg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-backend" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Backend Development and APIs V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20back-end.jpeg" alt="Certificado Backend" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20back-end.jpeg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-bd" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Base de Datos Relacional V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20base%20de%20datos.jpeg" alt="Certificado Base de Datos" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20base%20de%20datos.jpeg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-algos" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Algoritmos y Estructuras de Datos JS V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20v8.jpeg" alt="Certificado Algoritmos" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20v8.jpeg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-cpp" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Certificado C++</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20c%2B%2B.jpeg" alt="Certificado C++" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20c%2B%2B.jpeg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-java" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Certificado Java</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20java.jpeg" alt="Certificado Java" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20java.jpeg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-ingles" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Certificado Inglés B1.1</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/Estudios/certificado%20ingles%20B1.1.jpeg" alt="Certificado Inglés" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/Estudios/certificado%20ingles%20B1.1.jpeg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-bachiller" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Certificado de Bachiller</h3><button class="modal__close">✕</button></div><div class="modal__body"><iframe src="Doc/Estudios/certificado%20bachiller.pdf" width="100%" height="500px" style="border:none; border-radius:var(--radius-lg);"></iframe><a href="Doc/Estudios/certificado%20bachiller.pdf" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-vinculacion" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Certificado Vinculación</h3><button class="modal__close">✕</button></div><div class="modal__body"><iframe src="Doc/Estudios/certificado%20vinculaci%C3%B3n.pdf" width="100%" height="500px" style="border:none; border-radius:var(--radius-lg);"></iframe><a href="Doc/Estudios/certificado%20vinculaci%C3%B3n.pdf" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-pasantias" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Certificado Pasantías LINKEARNET</h3><button class="modal__close">✕</button></div><div class="modal__body"><iframe src="Doc/Estudios/certificado%20pasantias%20linkear.pdf" width="100%" height="500px" style="border:none; border-radius:var(--radius-lg);"></iframe><a href="Doc/Estudios/certificado%20pasantias%20linkear.pdf" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar certificado</a></div></div></div>
+<div id="modal-asistente" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Asistente Virtual</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20asistente%20vistual%20claseflix.jpg" alt="Asistente Virtual" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20asistente%20vistual%20claseflix.jpg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-ia" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Automatizaciones con IA</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20automaticacion%20con%20IA%20clasefix.jpg" alt="Automatizaciones IA" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20automaticacion%20con%20IA%20clasefix.jpg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-powerbi" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Power BI</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20power%20Bi%20claseflix.jpg" alt="Power BI" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20power%20Bi%20claseflix.jpg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-excel" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Excel</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20excel%20clasefix.jpg" alt="Excel" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20excel%20clasefix.jpg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-contabilidad" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Contabilidad</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20contabilidad%20clasefix.jpg" alt="Contabilidad" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20contabilidad%20clasefix.jpg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-gerencia" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Gerencia</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20gerencia%20clasefix.jpg" alt="Gerencia" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20gerencia%20clasefix.jpg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-marketing" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Marketing</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20marketing%20claseflix.jpg" alt="Marketing" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20marketing%20claseflix.jpg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-asistente-credito" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Asistente de Crédito</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20asistente%20de%20credito.jpg" alt="Asistente Crédito" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20asistente%20de%20credito.jpg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-cajero" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Cajero Bancario y Comercial</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20cajero%20bancario%20y%20comercial.jpg" alt="Cajero" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20cajero%20bancario%20y%20comercial.jpg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
 
-<div id="modal-frontend" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Frontend Development Libraries V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20front-end.jpeg" alt="Certificado Frontend" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20front-end.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
+<!-- MODALES DOCUMENTOS OFICIALES -->
+<div id="modal-carta-gus" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Carta de Recomendación - Gustavo Guevara</h3><button class="modal__close">✕</button></div><div class="modal__body" style="text-align:center;"><div style="font-size:3rem; margin-bottom:var(--space-4);">📄</div><p class="font-code" style="margin-bottom:var(--space-4);">Carta de recomendacion GUS.docx</p><a href="Doc/cartas_recomendacion/Carta%20de%20recomendacion%20GUS.docx" download class="btn btn--primary">↓ Descargar carta</a></div></div></div>
+<div id="modal-carta-marco" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Carta de Recomendación - Marco Almeida</h3><button class="modal__close">✕</button></div><div class="modal__body" style="text-align:center;"><div style="font-size:3rem; margin-bottom:var(--space-4);">📄</div><p class="font-code" style="margin-bottom:var(--space-4);">Carta de recomendacion Marco.docx</p><a href="Doc/cartas_recomendacion/Carta%20de%20recomendacion%20Marco.docx" download class="btn btn--primary">↓ Descargar carta</a></div></div></div>
+<div id="modal-cv" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Currículum Vitae</h3><button class="modal__close">✕</button></div><div class="modal__body"><iframe src="Doc/documentos_generales/C.V.R.pdf" width="100%" height="550px" style="border:none; border-radius:var(--radius-lg);"></iframe><a href="Doc/documentos_generales/C.V.R.pdf" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-cedula" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Cédula y Papeleta de Votación</h3><button class="modal__close">✕</button></div><div class="modal__body"><iframe src="Doc/documentos_generales/c%C3%A9dula%20y%20papeleta%20Ronny.pdf" width="100%" height="550px" style="border:none; border-radius:var(--radius-lg);"></iframe><a href="Doc/documentos_generales/c%C3%A9dula%20y%20papeleta%20Ronny.pdf" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
 
-<div id="modal-backend" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Backend Development and APIs V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20back-end.jpeg" alt="Certificado Backend" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20back-end.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-bd" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Base de Datos Relacional V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20base%20de%20datos.jpeg" alt="Certificado Base de Datos" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20base%20de%20datos.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-algos" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Algoritmos y Estructuras de Datos JS V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20v8.jpeg" alt="Certificado Algoritmos" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20v8.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-viz" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Visualización de Datos V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><p>Certificado freeCodeCamp - 2025</p><a href="#" class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div>
-
-<div id="modal-asistente" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Asistente Virtual – Workana & Upwork</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20asistente%20vistual%20claseflix.jpg" alt="Certificado Asistente Virtual" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20asistente%20vistual%20claseflix.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-ia" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Automatizaciones con IA</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20automaticacion%20con%20IA%20clasefix.jpg" alt="Certificado IA" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20automaticacion%20con%20IA%20clasefix.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-powerbi" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Power BI</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20power%20Bi%20claseflix.jpg" alt="Certificado Power BI" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20power%20Bi%20claseflix.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-excel" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Excel</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20excel%20clasefix.jpg" alt="Certificado Excel" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20excel%20clasefix.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-contabilidad" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Contabilidad</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20contabilidad%20clasefix.jpg" alt="Certificado Contabilidad" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20contabilidad%20clasefix.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-gerencia" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Curso de Gerencia</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20gerencia%20clasefix.jpg" alt="Certificado Gerencia" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20gerencia%20clasefix.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-marketing" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Curso de Marketing</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20marketing%20claseflix.jpg" alt="Certificado Marketing" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20marketing%20claseflix.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-cpp" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>C++</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20c%2B%2B.jpeg" alt="Certificado C++" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20c%2B%2B.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-java" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Java</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20java.jpeg" alt="Certificado Java" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20java.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-ingles" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Certificado Inglés A2.2</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20A2.2_page-0001.jpg" alt="Certificado Inglés" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20A2.2_page-0001.jpg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-vinculacion" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Certificado Vinculación</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20vinculacion.jpeg" alt="Certificado Vinculación" style="width:100%; border-radius:var(--radius-lg); margin-bottom:var(--space-4);" /><div><a href="Doc/certificados/certificado%20vinculacion.jpeg" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<!-- MODALES DE DOCUMENTOS -->
-<div id="modal-carta-gus" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Carta de Recomendación - Gustavo Guevara</h3><button class="modal__close">✕</button></div><div class="modal__body"><embed src="Doc/cartas_recomendacion/Carta%20de%20recomendacion%20GUS.docx" width="100%" height="500px" style="border-radius:var(--radius-lg);" /><div style="margin-top:var(--space-4);"><a href="Doc/cartas_recomendacion/Carta%20de%20recomendacion%20GUS.docx" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-carta-marco" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Carta de Recomendación - Marco Almeida</h3><button class="modal__close">✕</button></div><div class="modal__body"><embed src="Doc/cartas_recomendacion/Carta%20de%20recomendacion%20Marco.docx" width="100%" height="500px" style="border-radius:var(--radius-lg);" /><div style="margin-top:var(--space-4);"><a href="Doc/cartas_recomendacion/Carta%20de%20recomendacion%20Marco.docx" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-cv" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Currículum Vitae - Ronny Villa</h3><button class="modal__close">✕</button></div><div class="modal__body"><embed src="Doc/documentos_generales/C.V.R.pdf" width="100%" height="600px" style="border-radius:var(--radius-lg);" /><div style="margin-top:var(--space-4);"><a href="Doc/documentos_generales/C.V.R.pdf" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-cedula" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Cédula y Papeleta de Votación</h3><button class="modal__close">✕</button></div><div class="modal__body"><embed src="Doc/documentos_generales/c%C3%A9dula%20y%20papeleta%20Ronny.pdf" width="100%" height="600px" style="border-radius:var(--radius-lg);" /><div style="margin-top:var(--space-4);"><a href="Doc/documentos_generales/c%C3%A9dula%20y%20papeleta%20Ronny.pdf" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-bachiller" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Certificado de Bachiller</h3><button class="modal__close">✕</button></div><div class="modal__body"><embed src="Doc/documentos_generales/certificado%20bachiller.pdf" width="100%" height="600px" style="border-radius:var(--radius-lg);" /><div style="margin-top:var(--space-4);"><a href="Doc/documentos_generales/certificado%20bachiller.pdf" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<div id="modal-pasantias" class="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal"><div class="modal__header"><h3>Certificado Pasantías - LINKEARNET S.A.</h3><button class="modal__close">✕</button></div><div class="modal__body"><embed src="Doc/pasantias/certificado%20pasantias%20linkear.docx" width="100%" height="500px" style="border-radius:var(--radius-lg);" /><div style="margin-top:var(--space-4);"><a href="Doc/pasantias/certificado%20pasantias%20linkear.docx" download class="btn btn--outline btn--sm">↓ Descargar</a></div></div></div></div>
-
-<!-- SCRIPTS -->
 <!-- SCRIPTS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="assets/js/gsap-animations.js"></script>
+<script src="assets/js/main.js"></script>
 
 </body>
 </html>
