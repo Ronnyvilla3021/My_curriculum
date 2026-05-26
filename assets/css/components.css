@@ -753,7 +753,22 @@
 /* ============================================================
    ANIMACIONES DE KEYFRAMES (usadas en components)
    ============================================================ */
-@keyframes modal-in {
+/* Para móvil, desactivar transformaciones hover */
+@media (max-width: 768px) {
+  .card:hover,
+  .cert-card:hover,
+  .version-card:hover {
+    transform: none;
+  }
+  
+  /* Eliminar glows que consumen batería */
+  .card--glow:hover,
+  .btn--primary:hover {
+    box-shadow: none;
+  }
+}
+
+   @keyframes modal-in {
   from { opacity: 0; transform: scale(0.92) translateY(20px); }
   to   { opacity: 1; transform: scale(1) translateY(0); }
 }

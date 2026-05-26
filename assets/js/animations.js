@@ -1,3 +1,15 @@
+// Detectar móvil por resolución o por navigator
+const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+if (isMobileDevice) {
+  // Reducir número de partículas
+  const particleCount = 30; // menos partículas
+  
+  // O desactivar completamente el canvas
+  const canvas = document.getElementById('particles-canvas');
+  if (canvas) canvas.style.display = 'none';
+}
+
 /* ============================================================
    ANIMATIONS.JS — Efectos visuales avanzados
    Partículas canvas, parallax, orbs, efecto cursor

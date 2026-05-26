@@ -1,3 +1,20 @@
+// Detectar si es móvil
+const isMobile = window.innerWidth <= 768;
+
+// Configurar ScrollTrigger para móvil
+ScrollTrigger.config({
+  ignoreMobileResize: true
+});
+
+// Si es móvil, reducir/desactivar animaciones
+if (isMobile) {
+  // Reducir la duración de las animaciones
+  gsap.defaults({ duration: 0.5 });
+  
+  // O desactivar completamente ciertas animaciones
+  // (opcional: no animar en móvil para mejor rendimiento)
+}
+
 /* ============================================================
    GSAP-ANIMATIONS.JS  v2 — Sistema cinematográfico de animaciones
    Requiere: gsap.min.js + ScrollTrigger.min.js (CDN)
