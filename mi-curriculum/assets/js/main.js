@@ -245,41 +245,68 @@ function initSmoothScroll() {
 }
 
 /* ============================================================
-   TYPING EFFECT — para el título del hero
+   TYPING EFFECT — para el título del hero (CORREGIDO)
    ============================================================ */
 function initTypingEffect() {
-  const el = document.querySelector('[data-typing]');
-  if (!el) return;
+  const el = document.querySelector('.typing-cursor');
+  if (!el) {
+    console.warn('No se encontró .typing-cursor');
+    return;
+  }
 
-  const words   = JSON.parse(el.getAttribute('data-typing'));
-  let wordIdx   = 0;
-  let charIdx   = 0;
-  let deleting  = false;
-  const speed   = { type: 80, delete: 40, pause: 1800 };
-
+  // Limpiar el contenido inicial del span
+  el.textContent = '';
+  
+  // Obtener palabras del atributo data-typing
+  let words = [];
+  try {
+    const typingAttr = el.getAttribute('data-typing');
+    if (typingAttr) {
+      words = JSON.parse(typingAttr);
+      console.log('Palabras cargadas:', words);
+    } else {
+      words = ['Full Stack Developer', 'Software Engineer', 'Problem Solver'];
+    }
+  } catch(e) {
+    console.error('Error parsing data-typing:', e);
+    words = ['Full Stack Developer', 'Software Engineer', 'Problem Solver'];
+  }
+  
+  if (words.length === 0) return;
+  
+  let wordIdx = 0;
+  let charIdx = 0;
+  let deleting = false;
+  const speed = { type: 100, delete: 50, pause: 2000 };
+  
   function type() {
-    const current = words[wordIdx];
-
+    const currentWord = words[wordIdx];
+    
     if (!deleting) {
-      el.textContent = current.slice(0, charIdx + 1);
+      // Escribiendo
+      el.textContent = currentWord.slice(0, charIdx + 1);
       charIdx++;
-      if (charIdx === current.length) {
+      
+      if (charIdx === currentWord.length) {
         deleting = true;
         setTimeout(type, speed.pause);
         return;
       }
     } else {
-      el.textContent = current.slice(0, charIdx - 1);
+      // Borrando
+      el.textContent = currentWord.slice(0, charIdx - 1);
       charIdx--;
+      
       if (charIdx === 0) {
-        deleting  = false;
-        wordIdx   = (wordIdx + 1) % words.length;
+        deleting = false;
+        wordIdx = (wordIdx + 1) % words.length;
       }
     }
-
+    
     setTimeout(type, deleting ? speed.delete : speed.type);
   }
-
+  
+  // Iniciar el efecto
   type();
 }
 
