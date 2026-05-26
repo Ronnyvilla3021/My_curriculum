@@ -1,342 +1,354 @@
 /* ============================================================
-   ANIMATIONS.CSS — Efectos visuales, keyframes, reveal on scroll
-   Versión suave — transiciones más naturales
+   ANIMATIONS.CSS — Profesional, suave, sin conflictos
+   Sin brusquedad. Sin parpadeos. Sin glitches en ningún device.
    ============================================================ */
 
 /* ============================================================
-   KEYFRAMES GLOBALES — versión más suave
+   KEYFRAMES
    ============================================================ */
 
-/* Entrada suave desde abajo (menos desplazamiento) */
 @keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Entrada desde la izquierda */
+@keyframes fade-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes fade-left {
-  from {
-    opacity: 0;
-    transform: translateX(-16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
-/* Entrada desde la derecha */
 @keyframes fade-right {
-  from {
-    opacity: 0;
-    transform: translateX(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
-/* Escalar desde 0 (más suave) */
 @keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.92);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
-/* Parpadeo de cursor más suave */
 @keyframes blink {
-  0%, 100% { opacity: 0.7; }
-  50%       { opacity: 0.2; }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
-/* Pulso suave — más tenue */
 @keyframes glow-pulse {
-  0%, 100% {
-    box-shadow: 0 0 6px rgba(139, 92, 246, 0.15);
-  }
-  50% {
-    box-shadow: 0 0 12px rgba(139, 92, 246, 0.25);
-  }
+  0%, 100% { box-shadow: 0 0 8px rgba(139,92,246,0.2); }
+  50%       { box-shadow: 0 0 20px rgba(139,92,246,0.4); }
 }
 
-/* Texto neón — más sutil */
-@keyframes text-glow-pulse {
-  0%, 100% {
-    text-shadow: 0 0 4px rgba(167,139,250,0.15);
-  }
-  50% {
-    text-shadow: 0 0 8px rgba(167,139,250,0.25);
-  }
-}
-
-/* Flotación más suave (menor amplitud) */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-6px); }
+  50%       { transform: translateY(-8px); }
 }
 
-/* Escaneo más lento y sutil */
 @keyframes scan-line {
   0%   { top: -2px; opacity: 0; }
-  20%  { opacity: 0.15; }
-  80%  { opacity: 0.15; }
+  15%  { opacity: 0.2; }
+  85%  { opacity: 0.2; }
   100% { top: 100%; opacity: 0; }
 }
 
-/* Brillo que cruza — más tenue */
 @keyframes shimmer {
-  0%   { background-position: -200% center; opacity: 0; }
-  20%  { opacity: 0.5; }
-  80%  { opacity: 0.5; }
-  100% { background-position: 200% center; opacity: 0; }
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }
 
-/* Rotación lenta */
 @keyframes spin {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
 
-/* Onda de audio — más suave */
 @keyframes wave {
-  0%, 100% { transform: scaleY(0.6); }
-  50%       { transform: scaleY(1.2); }
+  0%, 100% { transform: scaleY(0.5); }
+  50%       { transform: scaleY(1); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(1.4); }
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: scale(0.95) translateY(16px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 /* ============================================================
-   CLASES DE ANIMACIÓN — duraciones más largas
+   CLASES DE ANIMACIÓN DIRECTA
    ============================================================ */
 
-.animate-fade-up   { animation: fade-up 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
-.animate-fade-left { animation: fade-left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
-.animate-fade-right{ animation: fade-right 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
-.animate-scale-in  { animation: scale-in 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
-.animate-float     { animation: float 5s ease-in-out infinite; }
-.animate-glow-pulse{ animation: glow-pulse 3s ease-in-out infinite; }
-.animate-text-glow { animation: text-glow-pulse 4s ease-in-out infinite; }
-.animate-spin-slow { animation: spin 12s linear infinite; }
-.animate-shimmer   {
-  background: linear-gradient(90deg,
+.animate-fade-up    { animation: fade-up   0.7s cubic-bezier(0.22,1,0.36,1) both; }
+.animate-fade-down  { animation: fade-down 0.6s cubic-bezier(0.22,1,0.36,1) both; }
+.animate-fade-left  { animation: fade-left 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+.animate-fade-right { animation: fade-right 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+.animate-scale-in   { animation: scale-in  0.6s cubic-bezier(0.22,1,0.36,1) both; }
+.animate-float      { animation: float 6s ease-in-out infinite; }
+.animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+.animate-spin-slow  { animation: spin 14s linear infinite; }
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
     transparent 0%,
-    rgba(167,139,250,0.08) 30%,
-    rgba(167,139,250,0.15) 50%,
-    rgba(167,139,250,0.08) 70%,
+    rgba(167,139,250,0.1) 40%,
+    rgba(167,139,250,0.2) 50%,
+    rgba(167,139,250,0.1) 60%,
     transparent 100%
   );
   background-size: 200% auto;
-  animation: shimmer 3.5s ease-in-out infinite;
+  animation: shimmer 3s linear infinite;
 }
 
-/* Delays */
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-400 { animation-delay: 0.4s; }
-.delay-500 { animation-delay: 0.5s; }
-
-/* Inicial: oculto hasta que JS lo revela — transición más suave */
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal--left {
-  opacity: 0;
-  transform: translateX(-16px);
-  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.reveal--right {
-  opacity: 0;
-  transform: translateX(16px);
-  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.reveal--left.visible,
-.reveal--right.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
+/* Delays escalonados */
+.delay-100  { animation-delay: 0.1s; }
+.delay-200  { animation-delay: 0.2s; }
+.delay-300  { animation-delay: 0.3s; }
+.delay-400  { animation-delay: 0.4s; }
+.delay-500  { animation-delay: 0.5s; }
+.delay-600  { animation-delay: 0.6s; }
+.delay-700  { animation-delay: 0.7s; }
+.delay-800  { animation-delay: 0.8s; }
 
 /* ============================================================
-   EFECTO HOLOGRAMA — más sutil
+   REVEAL ON SCROLL — Sistema limpio basado en clases
+   AHORA VISIBLE POR DEFECTO, se anima SOLO si JS está activo
+   ============================================================ */
+
+.reveal,
+.reveal--left,
+.reveal--right,
+.reveal--scale {
+  /* VISIBLE POR DEFECTO - sin esperar ScrollTrigger */
+  opacity: 1;
+  transform: translate(0) scale(1);
+  will-change: opacity, transform;
+  transition:
+    opacity  0.75s cubic-bezier(0.22,1,0.36,1),
+    transform 0.75s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* Solo si quieres que la animación ocurra, 
+   el JS puede agregar esta clase para el efecto */
+.reveal.animate-out,
+.reveal--left.animate-out,
+.reveal--right.animate-out,
+.reveal--scale.animate-out {
+  opacity: 0;
+}
+
+.reveal.animate-out { transform: translateY(24px); }
+.reveal--left.animate-out { transform: translateX(-24px); }
+.reveal--right.animate-out { transform: translateX(24px); }
+.reveal--scale.animate-out { transform: scale(0.95); }
+
+/* Estado visible (cuando JS los activa) */
+.reveal.visible,
+.reveal--left.visible,
+.reveal--right.visible,
+.reveal--scale.visible {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+/* Delays para reveal (escalonado dentro de grids) */
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.40s; }
+
+/* ============================================================
+   EFECTO HOLOGRAMA (línea de escaneo)
    ============================================================ */
 .hologram {
   position: relative;
   overflow: hidden;
 }
-
 .hologram::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 0; right: 0;
   height: 1px;
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(139, 92, 246, 0.3),
-    rgba(6, 182, 212, 0.3),
-    rgba(139, 92, 246, 0.3),
+    rgba(139,92,246,0.4),
+    rgba(6,182,212,0.4),
+    rgba(139,92,246,0.4),
     transparent
   );
-  animation: scan-line 5s linear infinite;
+  animation: scan-line 6s ease-in-out infinite;
   pointer-events: none;
-  opacity: 0.3;
 }
 
 /* ============================================================
-   EFECTO GLITCH — reducido en móvil
-   ============================================================ */
-@keyframes glitch-1 {
-  0%, 97%, 100% { clip-path: none; transform: none; }
-  98% { clip-path: polygon(0 20%, 100% 20%, 100% 30%, 0 30%); transform: translateX(-2px); }
-  99% { clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); transform: translateX(2px); }
-}
-
-@keyframes glitch-2 {
-  0%, 98%, 100% { clip-path: none; transform: none; opacity: 0; }
-  99% {
-    clip-path: polygon(0 20%, 100% 20%, 100% 35%, 0 35%);
-    transform: translateX(2px);
-    opacity: 0.4;
-  }
-}
-
-.glitch {
-  position: relative;
-  animation: glitch-1 8s infinite;
-}
-
-.glitch::before {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: rgba(6, 182, 212, 0.5);
-  animation: glitch-2 8s infinite 0.1s;
-}
-
-/* ============================================================
-   EFECTO TYPING — cursor más suave
+   CURSOR TYPING
    ============================================================ */
 .typing-cursor::after {
   content: '|';
   color: var(--neon-primary);
-  animation: blink 1.2s step-end infinite;
-  margin-left: 2px;
-  opacity: 0.7;
+  animation: blink 1s step-end infinite;
+  margin-left: 1px;
 }
 
 /* ============================================================
-   CANVAS DE PARTÍCULAS — opacidad reducida
+   CANVAS PARTÍCULAS
    ============================================================ */
 #particles-canvas {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.25;
+  opacity: 0.3;
 }
 
 /* ============================================================
-   MICRO-INTERACCIONES — más sutiles
+   MICRO-INTERACCIONES
    ============================================================ */
-.pulse-hover:hover {
-  animation: glow-pulse 1.5s ease-in-out infinite;
-}
+.breathe   { animation: float 7s ease-in-out infinite; }
+.icon-spin:hover { animation: spin 0.5s ease-in-out; }
 
-.breathe {
-  animation: float 7s ease-in-out infinite;
+/* ============================================================
+   AVATAR RING
+   ============================================================ */
+@keyframes ring-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
+.avatar__ring { animation: ring-spin 10s linear infinite; }
 
-.icon-spin:hover {
-  animation: spin 0.6s ease-in-out;
+/* ============================================================
+   PROGRESO — animación de entrada
+   ============================================================ */
+.progress-fill {
+  transition: width 1.4s cubic-bezier(0.22,1,0.36,1);
+  width: 0%;
 }
 
 /* ============================================================
-   RESPETO POR PREFERENCIAS DE MOVIMIENTO REDUCIDO
+   NAVBAR scrolled
+   ============================================================ */
+.navbar {
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* ============================================================
+   CARDS — hover suave
+   ============================================================ */
+.card,
+.version-card,
+.cert-card,
+.stat-card {
+  transition:
+    transform       0.35s cubic-bezier(0.22,1,0.36,1),
+    border-color    0.35s ease,
+    box-shadow      0.35s ease;
+}
+
+/* ============================================================
+   BOTONES — hover suave
+   ============================================================ */
+.btn {
+  transition:
+    background   0.25s ease,
+    box-shadow   0.25s ease,
+    transform    0.25s cubic-bezier(0.22,1,0.36,1),
+    color        0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* ============================================================
+   SKILL TAG
+   ============================================================ */
+.skill-tag {
+  transition:
+    color        0.2s ease,
+    background   0.2s ease,
+    border-color 0.2s ease,
+    box-shadow   0.2s ease;
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.modal-overlay {
+  transition: opacity 0.25s ease;
+}
+.modal {
+  animation: modal-in 0.35s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+/* ============================================================
+   MOVIMIENTO REDUCIDO — accesibilidad
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
+    animation-duration:       0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration:      0.01ms !important;
+    scroll-behavior:          auto !important;
   }
 
   .reveal,
   .reveal--left,
-  .reveal--right {
-    opacity: 1;
-    transform: none;
+  .reveal--right,
+  .reveal--scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
-  
-  #particles-canvas {
-    display: none;
-  }
+
+  #particles-canvas { display: none; }
 }
 
 /* ============================================================
-   MÓVIL — desactivar animaciones pesadas
+   MÓVIL — desactivar efectos pesados
    ============================================================ */
 @media (max-width: 768px) {
   .animate-float,
-  .breathe {
-    animation: none;
-    transform: none;
-  }
-  
-  .glitch,
-  .glitch::before {
-    animation: none;
-  }
-  
-  .hologram::after {
-    animation: none;
-    display: none;
-  }
-  
+  .breathe { animation: none; transform: none; }
+
+  .hologram::after { display: none; }
+
   .animate-shimmer {
     animation: none;
     background: none;
   }
-  
+
+  /* Sin hover lift en touch */
   .card:hover,
-  .cert-card:hover {
+  .cert-card:hover,
+  .version-card:hover,
+  .stat-card:hover {
     transform: none !important;
   }
-  
-  .hero__orb {
-    animation: none !important;
+
+  .hero__orb { animation: none !important; }
+
+  #particles-canvas { display: none; }
+
+  /* Reveal más rápido en móvil */
+  .reveal,
+  .reveal--left,
+  .reveal--right,
+  .reveal--scale {
+    transition-duration: 0.5s;
+    transform: translateY(12px);
   }
-  
-  .progress-fill {
-    transition: width 0.6s ease-out;
-  }
+  .reveal--left  { transform: translateX(0) !important; }
+  .reveal--right { transform: translateX(0) !important; }
+  .reveal--scale { transform: none; }
 }
+

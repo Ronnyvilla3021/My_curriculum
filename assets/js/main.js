@@ -1,529 +1,539 @@
-// ============================================================
-// CV DEFINITIVO - Estable y funcional en todos los dispositivos
-// Versión con animaciones suaves
-// ============================================================
+/* ============================================================
+   MAIN.JS — Con animaciones funcionando correctamente
+   ============================================================ */
+'use strict';
 
-(function() {
-    'use strict';
+(function () {
+
+  const isMobile     = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 768;
+  const isTouch      = window.matchMedia('(pointer: coarse)').matches;
+  const prefersLess  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ──────────────────────────────────────────────────────────
+     1. FORZAR VISIBILIDAD INICIAL (pero mantener animaciones)
+  ────────────────────────────────────────────────────────── */
+  function forceInitialVisibility() {
+    // Esto hace que TODO sea visible desde el inicio
+    const elements = document.querySelectorAll('.cert-card, #documentos .card, #contacto .card, .timeline__item, .version-card');
+    elements.forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     2. MENÚ HAMBURGUESA
+  ────────────────────────────────────────────────────────── */
+  function initMobileMenu() {
+    const hamburger = document.querySelector('.navbar__hamburger');
+    const sidebar   = document.querySelector('.sidebar');
+    const overlay   = document.querySelector('.sidebar__overlay');
+    if (!hamburger || !sidebar) return;
+
+    function openMenu()  {
+      sidebar.classList.add('open');
+      overlay?.classList.add('active');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      sidebar.classList.remove('open');
+      overlay?.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () =>
+      sidebar.classList.contains('open') ? closeMenu() : openMenu()
+    );
+    overlay?.addEventListener('click', closeMenu);
+    sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && sidebar.classList.contains('open')) closeMenu();
+    });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     3. NAVBAR SCROLL
+  ────────────────────────────────────────────────────────── */
+  function initNavbarScroll() {
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+
+    let ticking = false;
+
+    function update() {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     4. REVEAL CON ANIMACIÓN (funcionando correctamente)
+  ────────────────────────────────────────────────────────── */
+  function initReveal() {
+    // Primero, aseguramos que los elementos tengan su estado inicial (ocultos para animar)
+    const elements = document.querySelectorAll('.reveal, .reveal--left, .reveal--right, .reveal--scale');
     
-    // ------------------------------------------------------------------
-    // 1. MOSTRAR TODO EL CONTENIDO INMEDIATAMENTE (sin opacidad 0)
-    //    Versión mejorada con eliminación de animaciones bruscas
-    // ------------------------------------------------------------------
-    function mostrarContenidoInmediato() {
-        // Eliminar cualquier estilo que oculte elementos
-        const elementosOcultos = document.querySelectorAll('[style*="opacity: 0"], [style*="visibility: hidden"], .reveal, .reveal--left, .reveal--right');
-        
-        elementosOcultos.forEach(el => {
-            el.style.opacity = '1';
-            el.style.transform = 'none';
-            el.style.visibility = 'visible';
-            el.style.transition = 'none';
-        });
-        
-        // Asegurar que las secciones principales sean visibles
-        const secciones = document.querySelectorAll('.hero, .section, .card, .timeline__item, .bento-grid, .cert-card, .version-card, .stat-card');
-        secciones.forEach(el => {
-            el.style.opacity = '1';
-            el.style.transform = 'none';
-        });
-        
-        // Eliminar estilos de GSAP que puedan estar causando problemas
-        const gsapElements = document.querySelectorAll('[style*="autoAlpha"], [style*="visibility: hidden"]');
-        gsapElements.forEach(el => {
-            el.style.opacity = '1';
-            el.style.visibility = 'visible';
-        });
-        
-        // Forzar visibilidad del hero
-        const hero = document.querySelector('.hero');
-        if (hero) {
-            hero.style.opacity = '1';
-            const heroElements = hero.querySelectorAll('*');
-            heroElements.forEach(el => {
-                el.style.opacity = '1';
-                el.style.transform = 'none';
-            });
+    // Establecer estado inicial para animación
+    elements.forEach(el => {
+      if (el.classList.contains('reveal')) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
+      } else if (el.classList.contains('reveal--left')) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateX(-24px)';
+      } else if (el.classList.contains('reveal--right')) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateX(24px)';
+      } else if (el.classList.contains('reveal--scale')) {
+        el.style.opacity = '0';
+        el.style.transform = 'scale(0.95)';
+      }
+    });
+
+    if (isMobile || prefersLess) {
+      // En móvil, hacerlos visibles inmediatamente
+      elements.forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.classList.add('visible');
+      });
+      return;
+    }
+
+    // Observer con umbral más temprano
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translate(0) scale(1)';
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
-    }
-    
-    // ------------------------------------------------------------------
-    // 2. MENÚ HAMBURGUESA (responsive)
-    // ------------------------------------------------------------------
-    function initMobileMenu() {
-        const hamburger = document.querySelector('.navbar__hamburger');
-        const sidebar = document.querySelector('.sidebar');
-        const overlay = document.querySelector('.sidebar__overlay');
-        
-        if (!hamburger || !sidebar) return;
-        
-        function toggleMenu() {
-            sidebar.classList.toggle('open');
-            if (overlay) overlay.classList.toggle('active');
-            const expanded = sidebar.classList.contains('open');
-            hamburger.setAttribute('aria-expanded', expanded);
+      });
+    }, { 
+      threshold: 0.08,
+      rootMargin: '0px 0px -20px 0px'
+    });
+
+    elements.forEach(el => observer.observe(el));
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     5. BARRAS DE PROGRESO
+  ────────────────────────────────────────────────────────── */
+  function initProgressBars() {
+    const bars = document.querySelectorAll('.progress-fill[data-width]');
+    if (!bars.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          setTimeout(() => {
+            bar.style.width = bar.getAttribute('data-width');
+          }, 150);
+          observer.unobserve(bar);
         }
-        
-        hamburger.addEventListener('click', toggleMenu);
-        
-        if (overlay) {
-            overlay.addEventListener('click', toggleMenu);
+      });
+    }, { threshold: 0.3 });
+
+    bars.forEach(bar => {
+      bar.style.width = '0%';
+      observer.observe(bar);
+    });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     6. CONTADORES ANIMADOS
+  ────────────────────────────────────────────────────────── */
+  function initCounters() {
+    const counters = document.querySelectorAll('[data-count]');
+    if (!counters.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el       = entry.target;
+        const target   = parseFloat(el.getAttribute('data-count'));
+        const suffix   = el.getAttribute('data-suffix') || '';
+        const decimals = parseInt(el.getAttribute('data-decimals') || '0');
+        const duration = 1600;
+        let startTime  = null;
+
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          const progress = Math.min((timestamp - startTime) / duration, 1);
+          const ease  = 1 - Math.pow(1 - progress, 3);
+          const value = target * ease;
+          el.textContent = value.toFixed(decimals) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = target.toFixed(decimals) + suffix;
         }
-        
-        // Cerrar menú al hacer click en un enlace
-        sidebar.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                sidebar.classList.remove('open');
-                if (overlay) overlay.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', 'false');
-            });
-        });
+
+        requestAnimationFrame(step);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(el => observer.observe(el));
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     7. EFECTO MÁQUINA DE ESCRIBIR
+  ────────────────────────────────────────────────────────── */
+  function initTyping() {
+    const el = document.querySelector('.typing-cursor');
+    if (!el) return;
+
+    let texts;
+    try { texts = JSON.parse(el.getAttribute('data-typing') || '[]'); }
+    catch { texts = ['Full Stack Developer']; }
+    if (!texts.length) return;
+
+    let tIdx = 0, cIdx = 0, deleting = false;
+
+    function tick() {
+      const current = texts[tIdx];
+
+      if (deleting) {
+        cIdx--;
+        el.textContent = current.slice(0, cIdx);
+      } else {
+        cIdx++;
+        el.textContent = current.slice(0, cIdx);
+      }
+
+      let delay = deleting ? 35 : 65;
+
+      if (!deleting && cIdx === current.length) {
+        delay = 2200;
+        deleting = true;
+      } else if (deleting && cIdx === 0) {
+        deleting = false;
+        tIdx = (tIdx + 1) % texts.length;
+        delay = 350;
+      }
+
+      setTimeout(tick, delay);
     }
-    
-    // ------------------------------------------------------------------
-    // 3. NAVBAR SCROLL (cambia fondo al hacer scroll)
-    // ------------------------------------------------------------------
-    function initNavbarScroll() {
-        const navbar = document.querySelector('.navbar');
-        if (!navbar) return;
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+
+    setTimeout(tick, 800);
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     8. MODALES
+  ────────────────────────────────────────────────────────── */
+  function initModals() {
+    document.querySelectorAll('[data-modal]').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const modal = document.getElementById(trigger.getAttribute('data-modal'));
+        if (!modal) return;
+        modal.classList.add('active');
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', e => {
+        if (e.target === overlay) closeModal(overlay);
+      });
+      overlay.querySelector('.modal__close')?.addEventListener('click', () => closeModal(overlay));
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(closeModal);
+      }
+    });
+
+    function closeModal(overlay) {
+      overlay.classList.remove('active');
+      overlay.style.display = '';
+      document.body.style.overflow = '';
     }
-    
-    // ------------------------------------------------------------------
-    // 4. ANIMACIÓN DE BARRAS DE PROGRESO (solo cuando son visibles)
-    // ------------------------------------------------------------------
-    function initProgressBars() {
-        const progressBars = document.querySelectorAll('.progress-fill');
-        if (progressBars.length === 0) return;
-        
-        // Guardar el ancho objetivo
-        progressBars.forEach(bar => {
-            const width = bar.getAttribute('data-width');
-            if (width) {
-                bar.style.width = '0%';
-                bar.style.transition = 'width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-                bar.setAttribute('data-target-width', width);
-            }
-        });
-        
-        // Detectar cuándo son visibles
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const bar = entry.target;
-                    const targetWidth = bar.getAttribute('data-target-width');
-                    if (targetWidth && bar.style.width !== targetWidth) {
-                        setTimeout(() => {
-                            bar.style.width = targetWidth;
-                        }, 200);
-                    }
-                    observer.unobserve(bar);
-                }
-            });
-        }, { threshold: 0.3 });
-        
-        progressBars.forEach(bar => observer.observe(bar));
-    }
-    
-    // ------------------------------------------------------------------
-    // 5. CONTADORES (años de experiencia, proyectos)
-    // ------------------------------------------------------------------
-    function initCounters() {
-        const counters = document.querySelectorAll('.stat-card__value[data-count]');
-        if (counters.length === 0) return;
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counter = entry.target;
-                    if (counter.classList.contains('counted')) return;
-                    counter.classList.add('counted');
-                    
-                    const target = parseInt(counter.getAttribute('data-count'));
-                    const suffix = counter.getAttribute('data-suffix') || '';
-                    let current = 0;
-                    const duration = 1800; // ms
-                    const stepTime = 20;
-                    const steps = duration / stepTime;
-                    const increment = target / steps;
-                    
-                    let step = 0;
-                    const timer = setInterval(() => {
-                        step++;
-                        current += increment;
-                        if (step >= steps) {
-                            counter.textContent = target + suffix;
-                            clearInterval(timer);
-                        } else {
-                            counter.textContent = Math.floor(current) + suffix;
-                        }
-                    }, stepTime);
-                    
-                    observer.unobserve(counter);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        counters.forEach(counter => observer.observe(counter));
-    }
-    
-    // ------------------------------------------------------------------
-    // 6. EFECTO MÁQUINA DE ESCRIBIR (más suave)
-    // ------------------------------------------------------------------
-    function initTypingEffect() {
-        const typingElement = document.querySelector('.typing-cursor');
-        if (!typingElement) return;
-        
-        const textsAttr = typingElement.getAttribute('data-typing');
-        if (!textsAttr) return;
-        
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     9. COPIAR AL PORTAPAPELES
+  ────────────────────────────────────────────────────────── */
+  function initCopyButtons() {
+    document.querySelectorAll('[data-copy]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const text = btn.getAttribute('data-copy');
         try {
-            const texts = JSON.parse(textsAttr);
-            let textIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-            
-            function typeEffect() {
-                const currentText = texts[textIndex];
-                
-                if (isDeleting) {
-                    charIndex--;
-                    typingElement.textContent = currentText.substring(0, charIndex);
-                } else {
-                    charIndex++;
-                    typingElement.textContent = currentText.substring(0, charIndex);
-                }
-                
-                if (!isDeleting && charIndex === currentText.length) {
-                    isDeleting = true;
-                    setTimeout(typeEffect, 2500);
-                    return;
-                }
-                
-                if (isDeleting && charIndex === 0) {
-                    isDeleting = false;
-                    textIndex = (textIndex + 1) % texts.length;
-                    setTimeout(typeEffect, 400);
-                    return;
-                }
-                
-                const speed = isDeleting ? 40 : 70;
-                setTimeout(typeEffect, speed);
-            }
-            
-            setTimeout(typeEffect, 500);
-        } catch(e) {
-            console.error('Error en typing effect:', e);
-            typingElement.textContent = 'Full Stack Developer';
-        }
-    }
-    
-    // ------------------------------------------------------------------
-    // 7. MODALES (certificados y documentos)
-    // ------------------------------------------------------------------
-    function initModals() {
-        const modals = document.querySelectorAll('.modal-overlay');
-        const triggers = document.querySelectorAll('[data-modal]');
-        
-        // Abrir modal
-        triggers.forEach(trigger => {
-            trigger.addEventListener('click', () => {
-                const modalId = trigger.getAttribute('data-modal');
-                const modal = document.getElementById(modalId);
-                if (modal) {
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
-            });
-        });
-        
-        // Cerrar modal
-        modals.forEach(modal => {
-            const closeBtn = modal.querySelector('.modal__close');
-            if (closeBtn) {
-                closeBtn.addEventListener('click', () => {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            }
-            
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-        });
-    }
-    
-    // ------------------------------------------------------------------
-    // 8. BOTONES DE COPIAR (email, teléfono)
-    // ------------------------------------------------------------------
-    function initCopyButtons() {
-        const copyButtons = document.querySelectorAll('[data-copy]');
-        
-        copyButtons.forEach(btn => {
-            btn.addEventListener('click', async () => {
-                const textToCopy = btn.getAttribute('data-copy');
-                if (!textToCopy) return;
-                
-                try {
-                    await navigator.clipboard.writeText(textToCopy);
-                    
-                    // Feedback visual
-                    const originalText = btn.textContent;
-                    btn.textContent = '✓ Copiado!';
-                    btn.style.color = '#10b981';
-                    
-                    setTimeout(() => {
-                        btn.textContent = originalText;
-                        btn.style.color = '';
-                    }, 2000);
-                } catch (err) {
-                    console.error('Error al copiar:', err);
-                }
-            });
-        });
-    }
-    
-    // ------------------------------------------------------------------
-    // 9. FILTROS DE CERTIFICADOS (con animación suave)
-    // ------------------------------------------------------------------
-    function initFilters() {
-        const filterButtons = document.querySelectorAll('[data-filter]');
-        const filterContainer = document.querySelector('[data-filter-container]');
-        
-        if (!filterButtons.length || !filterContainer) return;
-        
-        const items = filterContainer.querySelectorAll('[data-category]');
-        
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const filter = btn.getAttribute('data-filter');
-                
-                // Actualizar estado activo de los botones
-                filterButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                // Filtrar elementos con animación suave
-                items.forEach((item, idx) => {
-                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                        item.style.display = '';
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'scale(1)';
-                        }, idx * 30);
-                    } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'scale(0.95)';
-                        setTimeout(() => {
-                            item.style.display = 'none';
-                        }, 300);
-                    }
-                });
-            });
-        });
-    }
-    
-    // ------------------------------------------------------------------
-    // 10. SMOOTH SCROLL PARA ENLACES INTERNOS (más suave)
-    // ------------------------------------------------------------------
-    function initSmoothScroll() {
-        const links = document.querySelectorAll('a[href^="#"]');
-        
-        links.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const href = link.getAttribute('href');
-                if (href === '#' || href === '') return;
-                
-                const target = document.querySelector(href);
-                if (target) {
-                    e.preventDefault();
-                    const navbarHeight = 64;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Actualizar URL sin recargar
-                    history.pushState(null, null, href);
-                }
-            });
-        });
-    }
-    
-    // ------------------------------------------------------------------
-    // 11. CANVAS DE PARTÍCULAS (solo en PC, reducido)
-    // ------------------------------------------------------------------
-    function initParticles() {
-        const canvas = document.getElementById('particles-canvas');
-        if (!canvas) return;
-        
-        // Detectar móvil por ancho de pantalla o User Agent
-        const isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        
-        if (isMobile) {
-            canvas.style.display = 'none';
-            return;
-        }
-        
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
-        
-        let W, H, particles = [];
-        
-        const CONFIG = {
-            count: 40,
-            color: '139, 92, 246',
-            colorAlt: '6, 182, 212',
-            maxRadius: 1.5,
-            minRadius: 0.5,
-            speed: 0.2,
-            connectDist: 100,
-            opacity: 0.25
-        };
-        
-        function resizeCanvas() {
-            W = canvas.width = window.innerWidth;
-            H = canvas.height = window.innerHeight;
-        }
-        
-        function createParticles() {
-            particles = [];
-            for (let i = 0; i < CONFIG.count; i++) {
-                const isCyan = Math.random() < 0.25;
-                particles.push({
-                    x: Math.random() * W,
-                    y: Math.random() * H,
-                    r: CONFIG.minRadius + Math.random() * (CONFIG.maxRadius - CONFIG.minRadius),
-                    vx: (Math.random() - 0.5) * CONFIG.speed,
-                    vy: (Math.random() - 0.5) * CONFIG.speed,
-                    color: isCyan ? CONFIG.colorAlt : CONFIG.color,
-                    opacity: 0.15 + Math.random() * 0.25
-                });
-            }
-        }
-        
-        function drawParticles() {
-            ctx.clearRect(0, 0, W, H);
-            
-            // Conexiones suaves
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (dist < CONFIG.connectDist) {
-                        const alpha = (1 - dist / CONFIG.connectDist) * 0.1;
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(${particles[i].color}, ${alpha})`;
-                        ctx.lineWidth = 0.3;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            
-            // Partículas
-            particles.forEach(p => {
-                p.x += p.vx;
-                p.y += p.vy;
-                
-                if (p.x < 0 || p.x > W) p.vx *= -1;
-                if (p.y < 0 || p.y > H) p.vy *= -1;
-                
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${p.color}, ${p.opacity})`;
-                ctx.fill();
-            });
-        }
-        
-        function animate() {
-            drawParticles();
-            requestAnimationFrame(animate);
-        }
-        
-        resizeCanvas();
-        createParticles();
-        animate();
-        
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-            createParticles();
-        });
-    }
-    
-    // ------------------------------------------------------------------
-    // 12. REVEAL ON SCROLL (más suave, sin GSAP conflictos)
-    // ------------------------------------------------------------------
-    function initRevealOnScroll() {
-        const revealElements = document.querySelectorAll('.reveal, .reveal--left, .reveal--right');
-        
-        if (revealElements.length === 0) return;
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-        
-        revealElements.forEach(el => observer.observe(el));
-    }
-    
-    // ------------------------------------------------------------------
-    // INICIALIZAR TODO CUANDO EL DOM ESTÉ LISTO
-    // ------------------------------------------------------------------
-    document.addEventListener('DOMContentLoaded', function() {
-        // PRIMERO: Mostrar todo el contenido inmediatamente
-        mostrarContenidoInmediato();
-        
-        // SEGUNDO: Inicializar todos los componentes
-        initMobileMenu();
-        initNavbarScroll();
-        initProgressBars();
-        initCounters();
-        initTypingEffect();
-        initModals();
-        initCopyButtons();
-        initFilters();
-        initSmoothScroll();
-        initParticles();
-        initRevealOnScroll();
-        
-        // Eliminar cualquier clase que pueda estar ocultando elementos
-        document.body.classList.add('loaded');
+          await navigator.clipboard.writeText(text);
+          const orig = btn.textContent;
+          btn.textContent = '✓ Copiado';
+          btn.style.color = 'var(--neon-green)';
+          setTimeout(() => { btn.textContent = orig; btn.style.color = ''; }, 2000);
+        } catch {}
+      });
     });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     10. FILTROS DE CERTIFICADOS - CORREGIDO
+  ────────────────────────────────────────────────────────── */
+  function initFilters() {
+    const btns = document.querySelectorAll('[data-filter]');
+    const container = document.querySelector('#certificados .grid-auto');
     
-    // Asegurar que todo sea visible incluso si el DOMContentLoaded ya pasó
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', mostrarContenidoInmediato);
-    } else {
-        mostrarContenidoInmediato();
+    if (!btns.length || !container) {
+      return;
     }
-    
-    // También al cargar completamente (para imágenes)
-    window.addEventListener('load', function() {
-        mostrarContenidoInmediato();
-        // Revisar contadores y barras de progreso nuevamente
-        setTimeout(() => {
-            initProgressBars();
-            initCounters();
-        }, 100);
+
+    const items = container.querySelectorAll('[data-category]');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+
+        items.forEach(item => {
+          const match = filter === 'all' || item.getAttribute('data-category') === filter;
+          if (match) {
+            item.style.display = '';
+            item.style.opacity = '1';
+            item.style.transform = 'scale(1)';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
     });
-    
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     11. SMOOTH SCROLL
+  ────────────────────────────────────────────────────────── */
+  function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 68;
+        window.scrollTo({ top, behavior: 'smooth' });
+        history.pushState(null, '', href);
+      });
+    });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     12. PARTÍCULAS
+  ────────────────────────────────────────────────────────── */
+  function initParticles() {
+    const canvas = document.getElementById('particles-canvas');
+    if (!canvas) return;
+    if (isMobile || prefersLess) { canvas.style.display = 'none'; return; }
+
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [], raf;
+
+    const CFG = {
+      count:       45,
+      colors:      ['139,92,246', '6,182,212'],
+      maxR:        1.6,
+      minR:        0.4,
+      speed:       0.22,
+      connectDist: 110,
+    };
+
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+
+    function create() {
+      particles = Array.from({ length: CFG.count }, () => ({
+        x:  Math.random() * W,
+        y:  Math.random() * H,
+        r:  CFG.minR + Math.random() * (CFG.maxR - CFG.minR),
+        vx: (Math.random() - 0.5) * CFG.speed,
+        vy: (Math.random() - 0.5) * CFG.speed,
+        c:  CFG.colors[Math.random() < 0.25 ? 1 : 0],
+        o:  0.15 + Math.random() * 0.25,
+      }));
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      for (let i = 0; i < particles.length; i++) {
+        const pi = particles[i];
+        pi.x += pi.vx; pi.y += pi.vy;
+        if (pi.x < 0 || pi.x > W) pi.vx *= -1;
+        if (pi.y < 0 || pi.y > H) pi.vy *= -1;
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const pj = particles[j];
+          const dx = pi.x - pj.x, dy = pi.y - pj.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < CFG.connectDist * CFG.connectDist) {
+            const alpha = (1 - Math.sqrt(d2) / CFG.connectDist) * 0.12;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(${pi.c},${alpha})`;
+            ctx.lineWidth   = 0.4;
+            ctx.moveTo(pi.x, pi.y);
+            ctx.lineTo(pj.x, pj.y);
+            ctx.stroke();
+          }
+        }
+
+        ctx.beginPath();
+        ctx.arc(pi.x, pi.y, pi.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${pi.c},${pi.o})`;
+        ctx.fill();
+      }
+
+      raf = requestAnimationFrame(draw);
+    }
+
+    resize(); create(); draw();
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => { resize(); create(); }, 200);
+    }, { passive: true });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { cancelAnimationFrame(raf); }
+      else { raf = requestAnimationFrame(draw); }
+    });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     13. ORBS PARALLAX
+  ────────────────────────────────────────────────────────── */
+  function initParallaxOrbs() {
+    if (isMobile || isTouch || prefersLess) return;
+    const orbs = document.querySelectorAll('.hero__orb');
+    if (!orbs.length) return;
+
+    let mx = 0, my = 0, cx = 0, cy = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = (e.clientX / window.innerWidth  - 0.5);
+      my = (e.clientY / window.innerHeight - 0.5);
+    }, { passive: true });
+
+    function loop() {
+      cx += (mx - cx) * 0.05;
+      cy += (my - cy) * 0.05;
+      orbs.forEach((orb, i) => {
+        const f = (i + 1) * 18;
+        orb.style.transform = `translate(${cx * f}px, ${cy * f}px)`;
+      });
+      requestAnimationFrame(loop);
+    }
+    loop();
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     14. CURSOR GLOW
+  ────────────────────────────────────────────────────────── */
+  function initCursorGlow() {
+    if (isMobile || isTouch || prefersLess) return;
+
+    const glow = document.createElement('div');
+    Object.assign(glow.style, {
+      position:     'fixed',
+      pointerEvents:'none',
+      zIndex:       '9999',
+      width:        '360px',
+      height:       '360px',
+      borderRadius: '50%',
+      background:   'radial-gradient(circle, rgba(139,92,246,0.07) 0%, rgba(139,92,246,0.02) 40%, transparent 70%)',
+      transform:    'translate(-50%,-50%)',
+      opacity:      '0',
+      transition:   'opacity 0.4s ease',
+    });
+    document.body.appendChild(glow);
+
+    let gx = 0, gy = 0, cgx = 0, cgy = 0;
+
+    document.addEventListener('mousemove', e => { gx = e.clientX; gy = e.clientY; glow.style.opacity = '1'; }, { passive: true });
+    document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
+
+    function loop() {
+      cgx += (gx - cgx) * 0.1;
+      cgy += (gy - cgy) * 0.1;
+      glow.style.left = cgx + 'px';
+      glow.style.top  = cgy + 'px';
+      requestAnimationFrame(loop);
+    }
+    loop();
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     15. ACTIVE NAV LINK
+  ────────────────────────────────────────────────────────── */
+  function initActiveNav() {
+    const sections  = document.querySelectorAll('section[id]');
+    const navLinks  = document.querySelectorAll('.navbar__link');
+    const sideLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
+          });
+          sideLinks.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    }, { threshold: 0.35 });
+
+    sections.forEach(s => observer.observe(s));
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     INIT
+  ────────────────────────────────────────────────────────── */
+  function init() {
+    forceInitialVisibility();
+    initMobileMenu();
+    initNavbarScroll();
+    initReveal();
+    initProgressBars();
+    initCounters();
+    initTyping();
+    initModals();
+    initCopyButtons();
+    initFilters();
+    initSmoothScroll();
+    initParticles();
+    initParallaxOrbs();
+    initCursorGlow();
+    initActiveNav();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  window.addEventListener('load', () => {
+    forceInitialVisibility();
+  });
+
 })();

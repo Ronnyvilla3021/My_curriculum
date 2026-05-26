@@ -545,7 +545,7 @@
   </section>
 
   <!-- ══════════════════════════════════════════
-       SECCIÓN: CONTACTO
+       SECCIÓN: CONTACTO (CORREGIDA)
   ══════════════════════════════════════════ -->
   <section id="contacto" class="section section--lg">
     <div class="container-sm">
@@ -557,15 +557,15 @@
       <div class="bento-grid">
         <div class="bento-col-6 reveal" style="display:flex; flex-direction:column; gap:var(--space-4);">
           <div class="card card--glass">
-            <div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-2);">// email</div>
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-3);">
-              <span style="color:var(--text-secondary); font-size:var(--text-sm);">ronnievillavilla@gmail.com</span>
+            <div class="font-code" style="color:var(--neon-primary); font-size:var(--text-xs); margin-bottom:var(--space-2);">// email</div>
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-3); flex-wrap:wrap;">
+              <span style="color:var(--text-secondary); font-size:var(--text-sm); word-break:break-all;">ronnievillavilla@gmail.com</span>
               <button class="btn btn--ghost btn--sm" data-copy="ronnievillavilla@gmail.com">Copiar</button>
             </div>
           </div>
           <div class="card card--glass">
-            <div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-2);">// teléfono</div>
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-3);">
+            <div class="font-code" style="color:var(--neon-primary); font-size:var(--text-xs); margin-bottom:var(--space-2);">// teléfono</div>
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-3); flex-wrap:wrap;">
               <span style="color:var(--text-secondary); font-size:var(--text-sm);">+593 939 819 639</span>
               <button class="btn btn--ghost btn--sm" data-copy="+593939819639">Copiar</button>
             </div>
@@ -577,10 +577,22 @@
           <div class="card card--glow" style="height:100%;">
             <div class="font-code" style="color:var(--neon-primary); font-size:var(--text-sm); margin-bottom:var(--space-6);">// status.json</div>
             <div style="display:flex; flex-direction:column; gap:var(--space-5);">
-              <div><div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"ubicación":</div><div style="color:var(--text-secondary);">"Quito, Ecuador"</div></div>
-              <div><div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"modalidad":</div><div style="color:var(--text-secondary);">"Remoto / Híbrido / Presencial"</div></div>
-              <div><div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"disponibilidad":</div><div style="display:flex; align-items:center; gap:var(--space-2);"><span class="badge badge--status badge--green">Inmediata</span></div></div>
-              <div><div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"pretensión_salarial":</div><div style="color:var(--text-secondary);">"A convenir"</div></div>
+              <div>
+                <div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"ubicación":</div>
+                <div style="color:var(--text-secondary);">"Quito, Ecuador"</div>
+              </div>
+              <div>
+                <div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"modalidad":</div>
+                <div style="color:var(--text-secondary);">"Remoto / Híbrido / Presencial"</div>
+              </div>
+              <div>
+                <div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"disponibilidad":</div>
+                <div style="display:flex; align-items:center; gap:var(--space-2);"><span class="badge badge--status badge--green">Inmediata</span></div>
+              </div>
+              <div>
+                <div class="font-code" style="color:var(--text-muted); font-size:var(--text-xs); margin-bottom:var(--space-1);">"pretensión_salarial":</div>
+                <div style="color:var(--text-secondary);">"A convenir"</div>
+              </div>
             </div>
           </div>
         </div>
@@ -606,8 +618,11 @@
 <!-- MODALES CERTIFICADOS -->
 <div id="modal-scrum" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Scrum Foundation Professional Certification</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20scrum.jpg" alt="Certificado Scrum" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20scrum.jpg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
 <div id="modal-php" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">PHP / MySQL</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20php.png" alt="Certificado PHP" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20php.png" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<div id="modal-disenio" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Diseño Web Adaptativo V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20%20dise%C3%B1o%20web.jpeg" alt="Certificado Diseño Web" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20%20dise%C3%B1o%20web.jpeg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
 
-<div <div id="modal-disenio" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Diseño Web Adaptativo V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20%20dise%C3%B1o%20web.jpeg" alt="Certificado Diseño Web" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20%20dise%C3%B1o%20web.jpeg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+<!-- MODAL FRONTEND (agregado - BUG #3 solucionado) -->
+<div id="modal-frontend" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Frontend Development Libraries V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20front-end.jpeg" alt="Certificado Frontend" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20front-end.jpeg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
+
 <div id="modal-backend" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Backend Development and APIs V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20back-end.jpeg" alt="Certificado Backend" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20back-end.jpeg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
 <div id="modal-bd" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Base de Datos Relacional V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20base%20de%20datos.jpeg" alt="Certificado Base de Datos" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20base%20de%20datos.jpeg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
 <div id="modal-algos" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Algoritmos y Estructuras de Datos JS V8</h3><button class="modal__close">✕</button></div><div class="modal__body"><img src="Doc/certificados/certificado%20v8.jpeg" alt="Certificado Algoritmos" style="width:100%; border-radius:var(--radius-lg);" loading="lazy" /><a href="Doc/certificados/certificado%20v8.jpeg" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
@@ -633,7 +648,7 @@
 <div id="modal-cv" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Currículum Vitae</h3><button class="modal__close">✕</button></div><div class="modal__body"><iframe src="Doc/documentos_generales/C.V.R.pdf" width="100%" height="550px" style="border:none; border-radius:var(--radius-lg);"></iframe><a href="Doc/documentos_generales/C.V.R.pdf" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
 <div id="modal-cedula" class="modal-overlay"><div class="modal"><div class="modal__header"><h3 class="modal__title">Cédula y Papeleta de Votación</h3><button class="modal__close">✕</button></div><div class="modal__body"><iframe src="Doc/documentos_generales/c%C3%A9dula%20y%20papeleta%20Ronny.pdf" width="100%" height="550px" style="border:none; border-radius:var(--radius-lg);"></iframe><a href="Doc/documentos_generales/c%C3%A9dula%20y%20papeleta%20Ronny.pdf" download class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">↓ Descargar</a></div></div></div>
 
-<!-- SCRIPTS -->
+<!-- SCRIPTS - BUG #4: Eliminado animations.js, orden correcto -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="assets/js/gsap-animations.js"></script>
