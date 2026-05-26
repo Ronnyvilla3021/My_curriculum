@@ -1,16 +1,17 @@
 /* ============================================================
    ANIMATIONS.CSS — Efectos visuales, keyframes, reveal on scroll
+   Versión suave — transiciones más naturales
    ============================================================ */
 
 /* ============================================================
-   KEYFRAMES GLOBALES
+   KEYFRAMES GLOBALES — versión más suave
    ============================================================ */
 
-/* Entrada suave desde abajo */
+/* Entrada suave desde abajo (menos desplazamiento) */
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -22,7 +23,7 @@
 @keyframes fade-left {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-16px);
   }
   to {
     opacity: 1;
@@ -34,7 +35,7 @@
 @keyframes fade-right {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(16px);
   }
   to {
     opacity: 1;
@@ -42,11 +43,11 @@
   }
 }
 
-/* Escalar desde 0 */
+/* Escalar desde 0 (más suave) */
 @keyframes scale-in {
   from {
     opacity: 0;
-    transform: scale(0.85);
+    transform: scale(0.92);
   }
   to {
     opacity: 1;
@@ -54,133 +55,88 @@
   }
 }
 
-/* Parpadeo de cursor */
+/* Parpadeo de cursor más suave */
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 0.2; }
 }
 
-/* Pulso suave (glow pulsante) */
+/* Pulso suave — más tenue */
 @keyframes glow-pulse {
   0%, 100% {
-    box-shadow: 0 0 12px rgba(139, 92, 246, 0.4),
-                0 0 24px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 0 6px rgba(139, 92, 246, 0.15);
   }
   50% {
-    box-shadow: 0 0 24px rgba(139, 92, 246, 0.7),
-                0 0 48px rgba(139, 92, 246, 0.35),
-                0 0 80px rgba(139, 92, 246, 0.15);
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.25);
   }
 }
 
-/* Pulso de texto neón */
+/* Texto neón — más sutil */
 @keyframes text-glow-pulse {
   0%, 100% {
-    text-shadow: 0 0 10px rgba(167,139,250,0.5),
-                 0 0 20px rgba(139,92,246,0.3);
+    text-shadow: 0 0 4px rgba(167,139,250,0.15);
   }
   50% {
-    text-shadow: 0 0 20px rgba(167,139,250,0.8),
-                 0 0 40px rgba(139,92,246,0.5),
-                 0 0 60px rgba(139,92,246,0.2);
+    text-shadow: 0 0 8px rgba(167,139,250,0.25);
   }
 }
 
-/* Flotación suave */
+/* Flotación más suave (menor amplitud) */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-12px); }
+  50%       { transform: translateY(-6px); }
 }
 
-/* Flotación con rotación leve */
-@keyframes float-rotate {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33%       { transform: translateY(-8px) rotate(1deg); }
-  66%       { transform: translateY(-4px) rotate(-1deg); }
-}
-
-/* Escaneo tipo holograma (línea que baja) */
+/* Escaneo más lento y sutil */
 @keyframes scan-line {
   0%   { top: -2px; opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
+  20%  { opacity: 0.15; }
+  80%  { opacity: 0.15; }
   100% { top: 100%; opacity: 0; }
 }
 
-/* Aparición de partículas */
-@keyframes particle-rise {
-  0% {
-    opacity: 0;
-    transform: translateY(0) scale(0);
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-120px) scale(1.5);
-  }
-}
-
-/* Brillo que cruza (shimmer) */
+/* Brillo que cruza — más tenue */
 @keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0%   { background-position: -200% center; opacity: 0; }
+  20%  { opacity: 0.5; }
+  80%  { opacity: 0.5; }
+  100% { background-position: 200% center; opacity: 0; }
 }
 
-/* Rotación continua */
+/* Rotación lenta */
 @keyframes spin {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
 
-/* Onda de audio */
+/* Onda de audio — más suave */
 @keyframes wave {
-  0%, 100% { transform: scaleY(0.5); }
-  50%       { transform: scaleY(1.5); }
-}
-
-/* Typing cursor */
-@keyframes typing {
-  from { width: 0; }
-  to   { width: 100%; }
-}
-
-/* Entrada del hero title */
-@keyframes hero-reveal {
-  0%   { opacity: 0; transform: translateY(40px) skewY(2deg); }
-  100% { opacity: 1; transform: translateY(0) skewY(0deg); }
-}
-
-/* Borde que da vuelta (border animation) */
-@keyframes border-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  0%, 100% { transform: scaleY(0.6); }
+  50%       { transform: scaleY(1.2); }
 }
 
 /* ============================================================
-   CLASES DE ANIMACIÓN DIRECTA
+   CLASES DE ANIMACIÓN — duraciones más largas
    ============================================================ */
 
-.animate-fade-up   { animation: fade-up 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
-.animate-fade-left { animation: fade-left 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
-.animate-fade-right{ animation: fade-right 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
-.animate-scale-in  { animation: scale-in 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards; }
-.animate-float     { animation: float 4s ease-in-out infinite; }
-.animate-float-alt { animation: float 4s ease-in-out infinite 2s; }
-.animate-glow-pulse{ animation: glow-pulse 2.5s ease-in-out infinite; }
-.animate-text-glow { animation: text-glow-pulse 3s ease-in-out infinite; }
-.animate-spin-slow { animation: spin 10s linear infinite; }
+.animate-fade-up   { animation: fade-up 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+.animate-fade-left { animation: fade-left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+.animate-fade-right{ animation: fade-right 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+.animate-scale-in  { animation: scale-in 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+.animate-float     { animation: float 5s ease-in-out infinite; }
+.animate-glow-pulse{ animation: glow-pulse 3s ease-in-out infinite; }
+.animate-text-glow { animation: text-glow-pulse 4s ease-in-out infinite; }
+.animate-spin-slow { animation: spin 12s linear infinite; }
 .animate-shimmer   {
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(167,139,250,0.15) 30%,
-    rgba(167,139,250,0.3) 50%,
-    rgba(167,139,250,0.15) 70%,
+    rgba(167,139,250,0.08) 30%,
+    rgba(167,139,250,0.15) 50%,
+    rgba(167,139,250,0.08) 70%,
     transparent 100%
   );
   background-size: 200% auto;
-  animation: shimmer 2.5s linear infinite;
+  animation: shimmer 3.5s ease-in-out infinite;
 }
 
 /* Delays */
@@ -189,16 +145,13 @@
 .delay-300 { animation-delay: 0.3s; }
 .delay-400 { animation-delay: 0.4s; }
 .delay-500 { animation-delay: 0.5s; }
-.delay-600 { animation-delay: 0.6s; }
-.delay-700 { animation-delay: 0.7s; }
-.delay-800 { animation-delay: 0.8s; }
 
-/* Inicial: oculto hasta que JS lo revela */
+/* Inicial: oculto hasta que JS lo revela — transición más suave */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1),
-              transform 0.6s cubic-bezier(0.4,0,0.2,1);
+  transform: translateY(16px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .reveal.visible {
@@ -208,21 +161,26 @@
 
 .reveal--left {
   opacity: 0;
-  transform: translateX(-24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateX(-16px);
+  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
 
 .reveal--right {
   opacity: 0;
-  transform: translateX(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateX(16px);
+  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-
+.reveal--left.visible,
+.reveal--right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
 
 /* ============================================================
-   EFECTO HOLOGRAMA — efecto de escaneo
+   EFECTO HOLOGRAMA — más sutil
    ============================================================ */
 .hologram {
   position: relative;
@@ -234,48 +192,41 @@
   position: absolute;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 1px;
   background: linear-gradient(
     90deg,
     transparent,
-    var(--neon-primary),
-    var(--neon-cyan),
-    var(--neon-primary),
+    rgba(139, 92, 246, 0.3),
+    rgba(6, 182, 212, 0.3),
+    rgba(139, 92, 246, 0.3),
     transparent
   );
-  animation: scan-line 4s linear infinite;
+  animation: scan-line 5s linear infinite;
   pointer-events: none;
-  opacity: 0.4;
+  opacity: 0.3;
 }
 
 /* ============================================================
-   EFECTO GLITCH — para texto especial
+   EFECTO GLITCH — reducido en móvil
    ============================================================ */
 @keyframes glitch-1 {
-  0%, 95%, 100% { clip-path: none; transform: none; }
-  96% { clip-path: polygon(0 20%, 100% 20%, 100% 30%, 0 30%); transform: translateX(-4px); }
-  97% { clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); transform: translateX(4px); }
-  98% { clip-path: polygon(0 40%, 100% 40%, 100% 50%, 0 50%); transform: translateX(-2px); }
+  0%, 97%, 100% { clip-path: none; transform: none; }
+  98% { clip-path: polygon(0 20%, 100% 20%, 100% 30%, 0 30%); transform: translateX(-2px); }
+  99% { clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); transform: translateX(2px); }
 }
 
 @keyframes glitch-2 {
-  0%, 96%, 100% { clip-path: none; transform: none; opacity: 0; }
-  97% {
+  0%, 98%, 100% { clip-path: none; transform: none; opacity: 0; }
+  99% {
     clip-path: polygon(0 20%, 100% 20%, 100% 35%, 0 35%);
-    transform: translateX(4px);
-    opacity: 0.7;
+    transform: translateX(2px);
+    opacity: 0.4;
   }
-  98% {
-    clip-path: polygon(0 65%, 100% 65%, 100% 80%, 0 80%);
-    transform: translateX(-4px);
-    opacity: 0.7;
-  }
-  99% { opacity: 0; }
 }
 
 .glitch {
   position: relative;
-  animation: glitch-1 6s infinite;
+  animation: glitch-1 8s infinite;
 }
 
 .glitch::before {
@@ -283,22 +234,23 @@
   position: absolute;
   top: 0;
   left: 0;
-  color: var(--neon-cyan);
-  animation: glitch-2 6s infinite 0.1s;
+  color: rgba(6, 182, 212, 0.5);
+  animation: glitch-2 8s infinite 0.1s;
 }
 
 /* ============================================================
-   EFECTO TYPING — cursor parpadeante
+   EFECTO TYPING — cursor más suave
    ============================================================ */
 .typing-cursor::after {
   content: '|';
   color: var(--neon-primary);
-  animation: blink 1s step-end infinite;
+  animation: blink 1.2s step-end infinite;
   margin-left: 2px;
+  opacity: 0.7;
 }
 
 /* ============================================================
-   CANVAS DE PARTÍCULAS (fondo animado)
+   CANVAS DE PARTÍCULAS — opacidad reducida
    ============================================================ */
 #particles-canvas {
   position: fixed;
@@ -308,53 +260,22 @@
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.4;
+  opacity: 0.25;
 }
 
 /* ============================================================
-   MICRO-INTERACCIONES
+   MICRO-INTERACCIONES — más sutiles
    ============================================================ */
-
-/* Botón que pulsa al hacer hover */
 .pulse-hover:hover {
-  animation: glow-pulse 1s ease-in-out infinite;
+  animation: glow-pulse 1.5s ease-in-out infinite;
 }
 
-/* Card que "respira" */
 .breathe {
-  animation: float 6s ease-in-out infinite;
+  animation: float 7s ease-in-out infinite;
 }
 
-/* Ícono que gira al hover */
 .icon-spin:hover {
-  animation: spin 0.5s ease-in-out;
-}
-
-/* ============================================================
-   BARRA DE PROGRESO ANIMADA
-   ============================================================ */
-.progress-fill {
-  width: 0%;
-}
-/* GSAP maneja la animación, no CSS */
-
-@keyframes progress-grow {
-  from { width: 0%; }
-  to   { width: var(--target-width, 100%); }
-}
-
-/* ============================================================
-   GRID DE PARTÍCULAS ESTÁTICAS (fondo decorativo)
-   ============================================================ */
-.dots-grid {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(139,92,246,0.15) 1px, transparent 1px);
-  background-size: 32px 32px;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.5;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  animation: spin 0.6s ease-in-out;
 }
 
 /* ============================================================
@@ -374,5 +295,48 @@
   .reveal--right {
     opacity: 1;
     transform: none;
+  }
+  
+  #particles-canvas {
+    display: none;
+  }
+}
+
+/* ============================================================
+   MÓVIL — desactivar animaciones pesadas
+   ============================================================ */
+@media (max-width: 768px) {
+  .animate-float,
+  .breathe {
+    animation: none;
+    transform: none;
+  }
+  
+  .glitch,
+  .glitch::before {
+    animation: none;
+  }
+  
+  .hologram::after {
+    animation: none;
+    display: none;
+  }
+  
+  .animate-shimmer {
+    animation: none;
+    background: none;
+  }
+  
+  .card:hover,
+  .cert-card:hover {
+    transform: none !important;
+  }
+  
+  .hero__orb {
+    animation: none !important;
+  }
+  
+  .progress-fill {
+    transition: width 0.6s ease-out;
   }
 }

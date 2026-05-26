@@ -1,6 +1,6 @@
 // ============================================================
 // CV DEFINITIVO - Estable y funcional en todos los dispositivos
-// Sin errores de visibilidad, sin dependencias complejas
+// Versión con animaciones suaves
 // ============================================================
 
 (function() {
@@ -8,10 +8,11 @@
     
     // ------------------------------------------------------------------
     // 1. MOSTRAR TODO EL CONTENIDO INMEDIATAMENTE (sin opacidad 0)
+    //    Versión mejorada con eliminación de animaciones bruscas
     // ------------------------------------------------------------------
     function mostrarContenidoInmediato() {
         // Eliminar cualquier estilo que oculte elementos
-        const elementosOcultos = document.querySelectorAll('[style*="opacity: 0"], [style*="visibility: hidden"], .reveal');
+        const elementosOcultos = document.querySelectorAll('[style*="opacity: 0"], [style*="visibility: hidden"], .reveal, .reveal--left, .reveal--right');
         
         elementosOcultos.forEach(el => {
             el.style.opacity = '1';
@@ -21,11 +22,29 @@
         });
         
         // Asegurar que las secciones principales sean visibles
-        const secciones = document.querySelectorAll('.hero, .section, .card, .timeline__item, .bento-grid, .cert-card');
+        const secciones = document.querySelectorAll('.hero, .section, .card, .timeline__item, .bento-grid, .cert-card, .version-card, .stat-card');
         secciones.forEach(el => {
             el.style.opacity = '1';
             el.style.transform = 'none';
         });
+        
+        // Eliminar estilos de GSAP que puedan estar causando problemas
+        const gsapElements = document.querySelectorAll('[style*="autoAlpha"], [style*="visibility: hidden"]');
+        gsapElements.forEach(el => {
+            el.style.opacity = '1';
+            el.style.visibility = 'visible';
+        });
+        
+        // Forzar visibilidad del hero
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            hero.style.opacity = '1';
+            const heroElements = hero.querySelectorAll('*');
+            heroElements.forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+        }
     }
     
     // ------------------------------------------------------------------
@@ -89,7 +108,7 @@
             const width = bar.getAttribute('data-width');
             if (width) {
                 bar.style.width = '0%';
-                bar.style.transition = 'width 0.8s ease-out';
+                bar.style.transition = 'width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
                 bar.setAttribute('data-target-width', width);
             }
         });
@@ -130,18 +149,23 @@
                     const target = parseInt(counter.getAttribute('data-count'));
                     const suffix = counter.getAttribute('data-suffix') || '';
                     let current = 0;
-                    const increment = Math.ceil(target / 50);
+                    const duration = 1800; // ms
+                    const stepTime = 20;
+                    const steps = duration / stepTime;
+                    const increment = target / steps;
                     
-                    const updateCounter = () => {
+                    let step = 0;
+                    const timer = setInterval(() => {
+                        step++;
                         current += increment;
-                        if (current < target) {
-                            counter.textContent = Math.floor(current) + suffix;
-                            requestAnimationFrame(updateCounter);
-                        } else {
+                        if (step >= steps) {
                             counter.textContent = target + suffix;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(current) + suffix;
                         }
-                    };
-                    updateCounter();
+                    }, stepTime);
+                    
                     observer.unobserve(counter);
                 }
             });
@@ -151,7 +175,7 @@
     }
     
     // ------------------------------------------------------------------
-    // 6. EFECTO MÁQUINA DE ESCRIBIR
+    // 6. EFECTO MÁQUINA DE ESCRIBIR (más suave)
     // ------------------------------------------------------------------
     function initTypingEffect() {
         const typingElement = document.querySelector('.typing-cursor');
@@ -179,18 +203,18 @@
                 
                 if (!isDeleting && charIndex === currentText.length) {
                     isDeleting = true;
-                    setTimeout(typeEffect, 2000);
+                    setTimeout(typeEffect, 2500);
                     return;
                 }
                 
                 if (isDeleting && charIndex === 0) {
                     isDeleting = false;
                     textIndex = (textIndex + 1) % texts.length;
-                    setTimeout(typeEffect, 500);
+                    setTimeout(typeEffect, 400);
                     return;
                 }
                 
-                const speed = isDeleting ? 50 : 100;
+                const speed = isDeleting ? 40 : 70;
                 setTimeout(typeEffect, speed);
             }
             
@@ -270,7 +294,7 @@
     }
     
     // ------------------------------------------------------------------
-    // 9. FILTROS DE CERTIFICADOS
+    // 9. FILTROS DE CERTIFICADOS (con animación suave)
     // ------------------------------------------------------------------
     function initFilters() {
         const filterButtons = document.querySelectorAll('[data-filter]');
@@ -288,17 +312,17 @@
                 filterButtons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 
-                // Filtrar elementos
-                items.forEach(item => {
+                // Filtrar elementos con animación suave
+                items.forEach((item, idx) => {
                     if (filter === 'all' || item.getAttribute('data-category') === filter) {
                         item.style.display = '';
                         setTimeout(() => {
                             item.style.opacity = '1';
                             item.style.transform = 'scale(1)';
-                        }, 10);
+                        }, idx * 30);
                     } else {
                         item.style.opacity = '0';
-                        item.style.transform = 'scale(0.8)';
+                        item.style.transform = 'scale(0.95)';
                         setTimeout(() => {
                             item.style.display = 'none';
                         }, 300);
@@ -309,7 +333,7 @@
     }
     
     // ------------------------------------------------------------------
-    // 10. SMOOTH SCROLL PARA ENLACES INTERNOS
+    // 10. SMOOTH SCROLL PARA ENLACES INTERNOS (más suave)
     // ------------------------------------------------------------------
     function initSmoothScroll() {
         const links = document.querySelectorAll('a[href^="#"]');
@@ -338,7 +362,7 @@
     }
     
     // ------------------------------------------------------------------
-    // 11. CANVAS DE PARTÍCULAS (opcional, solo en PC)
+    // 11. CANVAS DE PARTÍCULAS (solo en PC, reducido)
     // ------------------------------------------------------------------
     function initParticles() {
         const canvas = document.getElementById('particles-canvas');
@@ -352,17 +376,113 @@
             return;
         }
         
-        // Configuración básica del canvas (si quieres mantenerlo)
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
         
+        let W, H, particles = [];
+        
+        const CONFIG = {
+            count: 40,
+            color: '139, 92, 246',
+            colorAlt: '6, 182, 212',
+            maxRadius: 1.5,
+            minRadius: 0.5,
+            speed: 0.2,
+            connectDist: 100,
+            opacity: 0.25
+        };
+        
         function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        }
+        
+        function createParticles() {
+            particles = [];
+            for (let i = 0; i < CONFIG.count; i++) {
+                const isCyan = Math.random() < 0.25;
+                particles.push({
+                    x: Math.random() * W,
+                    y: Math.random() * H,
+                    r: CONFIG.minRadius + Math.random() * (CONFIG.maxRadius - CONFIG.minRadius),
+                    vx: (Math.random() - 0.5) * CONFIG.speed,
+                    vy: (Math.random() - 0.5) * CONFIG.speed,
+                    color: isCyan ? CONFIG.colorAlt : CONFIG.color,
+                    opacity: 0.15 + Math.random() * 0.25
+                });
+            }
+        }
+        
+        function drawParticles() {
+            ctx.clearRect(0, 0, W, H);
+            
+            // Conexiones suaves
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (dist < CONFIG.connectDist) {
+                        const alpha = (1 - dist / CONFIG.connectDist) * 0.1;
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(${particles[i].color}, ${alpha})`;
+                        ctx.lineWidth = 0.3;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            // Partículas
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                
+                if (p.x < 0 || p.x > W) p.vx *= -1;
+                if (p.y < 0 || p.y > H) p.vy *= -1;
+                
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${p.color}, ${p.opacity})`;
+                ctx.fill();
+            });
+        }
+        
+        function animate() {
+            drawParticles();
+            requestAnimationFrame(animate);
         }
         
         resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+        createParticles();
+        animate();
+        
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            createParticles();
+        });
+    }
+    
+    // ------------------------------------------------------------------
+    // 12. REVEAL ON SCROLL (más suave, sin GSAP conflictos)
+    // ------------------------------------------------------------------
+    function initRevealOnScroll() {
+        const revealElements = document.querySelectorAll('.reveal, .reveal--left, .reveal--right');
+        
+        if (revealElements.length === 0) return;
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+        
+        revealElements.forEach(el => observer.observe(el));
     }
     
     // ------------------------------------------------------------------
@@ -383,6 +503,7 @@
         initFilters();
         initSmoothScroll();
         initParticles();
+        initRevealOnScroll();
         
         // Eliminar cualquier clase que pueda estar ocultando elementos
         document.body.classList.add('loaded');
@@ -397,10 +518,12 @@
     
     // También al cargar completamente (para imágenes)
     window.addEventListener('load', function() {
-        mostrarContenidoImmediato();
+        mostrarContenidoInmediato();
         // Revisar contadores y barras de progreso nuevamente
-        initProgressBars();
-        initCounters();
+        setTimeout(() => {
+            initProgressBars();
+            initCounters();
+        }, 100);
     });
     
 })();
