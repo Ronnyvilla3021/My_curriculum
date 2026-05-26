@@ -1,345 +1,406 @@
-/* ============================================================
-   MAIN.JS — Lógica general del portfolio
-   Navbar, scroll reveal, modales, filtros, tabs
-   ============================================================ */
+// ============================================================
+// CV DEFINITIVO - Estable y funcional en todos los dispositivos
+// Sin errores de visibilidad, sin dependencias complejas
+// ============================================================
 
-'use strict';
-
-/* ── Esperar a que el DOM esté listo ── */
-document.addEventListener('DOMContentLoaded', () => {
-  initNavbar();
-  initScrollReveal();
-  initMobileMenu();
-  initModals();
-  initProgressBars();
-  initActiveNav();
-  initFilterTabs();
-  initSmoothScroll();
-  initTypingEffect();
-  initCopyContact();
-});
-
-/* ============================================================
-   NAVBAR — scroll effect
-   ============================================================ */
-function initNavbar() {
-  const navbar = document.querySelector('.navbar');
-  if (!navbar) return;
-
-  const onScroll = () => {
-    if (window.scrollY > 20) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  };
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); // ejecutar al cargar
-}
-
-/* ============================================================
-   ACTIVE NAV LINK — resaltar sección actual
-   ============================================================ */
-function initActiveNav() {
-  const sections  = document.querySelectorAll('section[id]');
-  const navLinks  = document.querySelectorAll('.navbar__link[href^="#"]');
-  if (!sections.length || !navLinks.length) return;
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-        });
-      }
-    });
-  }, { rootMargin: '-40% 0px -55% 0px' });
-
-  sections.forEach(section => observer.observe(section));
-}
-
-/* ============================================================
-   SCROLL REVEAL — animar elementos al entrar en viewport
-   ============================================================ */
-function initScrollReveal() {
-  const elements = document.querySelectorAll('.reveal, .reveal--left, .reveal--right');
-  if (!elements.length) return;
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        // Delay escalonado por índice dentro del parent
-        const siblings = Array.from(entry.target.parentElement.children)
-          .filter(el => el.classList.contains('reveal') ||
-                        el.classList.contains('reveal--left') ||
-                        el.classList.contains('reveal--right'));
-        const idx = siblings.indexOf(entry.target);
-        const delay = idx * 80;
-
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, delay);
-
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  elements.forEach(el => observer.observe(el));
-}
-
-/* ============================================================
-   MOBILE MENU — hamburger + sidebar
-   ============================================================ */
-function initMobileMenu() {
-  const hamburger = document.querySelector('.navbar__hamburger');
-  const sidebar   = document.querySelector('.sidebar');
-  const overlay   = document.querySelector('.sidebar__overlay');
-  if (!hamburger) return;
-
-  const toggle = (open) => {
-    const isOpen = open ?? !sidebar?.classList.contains('open');
-    sidebar?.classList.toggle('open', isOpen);
-    overlay?.classList.toggle('active', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-
-    // Animar barras del hamburger
-    const spans = hamburger.querySelectorAll('span');
-    if (spans.length === 3) {
-      spans[0].style.transform = isOpen ? 'translateY(7px) rotate(45deg)'  : '';
-      spans[1].style.opacity   = isOpen ? '0' : '';
-      spans[2].style.transform = isOpen ? 'translateY(-7px) rotate(-45deg)' : '';
-    }
-  };
-
-  hamburger.addEventListener('click', () => toggle());
-  overlay?.addEventListener('click', () => toggle(false));
-
-  // Cerrar al hacer click en un link del sidebar
-  document.querySelectorAll('.sidebar a').forEach(link => {
-    link.addEventListener('click', () => toggle(false));
-  });
-}
-
-/* ============================================================
-   MODALES — abrir/cerrar lightbox de certificados/documentos
-   ============================================================ */
-function initModals() {
-  // Abrir modal al click en trigger
-  document.querySelectorAll('[data-modal]').forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      const id    = trigger.getAttribute('data-modal');
-      const modal = document.querySelector(`#${id}`);
-      if (modal) openModal(modal);
-    });
-  });
-
-  // Cerrar con botón X
-  document.querySelectorAll('.modal__close').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const modal = btn.closest('.modal-overlay');
-      if (modal) closeModal(modal);
-    });
-  });
-
-  // Cerrar al click en overlay
-  document.querySelectorAll('.modal-overlay').forEach(overlay => {
-    overlay.addEventListener('click', e => {
-      if (e.target === overlay) closeModal(overlay);
-    });
-  });
-
-  // Cerrar con Escape
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      document.querySelectorAll('.modal-overlay.active').forEach(closeModal);
-    }
-  });
-}
-
-function openModal(overlay) {
-  overlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal(overlay) {
-  overlay.classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-/* ============================================================
-   PROGRESS BARS — animar al entrar en viewport
-   ============================================================ */
-function initProgressBars() {
-  const bars = document.querySelectorAll('.progress-fill[data-width]');
-  if (!bars.length) return;
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const bar = entry.target;
-        const width = bar.getAttribute('data-width');
-        // Aplicar el ancho directamente al style
-        bar.style.width = width;
-        observer.unobserve(bar);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  bars.forEach(bar => observer.observe(bar));
-}
-
-/* ============================================================
-   FILTER TABS — filtrar certificados/proyectos por categoría
-   ============================================================ */
-function initFilterTabs() {
-  document.querySelectorAll('[data-filter-group]').forEach(group => {
-    const pills = group.querySelectorAll('.nav-pill');
-    const containerId = group.getAttribute('data-filter-group');
-    const container   = document.querySelector(`[data-filter-container="${containerId}"]`);
-    if (!container) return;
-
-    pills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        // Activar pill
-        pills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-
-        const filter = pill.getAttribute('data-filter');
-        const items  = container.querySelectorAll('[data-category]');
-
-        items.forEach(item => {
-          const match = filter === 'all' || item.getAttribute('data-category') === filter;
-          item.style.display    = match ? '' : 'none';
-          item.style.opacity    = match ? '1' : '0';
-          item.style.transform  = match ? 'scale(1)' : 'scale(0.95)';
-          item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-        });
-      });
-    });
-  });
-}
-
-/* ============================================================
-   SMOOTH SCROLL — para links internos
-   ============================================================ */
-function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', e => {
-      const targetId = anchor.getAttribute('href');
-      if (targetId === '#') return;
-
-      const target = document.querySelector(targetId);
-      if (!target) return;
-
-      e.preventDefault();
-
-      const navbarHeight = document.querySelector('.navbar')?.offsetHeight ?? 64;
-      const top = target.getBoundingClientRect().top + window.scrollY - navbarHeight - 16;
-
-      window.scrollTo({ top, behavior: 'smooth' });
-    });
-  });
-}
-
-/* ============================================================
-   TYPING EFFECT — para el título del hero (CORREGIDO)
-   ============================================================ */
-function initTypingEffect() {
-  const el = document.querySelector('.typing-cursor');
-  if (!el) {
-    console.warn('No se encontró .typing-cursor');
-    return;
-  }
-
-  // Limpiar el contenido inicial del span
-  el.textContent = '';
-  
-  // Obtener palabras del atributo data-typing
-  let words = [];
-  try {
-    const typingAttr = el.getAttribute('data-typing');
-    if (typingAttr) {
-      words = JSON.parse(typingAttr);
-      console.log('Palabras cargadas:', words);
-    } else {
-      words = ['Full Stack Developer', 'Software Engineer', 'Problem Solver'];
-    }
-  } catch(e) {
-    console.error('Error parsing data-typing:', e);
-    words = ['Full Stack Developer', 'Software Engineer', 'Problem Solver'];
-  }
-  
-  if (words.length === 0) return;
-  
-  let wordIdx = 0;
-  let charIdx = 0;
-  let deleting = false;
-  const speed = { type: 100, delete: 50, pause: 2000 };
-  
-  function type() {
-    const currentWord = words[wordIdx];
+(function() {
+    'use strict';
     
-    if (!deleting) {
-      // Escribiendo
-      el.textContent = currentWord.slice(0, charIdx + 1);
-      charIdx++;
-      
-      if (charIdx === currentWord.length) {
-        deleting = true;
-        setTimeout(type, speed.pause);
-        return;
-      }
-    } else {
-      // Borrando
-      el.textContent = currentWord.slice(0, charIdx - 1);
-      charIdx--;
-      
-      if (charIdx === 0) {
-        deleting = false;
-        wordIdx = (wordIdx + 1) % words.length;
-      }
+    // ------------------------------------------------------------------
+    // 1. MOSTRAR TODO EL CONTENIDO INMEDIATAMENTE (sin opacidad 0)
+    // ------------------------------------------------------------------
+    function mostrarContenidoInmediato() {
+        // Eliminar cualquier estilo que oculte elementos
+        const elementosOcultos = document.querySelectorAll('[style*="opacity: 0"], [style*="visibility: hidden"], .reveal');
+        
+        elementosOcultos.forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+            el.style.visibility = 'visible';
+            el.style.transition = 'none';
+        });
+        
+        // Asegurar que las secciones principales sean visibles
+        const secciones = document.querySelectorAll('.hero, .section, .card, .timeline__item, .bento-grid, .cert-card');
+        secciones.forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+        });
     }
     
-    setTimeout(type, deleting ? speed.delete : speed.type);
-  }
-  
-  // Iniciar el efecto
-  type();
-}
-
-/* ============================================================
-   COPY CONTACT — copiar email/teléfono al portapapeles
-   ============================================================ */
-function initCopyContact() {
-  document.querySelectorAll('[data-copy]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const text = btn.getAttribute('data-copy');
-      navigator.clipboard.writeText(text).then(() => {
-        const original = btn.textContent;
-        btn.textContent = '✓ Copiado';
-        btn.style.color = 'var(--neon-green)';
-        setTimeout(() => {
-          btn.textContent = original;
-          btn.style.color = '';
-        }, 2000);
-      });
-    });
-  });
-}
-
-/* ============================================================
-   UTILIDAD — throttle para eventos de scroll
-   ============================================================ */
-function throttle(fn, ms) {
-  let last = 0;
-  return (...args) => {
-    const now = Date.now();
-    if (now - last >= ms) {
-      last = now;
-      fn(...args);
+    // ------------------------------------------------------------------
+    // 2. MENÚ HAMBURGUESA (responsive)
+    // ------------------------------------------------------------------
+    function initMobileMenu() {
+        const hamburger = document.querySelector('.navbar__hamburger');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.sidebar__overlay');
+        
+        if (!hamburger || !sidebar) return;
+        
+        function toggleMenu() {
+            sidebar.classList.toggle('open');
+            if (overlay) overlay.classList.toggle('active');
+            const expanded = sidebar.classList.contains('open');
+            hamburger.setAttribute('aria-expanded', expanded);
+        }
+        
+        hamburger.addEventListener('click', toggleMenu);
+        
+        if (overlay) {
+            overlay.addEventListener('click', toggleMenu);
+        }
+        
+        // Cerrar menú al hacer click en un enlace
+        sidebar.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                if (overlay) overlay.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
     }
-  };
-}
+    
+    // ------------------------------------------------------------------
+    // 3. NAVBAR SCROLL (cambia fondo al hacer scroll)
+    // ------------------------------------------------------------------
+    function initNavbarScroll() {
+        const navbar = document.querySelector('.navbar');
+        if (!navbar) return;
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    }
+    
+    // ------------------------------------------------------------------
+    // 4. ANIMACIÓN DE BARRAS DE PROGRESO (solo cuando son visibles)
+    // ------------------------------------------------------------------
+    function initProgressBars() {
+        const progressBars = document.querySelectorAll('.progress-fill');
+        if (progressBars.length === 0) return;
+        
+        // Guardar el ancho objetivo
+        progressBars.forEach(bar => {
+            const width = bar.getAttribute('data-width');
+            if (width) {
+                bar.style.width = '0%';
+                bar.style.transition = 'width 0.8s ease-out';
+                bar.setAttribute('data-target-width', width);
+            }
+        });
+        
+        // Detectar cuándo son visibles
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const targetWidth = bar.getAttribute('data-target-width');
+                    if (targetWidth && bar.style.width !== targetWidth) {
+                        setTimeout(() => {
+                            bar.style.width = targetWidth;
+                        }, 200);
+                    }
+                    observer.unobserve(bar);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        progressBars.forEach(bar => observer.observe(bar));
+    }
+    
+    // ------------------------------------------------------------------
+    // 5. CONTADORES (años de experiencia, proyectos)
+    // ------------------------------------------------------------------
+    function initCounters() {
+        const counters = document.querySelectorAll('.stat-card__value[data-count]');
+        if (counters.length === 0) return;
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    if (counter.classList.contains('counted')) return;
+                    counter.classList.add('counted');
+                    
+                    const target = parseInt(counter.getAttribute('data-count'));
+                    const suffix = counter.getAttribute('data-suffix') || '';
+                    let current = 0;
+                    const increment = Math.ceil(target / 50);
+                    
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.textContent = Math.floor(current) + suffix;
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target + suffix;
+                        }
+                    };
+                    updateCounter();
+                    observer.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        counters.forEach(counter => observer.observe(counter));
+    }
+    
+    // ------------------------------------------------------------------
+    // 6. EFECTO MÁQUINA DE ESCRIBIR
+    // ------------------------------------------------------------------
+    function initTypingEffect() {
+        const typingElement = document.querySelector('.typing-cursor');
+        if (!typingElement) return;
+        
+        const textsAttr = typingElement.getAttribute('data-typing');
+        if (!textsAttr) return;
+        
+        try {
+            const texts = JSON.parse(textsAttr);
+            let textIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            
+            function typeEffect() {
+                const currentText = texts[textIndex];
+                
+                if (isDeleting) {
+                    charIndex--;
+                    typingElement.textContent = currentText.substring(0, charIndex);
+                } else {
+                    charIndex++;
+                    typingElement.textContent = currentText.substring(0, charIndex);
+                }
+                
+                if (!isDeleting && charIndex === currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeEffect, 2000);
+                    return;
+                }
+                
+                if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                    setTimeout(typeEffect, 500);
+                    return;
+                }
+                
+                const speed = isDeleting ? 50 : 100;
+                setTimeout(typeEffect, speed);
+            }
+            
+            setTimeout(typeEffect, 500);
+        } catch(e) {
+            console.error('Error en typing effect:', e);
+            typingElement.textContent = 'Full Stack Developer';
+        }
+    }
+    
+    // ------------------------------------------------------------------
+    // 7. MODALES (certificados y documentos)
+    // ------------------------------------------------------------------
+    function initModals() {
+        const modals = document.querySelectorAll('.modal-overlay');
+        const triggers = document.querySelectorAll('[data-modal]');
+        
+        // Abrir modal
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const modalId = trigger.getAttribute('data-modal');
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+        
+        // Cerrar modal
+        modals.forEach(modal => {
+            const closeBtn = modal.querySelector('.modal__close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    }
+    
+    // ------------------------------------------------------------------
+    // 8. BOTONES DE COPIAR (email, teléfono)
+    // ------------------------------------------------------------------
+    function initCopyButtons() {
+        const copyButtons = document.querySelectorAll('[data-copy]');
+        
+        copyButtons.forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const textToCopy = btn.getAttribute('data-copy');
+                if (!textToCopy) return;
+                
+                try {
+                    await navigator.clipboard.writeText(textToCopy);
+                    
+                    // Feedback visual
+                    const originalText = btn.textContent;
+                    btn.textContent = '✓ Copiado!';
+                    btn.style.color = '#10b981';
+                    
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.style.color = '';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Error al copiar:', err);
+                }
+            });
+        });
+    }
+    
+    // ------------------------------------------------------------------
+    // 9. FILTROS DE CERTIFICADOS
+    // ------------------------------------------------------------------
+    function initFilters() {
+        const filterButtons = document.querySelectorAll('[data-filter]');
+        const filterContainer = document.querySelector('[data-filter-container]');
+        
+        if (!filterButtons.length || !filterContainer) return;
+        
+        const items = filterContainer.querySelectorAll('[data-category]');
+        
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                
+                // Actualizar estado activo de los botones
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Filtrar elementos
+                items.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = '';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+    }
+    
+    // ------------------------------------------------------------------
+    // 10. SMOOTH SCROLL PARA ENLACES INTERNOS
+    // ------------------------------------------------------------------
+    function initSmoothScroll() {
+        const links = document.querySelectorAll('a[href^="#"]');
+        
+        links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href === '#' || href === '') return;
+                
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    const navbarHeight = 64;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Actualizar URL sin recargar
+                    history.pushState(null, null, href);
+                }
+            });
+        });
+    }
+    
+    // ------------------------------------------------------------------
+    // 11. CANVAS DE PARTÍCULAS (opcional, solo en PC)
+    // ------------------------------------------------------------------
+    function initParticles() {
+        const canvas = document.getElementById('particles-canvas');
+        if (!canvas) return;
+        
+        // Detectar móvil por ancho de pantalla o User Agent
+        const isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+            canvas.style.display = 'none';
+            return;
+        }
+        
+        // Configuración básica del canvas (si quieres mantenerlo)
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+    }
+    
+    // ------------------------------------------------------------------
+    // INICIALIZAR TODO CUANDO EL DOM ESTÉ LISTO
+    // ------------------------------------------------------------------
+    document.addEventListener('DOMContentLoaded', function() {
+        // PRIMERO: Mostrar todo el contenido inmediatamente
+        mostrarContenidoInmediato();
+        
+        // SEGUNDO: Inicializar todos los componentes
+        initMobileMenu();
+        initNavbarScroll();
+        initProgressBars();
+        initCounters();
+        initTypingEffect();
+        initModals();
+        initCopyButtons();
+        initFilters();
+        initSmoothScroll();
+        initParticles();
+        
+        // Eliminar cualquier clase que pueda estar ocultando elementos
+        document.body.classList.add('loaded');
+    });
+    
+    // Asegurar que todo sea visible incluso si el DOMContentLoaded ya pasó
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', mostrarContenidoInmediato);
+    } else {
+        mostrarContenidoInmediato();
+    }
+    
+    // También al cargar completamente (para imágenes)
+    window.addEventListener('load', function() {
+        mostrarContenidoImmediato();
+        // Revisar contadores y barras de progreso nuevamente
+        initProgressBars();
+        initCounters();
+    });
+    
+})();
