@@ -1,2 +1,2 @@
 Sitio web del proyecto: 
-file:///D:/Ronny/Proyectos%20C.V(software)/My_curriculum/index.html
+https://ronnyvilla3021.github.io/My_curriculum/
