@@ -1,0 +1,24 @@
+{
+  "name": "Ronny Antonio Villa Villa — Portfolio",
+  "short_name": "RonnyVilla",
+  "description": "Portafolio y currículum de Ronny Antonio Villa Villa, Full Stack Developer.",
+  "start_url": "https://ronnyvilla3021.github.io/My_curriculum/",
+  "scope": "https://ronnyvilla3021.github.io/My_curriculum/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050b14",
+  "theme_color": "#050b14",
+  "lang": "es-EC",
+  "icons": [
+    {
+      "src": "Doc/foto-perfil/foto_perfil.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "Doc/foto-perfil/foto_perfil.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

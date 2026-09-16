@@ -44,7 +44,10 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 var(--space-6);
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: max(var(--space-6), env(safe-area-inset-left));
+  padding-right: max(var(--space-6), env(safe-area-inset-right));
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -256,6 +259,7 @@
    ============================================================ */
 .hero {
   min-height: calc(100vh - 64px);
+  min-height: calc(100dvh - 64px); /* iOS Safari: usa la altura visible real */
   display: flex;
   align-items: center;
   position: relative;

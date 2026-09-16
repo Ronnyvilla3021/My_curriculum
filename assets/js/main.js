@@ -234,13 +234,21 @@
      8. MODALES
   ────────────────────────────────────────────────────────── */
   function initModals() {
+    let lastFocused = null;
+    const focusableSel = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
     document.querySelectorAll('[data-modal]').forEach(trigger => {
       trigger.addEventListener('click', () => {
         const modal = document.getElementById(trigger.getAttribute('data-modal'));
         if (!modal) return;
+        lastFocused = trigger;
         modal.classList.add('active');
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
+        // Accesibilidad: mover el foco dentro del modal al abrirlo
+        const dialog = modal.querySelector('.modal');
+        const closeBtn = modal.querySelector('.modal__close');
+        (closeBtn || dialog)?.focus();
       });
     });
 
@@ -249,6 +257,22 @@
         if (e.target === overlay) closeModal(overlay);
       });
       overlay.querySelector('.modal__close')?.addEventListener('click', () => closeModal(overlay));
+
+      // Atrapar el Tab dentro del modal mientras está abierto
+      overlay.addEventListener('keydown', e => {
+        if (e.key !== 'Tab' || !overlay.classList.contains('active')) return;
+        const focusable = Array.from(overlay.querySelectorAll(focusableSel));
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last  = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      });
     });
 
     document.addEventListener('keydown', e => {
@@ -261,6 +285,8 @@
       overlay.classList.remove('active');
       overlay.style.display = '';
       document.body.style.overflow = '';
+      // Accesibilidad: devolver el foco a quien abrió el modal
+      lastFocused?.focus();
     }
   }
 

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ronnyvilla3021.github.io/My_curriculum/sitemap.xml

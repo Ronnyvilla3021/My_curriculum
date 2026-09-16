@@ -1,5 +1,9 @@
 {
-  "dependencies": {
-    "gsap": "^3.15.0"
-  }
+  "name": "my_curriculum",
+  "version": "1.0.0",
+  "description": "Portfolio & CV — Ronny Antonio Villa Villa | Full Stack Developer",
+  "private": true,
+  "homepage": "https://ronnyvilla3021.github.io/My_curriculum/",
+  "author": "Ronny Antonio Villa Villa",
+  "license": "UNLICENSED"
 }
