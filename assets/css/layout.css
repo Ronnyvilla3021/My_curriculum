@@ -226,12 +226,6 @@
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
 
-.grid-auto {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-5);
-}
-
 .grid-auto-sm {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -386,6 +380,7 @@
   left: -280px;
   width: 280px;
   height: calc(100vh - 64px);
+  height: calc(100dvh - 64px);
   background: var(--bg-deep);
   border-right: 1px solid var(--border-subtle);
   z-index: calc(var(--z-nav) - 1);
@@ -435,6 +430,12 @@
    RESPONSIVE
    ============================================================ */
 
+/* Laptop chica / tablet horizontal: el menú completo no cabe, usar hamburguesa */
+@media (max-width: 1280px) {
+  .navbar__links { display: none; }
+  .navbar__hamburger { display: flex; }
+}
+
 /* Tablet */
 @media (max-width: 1024px) {
   .bento-col-3 { grid-column: span 6; }
@@ -456,9 +457,6 @@
   .container-sm,
   .container-md { padding: 0 var(--space-4); }
 
-  .navbar__links { display: none; }
-  .navbar__hamburger { display: flex; }
-
   .bento-col-3,
   .bento-col-4,
   .bento-col-5,
@@ -475,6 +473,7 @@
   .hero { min-height: auto; padding: var(--space-16) 0; }
 
   .timeline { padding-left: var(--space-6); }
+  .timeline__item::before { left: calc(-1 * var(--space-6) - 5px); }
 }
 
 /* Mobile pequeño */

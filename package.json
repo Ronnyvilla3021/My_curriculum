@@ -5,5 +5,15 @@
   "private": true,
   "homepage": "https://ronnyvilla3021.github.io/My_curriculum/",
   "author": "Ronny Antonio Villa Villa",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
 }

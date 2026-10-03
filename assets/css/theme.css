@@ -49,7 +49,7 @@
   /* Texto */
   --text-primary:   #f1f5f9;       /* blanco suave */
   --text-secondary: #94a3b8;       /* gris azulado */
-  --text-muted:     #475569;       /* muy apagado */
+  --text-muted:     #7c8ba1;       /* apagado (contraste AA >= 4.8:1) */
   --text-accent:    #a78bfa;       /* violeta texto */
   --text-code:      #67e8f9;       /* cian para código */
 
@@ -127,7 +127,7 @@
   --font-body:    'Space Grotesk', sans-serif;   /* texto general */
   --font-code:    'JetBrains Mono', monospace;   /* código, versiones, labels */
 
-  --text-xs:   0.7rem;
+  --text-xs:   0.75rem;
   --text-sm:   0.85rem;
   --text-base: 1rem;
   --text-lg:   1.125rem;
@@ -267,6 +267,13 @@ body {
     min-height: 44px;
     min-width: 44px;
   }
+}
+
+/* Foco visible para navegación con teclado */
+:focus-visible {
+  outline: 2px solid var(--neon-bright);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
 }
 
 /* Scrollbar personalizada */

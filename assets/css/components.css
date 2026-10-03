@@ -448,7 +448,7 @@
                 linear-gradient(#fff 0 0);
   -webkit-mask-composite: destination-out;
   mask-composite: exclude;
-  animation: spin-slow 8s linear infinite;
+  animation: ring-spin 10s linear infinite;
 }
 
 .avatar--lg .avatar__img  { width: 140px; height: 140px; }
@@ -556,6 +556,7 @@
   width: 100%;
   max-width: 700px;
   max-height: 90vh;
+  max-height: 90dvh;
   overflow-y: auto;
   position: relative;
   animation: modal-in 0.3s cubic-bezier(0.34,1.56,0.64,1);
@@ -754,7 +755,7 @@
    ANIMACIONES DE KEYFRAMES (usadas en components)
    ============================================================ */
 /* Para móvil, desactivar transformaciones hover */
-@media (max-width: 768px) {
+@media (hover: none), (max-width: 768px) {
   .card:hover,
   .cert-card:hover,
   .version-card:hover {
@@ -768,17 +769,24 @@
   }
 }
 
-   @keyframes modal-in {
-  from { opacity: 0; transform: scale(0.92) translateY(20px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
+/* ============================================================
+   MODAL con PDF (vista previa más grande y ajustada a la pantalla)
+   ============================================================ */
+.modal:has(iframe) { max-width: 900px; }
+
+.modal__body iframe {
+  display: block;
+  width: 100%;
+  height: min(65vh, 620px);
+  background: var(--bg-elevated);
 }
 
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.5; transform: scale(1.3); }
-}
-
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+/* ============================================================
+   IMÁGENES DE PROYECTOS — misma proporción en las 4 tarjetas
+   ============================================================ */
+#proyectos .card > img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top;
+  border: 1px solid var(--border-subtle);
 }

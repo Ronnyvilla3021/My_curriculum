@@ -1,28 +1,18 @@
 /* ============================================================
-   MAIN.JS — Con animaciones funcionando correctamente
+   MAIN.JS — Interacciones y animaciones del portafolio
+   Reveal basado en clases CSS (sin estilos inline que pisen el hover)
    ============================================================ */
 'use strict';
 
 (function () {
 
-  const isMobile     = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 768;
-  const isTouch      = window.matchMedia('(pointer: coarse)').matches;
-  const prefersLess  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile    = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 768;
+  const isTouch     = window.matchMedia('(pointer: coarse)').matches;
+  const prefersLess = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const NAV_BREAKPOINT = 1280; // debe coincidir con el media query del menú en layout.css
 
   /* ──────────────────────────────────────────────────────────
-     1. FORZAR VISIBILIDAD INICIAL (pero mantener animaciones)
-  ────────────────────────────────────────────────────────── */
-  function forceInitialVisibility() {
-    // Esto hace que TODO sea visible desde el inicio
-    const elements = document.querySelectorAll('.cert-card, #documentos .card, #contacto .card, .timeline__item, .version-card');
-    elements.forEach(el => {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-    });
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     2. MENÚ HAMBURGUESA
+     1. MENÚ HAMBURGUESA
   ────────────────────────────────────────────────────────── */
   function initMobileMenu() {
     const hamburger = document.querySelector('.navbar__hamburger');
@@ -30,7 +20,9 @@
     const overlay   = document.querySelector('.sidebar__overlay');
     if (!hamburger || !sidebar) return;
 
-    function openMenu()  {
+    hamburger.setAttribute('aria-expanded', 'false');
+
+    function openMenu() {
       sidebar.classList.add('open');
       overlay?.classList.add('active');
       hamburger.setAttribute('aria-expanded', 'true');
@@ -52,10 +44,15 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && sidebar.classList.contains('open')) closeMenu();
     });
+
+    // Si se agranda la ventana con el menú abierto, no dejar el scroll bloqueado
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > NAV_BREAKPOINT && sidebar.classList.contains('open')) closeMenu();
+    }, { passive: true });
   }
 
   /* ──────────────────────────────────────────────────────────
-     3. NAVBAR SCROLL
+     2. NAVBAR SCROLL
   ────────────────────────────────────────────────────────── */
   function initNavbarScroll() {
     const navbar = document.querySelector('.navbar');
@@ -74,108 +71,86 @@
         ticking = true;
       }
     }, { passive: true });
+
+    update(); // por si la página carga ya con scroll (recarga o enlace con #)
   }
 
   /* ──────────────────────────────────────────────────────────
-     4. REVEAL CON ANIMACIÓN (funcionando correctamente)
+     3. REVEAL AL HACER SCROLL
+     Todo es visible por defecto (CSS). Solo si hay animación se agrega
+     .animate-out (oculto) y luego .visible. Sin estilos inline: así el hover
+     de las cards y el filtro de certificados siguen funcionando.
   ────────────────────────────────────────────────────────── */
-  function initReveal() {
-    // Primero, aseguramos que los elementos tengan su estado inicial (ocultos para animar)
-    const elements = document.querySelectorAll('.reveal, .reveal--left, .reveal--right, .reveal--scale');
-    
-    // Establecer estado inicial para animación
-    elements.forEach(el => {
-      if (el.classList.contains('reveal')) {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(24px)';
-      } else if (el.classList.contains('reveal--left')) {
-        el.style.opacity = '0';
-        el.style.transform = 'translateX(-24px)';
-      } else if (el.classList.contains('reveal--right')) {
-        el.style.opacity = '0';
-        el.style.transform = 'translateX(24px)';
-      } else if (el.classList.contains('reveal--scale')) {
-        el.style.opacity = '0';
-        el.style.transform = 'scale(0.95)';
-      }
-    });
+  function showEl(el) {
+    el.classList.remove('animate-out');
+    el.classList.add('visible');
+  }
 
-    if (isMobile || prefersLess) {
-      // En móvil, hacerlos visibles inmediatamente
-      elements.forEach(el => {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-        el.classList.add('visible');
-      });
+  function initReveal() {
+    // El hero lo anima GSAP en desktop; en móvil se muestra directo
+    const elements = Array.from(
+      document.querySelectorAll('.reveal, .reveal--left, .reveal--right, .reveal--scale')
+    ).filter(el => !el.closest('.hero'));
+
+    // Sin animación: móvil, movimiento reducido o navegador sin IntersectionObserver
+    if (isMobile || prefersLess || !('IntersectionObserver' in window)) {
+      elements.forEach(showEl);
       return;
     }
 
-    // Observer con umbral más temprano
-    const observer = new IntersectionObserver((entries) => {
+    elements.forEach(el => el.classList.add('animate-out'));
+
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translate(0) scale(1)';
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        observer.unobserve(el);
+
+        // Escalonado: las clases delay-100, delay-200... se aplican aquí
+        const m = el.className.match(/\bdelay-(\d+)\b/);
+        const delay = m ? parseInt(m[1], 10) : 0;
+        delay ? setTimeout(() => showEl(el), delay) : showEl(el);
       });
-    }, { 
-      threshold: 0.08,
-      rootMargin: '0px 0px -20px 0px'
-    });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
 
     elements.forEach(el => observer.observe(el));
   }
 
   /* ──────────────────────────────────────────────────────────
-     5. BARRAS DE PROGRESO
-  ────────────────────────────────────────────────────────── */
-  function initProgressBars() {
-    const bars = document.querySelectorAll('.progress-fill[data-width]');
-    if (!bars.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const bar = entry.target;
-          setTimeout(() => {
-            bar.style.width = bar.getAttribute('data-width');
-          }, 150);
-          observer.unobserve(bar);
-        }
-      });
-    }, { threshold: 0.3 });
-
-    bars.forEach(bar => {
-      bar.style.width = '0%';
-      observer.observe(bar);
-    });
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     6. CONTADORES ANIMADOS
+     4. CONTADORES ANIMADOS
   ────────────────────────────────────────────────────────── */
   function initCounters() {
     const counters = document.querySelectorAll('[data-count]');
     if (!counters.length) return;
 
-    const observer = new IntersectionObserver((entries) => {
+    const fmt = el => {
+      const target   = parseFloat(el.getAttribute('data-count'));
+      const suffix   = el.getAttribute('data-suffix') || '';
+      const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      return { target, suffix, decimals };
+    };
+
+    if (prefersLess || !('IntersectionObserver' in window)) {
+      counters.forEach(el => {
+        const { target, suffix, decimals } = fmt(el);
+        el.textContent = target.toFixed(decimals) + suffix;
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        const el       = entry.target;
-        const target   = parseFloat(el.getAttribute('data-count'));
-        const suffix   = el.getAttribute('data-suffix') || '';
-        const decimals = parseInt(el.getAttribute('data-decimals') || '0');
+        const el = entry.target;
+        const { target, suffix, decimals } = fmt(el);
         const duration = 1600;
-        let startTime  = null;
+        let startTime = null;
 
         function step(timestamp) {
           if (!startTime) startTime = timestamp;
           const progress = Math.min((timestamp - startTime) / duration, 1);
-          const ease  = 1 - Math.pow(1 - progress, 3);
-          const value = target * ease;
-          el.textContent = value.toFixed(decimals) + suffix;
+          const ease = 1 - Math.pow(1 - progress, 3);
+          el.textContent = (target * ease).toFixed(decimals) + suffix;
           if (progress < 1) requestAnimationFrame(step);
           else el.textContent = target.toFixed(decimals) + suffix;
         }
@@ -189,7 +164,7 @@
   }
 
   /* ──────────────────────────────────────────────────────────
-     7. EFECTO MÁQUINA DE ESCRIBIR
+     5. EFECTO MÁQUINA DE ESCRIBIR
   ────────────────────────────────────────────────────────── */
   function initTyping() {
     const el = document.querySelector('.typing-cursor');
@@ -200,18 +175,16 @@
     catch { texts = ['Full Stack Developer']; }
     if (!texts.length) return;
 
+    // Movimiento reducido: texto fijo, sin escribir/borrar
+    if (prefersLess) { el.textContent = texts[0]; return; }
+
     let tIdx = 0, cIdx = 0, deleting = false;
 
     function tick() {
       const current = texts[tIdx];
 
-      if (deleting) {
-        cIdx--;
-        el.textContent = current.slice(0, cIdx);
-      } else {
-        cIdx++;
-        el.textContent = current.slice(0, cIdx);
-      }
+      cIdx += deleting ? -1 : 1;
+      el.textContent = current.slice(0, cIdx);
 
       let delay = deleting ? 35 : 65;
 
@@ -231,25 +204,45 @@
   }
 
   /* ──────────────────────────────────────────────────────────
-     8. MODALES
+     6. MODALES
   ────────────────────────────────────────────────────────── */
   function initModals() {
     let lastFocused = null;
     const focusableSel = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
+    function openModal(trigger) {
+      const modal = document.getElementById(trigger.getAttribute('data-modal'));
+      if (!modal) return;
+      lastFocused = trigger;
+      modal.classList.add('active');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      const dialog   = modal.querySelector('.modal');
+      const closeBtn = modal.querySelector('.modal__close');
+      (closeBtn || dialog)?.focus();
+    }
+
+    function closeModal(overlay) {
+      overlay.classList.remove('active');
+      overlay.style.display = '';
+      document.body.style.overflow = '';
+      lastFocused?.focus();
+    }
+
     document.querySelectorAll('[data-modal]').forEach(trigger => {
-      trigger.addEventListener('click', () => {
-        const modal = document.getElementById(trigger.getAttribute('data-modal'));
-        if (!modal) return;
-        lastFocused = trigger;
-        modal.classList.add('active');
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-        // Accesibilidad: mover el foco dentro del modal al abrirlo
-        const dialog = modal.querySelector('.modal');
-        const closeBtn = modal.querySelector('.modal__close');
-        (closeBtn || dialog)?.focus();
-      });
+      trigger.addEventListener('click', () => openModal(trigger));
+
+      // Las cards son <div>: hacerlas accesibles con teclado (Enter / Espacio)
+      if (!/^(A|BUTTON)$/.test(trigger.tagName)) {
+        trigger.setAttribute('tabindex', '0');
+        trigger.setAttribute('role', 'button');
+        trigger.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal(trigger);
+          }
+        });
+      }
     });
 
     document.querySelectorAll('.modal-overlay').forEach(overlay => {
@@ -280,18 +273,10 @@
         document.querySelectorAll('.modal-overlay.active').forEach(closeModal);
       }
     });
-
-    function closeModal(overlay) {
-      overlay.classList.remove('active');
-      overlay.style.display = '';
-      document.body.style.overflow = '';
-      // Accesibilidad: devolver el foco a quien abrió el modal
-      lastFocused?.focus();
-    }
   }
 
   /* ──────────────────────────────────────────────────────────
-     9. COPIAR AL PORTAPAPELES
+     7. COPIAR AL PORTAPAPELES
   ────────────────────────────────────────────────────────── */
   function initCopyButtons() {
     document.querySelectorAll('[data-copy]').forEach(btn => {
@@ -303,46 +288,48 @@
           btn.textContent = '✓ Copiado';
           btn.style.color = 'var(--neon-green)';
           setTimeout(() => { btn.textContent = orig; btn.style.color = ''; }, 2000);
-        } catch {}
+        } catch {
+          btn.textContent = 'Copia manual';
+          setTimeout(() => { btn.textContent = 'Copiar'; }, 2000);
+        }
       });
     });
   }
 
   /* ──────────────────────────────────────────────────────────
-     10. FILTROS DE CERTIFICADOS - CORREGIDO
+     8. FILTROS DE CERTIFICADOS
   ────────────────────────────────────────────────────────── */
   function initFilters() {
-    const btns = document.querySelectorAll('[data-filter]');
+    const btns      = document.querySelectorAll('#certificados [data-filter]');
     const container = document.querySelector('#certificados .grid-auto');
-    
-    if (!btns.length || !container) {
-      return;
-    }
+    if (!btns.length || !container) return;
 
     const items = container.querySelectorAll('[data-category]');
 
     btns.forEach(btn => {
+      btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
+
       btn.addEventListener('click', () => {
-        btns.forEach(b => b.classList.remove('active'));
+        btns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+
         const filter = btn.getAttribute('data-filter');
 
         items.forEach(item => {
           const match = filter === 'all' || item.getAttribute('data-category') === filter;
-          if (match) {
-            item.style.display = '';
-            item.style.opacity = '1';
-            item.style.transform = 'scale(1)';
-          } else {
-            item.style.display = 'none';
-          }
+          item.style.display = match ? '' : 'none';
+          if (match) showEl(item); // que no quede oculto si aún no había entrado en pantalla
         });
       });
     });
   }
 
   /* ──────────────────────────────────────────────────────────
-     11. SMOOTH SCROLL
+     9. SMOOTH SCROLL
   ────────────────────────────────────────────────────────── */
   function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -353,14 +340,14 @@
         if (!target) return;
         e.preventDefault();
         const top = target.getBoundingClientRect().top + window.scrollY - 68;
-        window.scrollTo({ top, behavior: 'smooth' });
+        window.scrollTo({ top, behavior: prefersLess ? 'auto' : 'smooth' });
         history.pushState(null, '', href);
       });
     });
   }
 
   /* ──────────────────────────────────────────────────────────
-     12. PARTÍCULAS
+     10. PARTÍCULAS
   ────────────────────────────────────────────────────────── */
   function initParticles() {
     const canvas = document.getElementById('particles-canvas');
@@ -444,89 +431,113 @@
   }
 
   /* ──────────────────────────────────────────────────────────
-     13. ORBS PARALLAX
+     11. ORBS PARALLAX
+     Usa la propiedad CSS "translate" (no "transform") para no pelear con
+     la animación de entrada de GSAP, que sí usa transform.
+     El loop solo corre mientras el mouse se mueve.
   ────────────────────────────────────────────────────────── */
   function initParallaxOrbs() {
     if (isMobile || isTouch || prefersLess) return;
     const orbs = document.querySelectorAll('.hero__orb');
     if (!orbs.length) return;
 
-    let mx = 0, my = 0, cx = 0, cy = 0;
-
-    document.addEventListener('mousemove', e => {
-      mx = (e.clientX / window.innerWidth  - 0.5);
-      my = (e.clientY / window.innerHeight - 0.5);
-    }, { passive: true });
+    let mx = 0, my = 0, cx = 0, cy = 0, running = false;
 
     function loop() {
       cx += (mx - cx) * 0.05;
       cy += (my - cy) * 0.05;
       orbs.forEach((orb, i) => {
         const f = (i + 1) * 18;
-        orb.style.transform = `translate(${cx * f}px, ${cy * f}px)`;
+        orb.style.translate = `${cx * f}px ${cy * f}px`;
       });
-      requestAnimationFrame(loop);
+
+      if (Math.abs(mx - cx) > 0.001 || Math.abs(my - cy) > 0.001) {
+        requestAnimationFrame(loop);
+      } else {
+        running = false;
+      }
     }
-    loop();
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX / window.innerWidth  - 0.5;
+      my = e.clientY / window.innerHeight - 0.5;
+      if (!running) { running = true; requestAnimationFrame(loop); }
+    }, { passive: true });
   }
 
   /* ──────────────────────────────────────────────────────────
-     14. CURSOR GLOW
+     12. CURSOR GLOW (solo mientras el mouse se mueve)
   ────────────────────────────────────────────────────────── */
   function initCursorGlow() {
     if (isMobile || isTouch || prefersLess) return;
 
     const glow = document.createElement('div');
+    glow.setAttribute('aria-hidden', 'true');
     Object.assign(glow.style, {
-      position:     'fixed',
-      pointerEvents:'none',
-      zIndex:       '9999',
-      width:        '360px',
-      height:       '360px',
-      borderRadius: '50%',
-      background:   'radial-gradient(circle, rgba(139,92,246,0.07) 0%, rgba(139,92,246,0.02) 40%, transparent 70%)',
-      transform:    'translate(-50%,-50%)',
-      opacity:      '0',
-      transition:   'opacity 0.4s ease',
+      position:      'fixed',
+      pointerEvents: 'none',
+      zIndex:        '9999',
+      width:         '360px',
+      height:        '360px',
+      borderRadius:  '50%',
+      background:    'radial-gradient(circle, rgba(139,92,246,0.07) 0%, rgba(139,92,246,0.02) 40%, transparent 70%)',
+      transform:     'translate(-50%,-50%)',
+      opacity:       '0',
+      transition:    'opacity 0.4s ease',
     });
     document.body.appendChild(glow);
 
-    let gx = 0, gy = 0, cgx = 0, cgy = 0;
-
-    document.addEventListener('mousemove', e => { gx = e.clientX; gy = e.clientY; glow.style.opacity = '1'; }, { passive: true });
-    document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
+    let gx = 0, gy = 0, cgx = 0, cgy = 0, running = false;
 
     function loop() {
       cgx += (gx - cgx) * 0.1;
       cgy += (gy - cgy) * 0.1;
       glow.style.left = cgx + 'px';
       glow.style.top  = cgy + 'px';
-      requestAnimationFrame(loop);
+
+      if (Math.abs(gx - cgx) > 0.3 || Math.abs(gy - cgy) > 0.3) {
+        requestAnimationFrame(loop);
+      } else {
+        running = false;
+      }
     }
-    loop();
+
+    document.addEventListener('mousemove', e => {
+      gx = e.clientX;
+      gy = e.clientY;
+      glow.style.opacity = '1';
+      if (!running) { running = true; requestAnimationFrame(loop); }
+    }, { passive: true });
+
+    document.documentElement.addEventListener('mouseleave', () => {
+      glow.style.opacity = '0';
+    });
   }
 
   /* ──────────────────────────────────────────────────────────
-     15. ACTIVE NAV LINK
+     13. LINK ACTIVO EN EL MENÚ (scrollspy)
+     Banda delgada en el centro de la pantalla: funciona también con
+     secciones muy altas (como Certificados), que con threshold nunca
+     llegaban a activarse.
   ────────────────────────────────────────────────────────── */
   function initActiveNav() {
     const sections  = document.querySelectorAll('section[id]');
     const navLinks  = document.querySelectorAll('.navbar__link');
     const sideLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+    if (!sections.length || !('IntersectionObserver' in window)) return;
 
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          navLinks.forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
-          });
-          sideLinks.forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
-          });
-        }
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        [...navLinks, ...sideLinks].forEach(a => {
+          const active = a.getAttribute('href') === `#${id}`;
+          a.classList.toggle('active', active);
+          if (active) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
+        });
       });
-    }, { threshold: 0.35 });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
 
     sections.forEach(s => observer.observe(s));
   }
@@ -535,11 +546,9 @@
      INIT
   ────────────────────────────────────────────────────────── */
   function init() {
-    forceInitialVisibility();
     initMobileMenu();
     initNavbarScroll();
     initReveal();
-    initProgressBars();
     initCounters();
     initTyping();
     initModals();
@@ -557,9 +566,5 @@
   } else {
     init();
   }
-
-  window.addEventListener('load', () => {
-    forceInitialVisibility();
-  });
 
 })();

@@ -127,7 +127,6 @@
   /* VISIBLE POR DEFECTO - sin esperar ScrollTrigger */
   opacity: 1;
   transform: translate(0) scale(1);
-  will-change: opacity, transform;
   transition:
     opacity  0.75s cubic-bezier(0.22,1,0.36,1),
     transform 0.75s cubic-bezier(0.22,1,0.36,1);
@@ -154,6 +153,12 @@
 .reveal--scale.visible {
   opacity: 1;
   transform: translate(0) scale(1);
+}
+
+/* El hover lift de las cards no debe quedar anulado por .reveal.visible */
+.card.reveal.visible:not(.card--flat):hover,
+.cert-card.reveal.visible:hover {
+  transform: translateY(-4px);
 }
 
 /* Delays para reveal (escalonado dentro de grids) */
@@ -250,6 +255,7 @@
 .cert-card,
 .stat-card {
   transition:
+    opacity         0.75s cubic-bezier(0.22,1,0.36,1),
     transform       0.35s cubic-bezier(0.22,1,0.36,1),
     border-color    0.35s ease,
     box-shadow      0.35s ease;
@@ -345,7 +351,6 @@
   .reveal--right,
   .reveal--scale {
     transition-duration: 0.5s;
-    transform: translateY(12px);
   }
   .reveal--left  { transform: translateX(0) !important; }
   .reveal--right { transform: translateX(0) !important; }

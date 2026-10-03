@@ -1,6 +1,8 @@
 /* ============================================================
-   GSAP-ANIMATIONS.JS — Solo desktop, sin conflictos
-   CORREGIDO: Sin conflictos con main.js
+   GSAP-ANIMATIONS.JS — Solo desktop
+   - Animación de entrada del hero
+   - Tilt 3D en las cards
+   El navbar "scrolled" lo maneja main.js (antes estaba duplicado aquí).
    ============================================================ */
 'use strict';
 
@@ -11,109 +13,60 @@
 
   if (typeof gsap === 'undefined' || isMobile || prefersLess) return;
 
-  if (typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-    ScrollTrigger.config({ ignoreMobileResize: true });
-  }
-
+  /* ──────────────────────────────────────────────────────────
+     HERO — entrada escalonada
+     Se usa gsap.from: anima desde "oculto" hasta el estilo real del CSS
+     (así cada orb conserva su opacidad propia) y clearProps devuelve el
+     control al CSS al terminar, para que el hover de botones, redes y
+     stat-cards siga funcionando.
+  ────────────────────────────────────────────────────────── */
   function initHero() {
-    setTimeout(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    const tl  = gsap.timeline({ defaults: { ease: 'power3.out', clearProps: 'opacity,transform' } });
+    const has = sel => document.querySelector(sel);
 
-      gsap.set('.hero__orb', { opacity: 0, scale: 0.7 });
-      tl.to('.hero__orb', {
-        opacity:  0.15,
-        scale:    1,
-        duration: 1.8,
-        stagger:  0.2,
-      }, 0);
-
-const badge = document.querySelector('.hero .badge');
-if (badge) {
-  // Asegurar que el badge existe y está listo
-  gsap.set(badge, { 
-    opacity: 0, 
-    y: -15,
-    clearProps: "all" 
-  });
-  tl.to(badge, { 
-    opacity: 1, 
-    y: 0, 
-    duration: 0.5, 
-    ease: "back.out(0.6)",
-    delay: 0.2
-  }, 0.2);
-}
-
-      const h1 = document.querySelector('.hero h1');
-      if (h1) {
-        gsap.set(h1, { opacity: 0, y: 24 });
-        tl.to(h1, { opacity: 1, y: 0, duration: 0.8 }, 0.5);
-      }
-
-      const p = document.querySelector('.hero p');
-      if (p) {
-        gsap.set(p, { opacity: 0, y: 18 });
-        tl.to(p, { opacity: 1, y: 0, duration: 0.7 }, 0.8);
-      }
-
-      const btns = document.querySelectorAll('.hero .btn');
-      if (btns.length) {
-        gsap.set(btns, { opacity: 0, y: 14 });
-        tl.to(btns, { opacity: 1, y: 0, duration: 0.6, stagger: 0.1 }, 1.0);
-      }
-
-      const socials = document.querySelectorAll('.hero .social-link');
-      if (socials.length) {
-        gsap.set(socials, { opacity: 0, x: -12 });
-        tl.to(socials, { opacity: 1, x: 0, duration: 0.5, stagger: 0.07 }, 1.2);
-      }
-
-      const avatar = document.querySelector('.avatar');
-      if (avatar) {
-        gsap.set(avatar, { opacity: 0, scale: 0.88 });
-        tl.to(avatar, { opacity: 1, scale: 1, duration: 1.0 }, 0.6);
-      }
-
-      const statCards = document.querySelectorAll('.stat-card');
-      if (statCards.length) {
-        gsap.set(statCards, { opacity: 0, y: 18 });
-        tl.to(statCards, { opacity: 1, y: 0, duration: 0.6, stagger: 0.12 }, 0.9);
-      }
-
-    }, 0);
+    if (has('.hero__orb')) {
+      // Solo se limpia la opacidad: el movimiento parallax de los orbs (main.js) usa "translate"
+      tl.from('.hero__orb', { opacity: 0, scale: 0.7, duration: 1.8, stagger: 0.2, clearProps: 'opacity' }, 0);
+    }
+    if (has('.hero .badge')) {
+      tl.from('.hero .badge', { opacity: 0, y: -15, duration: 0.5, ease: 'back.out(0.6)' }, 0.2);
+    }
+    if (has('.hero h1')) {
+      tl.from('.hero h1', { opacity: 0, y: 24, duration: 0.8 }, 0.5);
+    }
+    if (has('.hero p')) {
+      tl.from('.hero p', { opacity: 0, y: 18, duration: 0.7 }, 0.8);
+    }
+    if (has('.hero .btn')) {
+      tl.from('.hero .btn', { opacity: 0, y: 14, duration: 0.6, stagger: 0.1 }, 1.0);
+    }
+    if (has('.hero .social-link')) {
+      tl.from('.hero .social-link', { opacity: 0, x: -12, duration: 0.5, stagger: 0.07 }, 1.2);
+    }
+    if (has('.avatar')) {
+      tl.from('.avatar', { opacity: 0, scale: 0.88, duration: 1.0 }, 0.6);
+    }
+    if (has('.stat-card')) {
+      tl.from('.stat-card', { opacity: 0, y: 18, duration: 0.6, stagger: 0.12 }, 0.9);
+    }
   }
 
-  function initSectionHeaders() {
-    if (typeof ScrollTrigger === 'undefined') return;
-
-    // Hacer visibles todos los títulos inmediatamente
-    gsap.utils.toArray('.section__eyebrow, .section__title, .section__subtitle').forEach(el => {
-      gsap.set(el, { opacity: 1, y: 0 });
-    });
-  }
-
-  function initNavbar() {
-    if (typeof ScrollTrigger === 'undefined') return;
-    const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-    ScrollTrigger.create({
-      start:      'top -30',
-      onEnter:    () => navbar.classList.add('scrolled'),
-      onLeaveBack:() => navbar.classList.remove('scrolled'),
-    });
-  }
-
+  /* ──────────────────────────────────────────────────────────
+     TILT 3D en cards
+     Mientras GSAP mueve la card se quita la transición CSS de "transform"
+     (si no, las dos se pisan y el movimiento se siente gomoso).
+     Al salir se limpia el transform inline para que el CSS recupere el control.
+  ────────────────────────────────────────────────────────── */
   function initCardTilt() {
     if (window.matchMedia('(pointer: coarse)').matches) return;
 
     const cards = document.querySelectorAll('.card--glow, .version-card');
 
     cards.forEach(card => {
-      const cs = getComputedStyle(card);
-      if (cs.position === 'static') card.style.position = 'relative';
+      if (getComputedStyle(card).position === 'static') card.style.position = 'relative';
 
       const glowEl = document.createElement('div');
+      glowEl.setAttribute('aria-hidden', 'true');
       glowEl.style.cssText = `
         position: absolute; inset: 0; border-radius: inherit;
         pointer-events: none; opacity: 0;
@@ -127,24 +80,24 @@ if (badge) {
 
       card.addEventListener('mouseenter', () => {
         bounds = card.getBoundingClientRect();
+        card.style.transition = 'border-color 0.35s ease, box-shadow 0.35s ease';
         glowEl.style.opacity = '1';
-        gsap.to(card, { scale: 1.01, duration: 0.4, ease: 'power2.out' });
+        gsap.to(card, { scale: 1.01, duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
       });
 
       card.addEventListener('mousemove', e => {
         if (!bounds) return;
-        const x = (e.clientX - bounds.left) / bounds.width  - 0.5;
-        const y = (e.clientY - bounds.top)  / bounds.height - 0.5;
+        const px = (e.clientX - bounds.left) / bounds.width;
+        const py = (e.clientY - bounds.top)  / bounds.height;
         gsap.to(card, {
-          rotateY: x * 4,
-          rotateX: -y * 4,
+          rotateY: (px - 0.5) * 4,
+          rotateX: -(py - 0.5) * 4,
           duration: 0.5,
           ease: 'power1.out',
           transformPerspective: 900,
+          overwrite: 'auto',
         });
-        glowEl.style.background = `radial-gradient(circle at ${
-          (e.clientX - bounds.left) / bounds.width  * 100}% ${
-          (e.clientY - bounds.top)  / bounds.height * 100}%,
+        glowEl.style.background = `radial-gradient(circle at ${px * 100}% ${py * 100}%,
           rgba(167,139,250,0.09) 0%, transparent 65%)`;
       });
 
@@ -156,6 +109,11 @@ if (badge) {
           duration: 0.55,
           ease: 'power2.out',
           transformPerspective: 900,
+          overwrite: 'auto',
+          onComplete: () => {
+            gsap.set(card, { clearProps: 'transform' });
+            card.style.transition = '';
+          },
         });
       });
     });
@@ -163,8 +121,6 @@ if (badge) {
 
   document.addEventListener('DOMContentLoaded', () => {
     initHero();
-    initSectionHeaders();
-    initNavbar();
     initCardTilt();
   });
 
